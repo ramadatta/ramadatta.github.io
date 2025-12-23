@@ -255,32 +255,34 @@ title: ""
       </div>
     </div>
     <div class="skill-category">
-      <h3>Bioinformatics</h3>
+      <h3>Generative AI</h3>
       <div class="skill-tags">
-        <span class="skill-tag">Scanpy</span>
-        <span class="skill-tag">Seurat</span>
-        <span class="skill-tag">scRNA-seq</span>
-        <span class="skill-tag">Spatial Transcriptomics</span>
-        <span class="skill-tag">WGS</span>
+        <span class="skill-tag">AI application development (Google Gemini)</span>
+        <span class="skill-tag">AI-assisted coding workflows (Cursor)</span>
+        <span class="skill-tag">Knowledge synthesis and visualization (NotebookLM)</span>
       </div>
     </div>
     <div class="skill-category">
-      <h3>Data Science</h3>
+      <h3>Domains with work experience</h3>
       <div class="skill-tags">
-        <span class="skill-tag">tidyverse</span>
-        <span class="skill-tag">ggplot2</span>
-        <span class="skill-tag">R Shiny</span>
-        <span class="skill-tag">R Markdown</span>
+        <span class="skill-tag">Single Cell Genomics (Human & Mouse Lung)</span>
+        <span class="skill-tag">Bacterial Genomics</span>
+        <span class="skill-tag">Fish Genomics</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h3>WebApp development</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Shiny for Python</span>
+        <span class="skill-tag">Shiny for R</span>
       </div>
     </div>
     <div class="skill-category">
       <h3>Infrastructure</h3>
       <div class="skill-tags">
         <span class="skill-tag">HPC</span>
-        <span class="skill-tag">Linux/Unix</span>
+        <span class="skill-tag">Linux</span>
         <span class="skill-tag">Git/GitHub</span>
-        <span class="skill-tag">Snakemake</span>
-        <span class="skill-tag">Nextflow</span>
       </div>
     </div>
   </div>
