@@ -8,7 +8,7 @@ title: ""
     <img src="/assets/img/Prakki_DP.png" alt="Sai Rama Sridatta Prakki">
   </div>
   <div class="profile-intro">
-    <h1>Hey, I'm Datta!</h1>
+    <h1>Hey, I'm Datta (Sai Rama Sridatta Prakki)!</h1>
     <p class="tagline">Doctoral Candidate @ Helmholtz Center Munich</p>
     <p>Diving deep into the fascinating world of <strong>lung single-cell genomics</strong>. With 10+ years of bioinformatics experience spanning genomics, infectious diseases, and now regenerative medicine, I decode what our cells are whispering to us using Python, R, and AI tools.</p>
   </div>
@@ -257,15 +257,15 @@ title: ""
     <div class="skill-category">
       <h3>Generative AI</h3>
       <div class="skill-tags">
-        <span class="skill-tag">AI application development (Google Gemini)</span>
-        <span class="skill-tag">AI-assisted coding workflows (Cursor)</span>
-        <span class="skill-tag">Knowledge synthesis and visualization (NotebookLM)</span>
+        <span class="skill-tag">AI app development (Google Gemini)</span>
+        <span class="skill-tag">AI-assisted coding (Cursor)</span>
+        <span class="skill-tag">Knowledge synthesis & Viz (NotebookLM)</span>
       </div>
     </div>
     <div class="skill-category">
-      <h3>Domains with work experience</h3>
+      <h3>Domains with Bioinformatics experience</h3>
       <div class="skill-tags">
-        <span class="skill-tag">Single Cell Genomics (Human & Mouse Lung)</span>
+        <span class="skill-tag">Single Cell Genomics</span>
         <span class="skill-tag">Bacterial Genomics</span>
         <span class="skill-tag">Fish Genomics</span>
       </div>

@@ -5,7 +5,6 @@ date: 2025-12-23
 description: "A step-by-step guide to creating a personal website with Jekyll and GitHub Pages, including blog functionality and comments."
 tags: [jekyll, github-pages, tutorial, portfolio]
 categories: [tutorials]
-views: 0
 giscus_comments: true
 ---
 
