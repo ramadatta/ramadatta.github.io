@@ -10,7 +10,7 @@ title: ""
   <div class="profile-intro">
     <h1>Hey, I'm Datta (Sai Rama Sridatta Prakki)!</h1>
     <p class="tagline">Doctoral Candidate @ Helmholtz Center Munich</p>
-    <p>Diving deep into the fascinating world of <strong>lung single-cell genomics</strong>. With 10+ years of bioinformatics experience spanning genomics, infectious diseases, and now regenerative medicine, I decode what our cells are whispering to us using Python, R, and AI tools.</p>
+    <p>Diving deep into the fascinating world of <strong>lung single-cell genomics</strong>. With 10+ years of bioinformatics experience spanning genomics, infectious diseases, and now single cell genomics, I decode what our cells are whispering to us using Python, R, and AI tools.</p>
   </div>
 </div>
 
