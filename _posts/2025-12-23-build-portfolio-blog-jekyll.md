@@ -227,5 +227,5 @@ You now have a fully functional portfolio + blog with:
 
 ---
 
-*Questions? Drop a comment below!*
+*I am not an expert in generating this website. Most heavy lifting was done using Claude-4.5 opus*
 
