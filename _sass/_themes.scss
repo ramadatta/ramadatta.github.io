@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+// ==============================================================================
+// THEME 3: WARM SUNSET
+// Friendly, inviting light theme with warm orange/amber tones
+// ==============================================================================
+
+// Primary Colors
+$color-primary: #e85d04;           // Burnt Orange
+$color-primary-light: #f48c06;     // Amber
+$color-primary-dark: #d00000;      // Deep Red-Orange
+
+// Accent Colors
+$color-accent: #6a040f;            // Deep Burgundy
+$color-accent-light: #9d0208;      // Wine Red
+$color-accent-dark: #370617;       // Dark Burgundy
+
+// Warm tones
+$color-mint: #f48c06;              // Amber (used for links)
+$color-cyan: #ffba08;              // Golden Yellow
+$color-peach: #ffccd5;             // Soft Peach
+
+// Background Colors (Light Theme)
+$bg-dark: #fffbf5;                 // Warm White / Cream
+$bg-dark-elevated: #ffffff;        // Pure White for cards
+$bg-dark-surface: #fff5eb;         // Soft Peach tint
+
+// Text Colors
+$text-dark-primary: #1a1a1a;       // Near black
+$text-dark-secondary: #4a4a4a;     // Dark gray
+$text-dark-muted: #7a7a7a;         // Medium gray
+
+$text-light-primary: #1a1a1a;
+$text-light-secondary: #4a4a4a;
+$text-light-muted: #7a7a7a;
+
+// Semantic Colors
+$color-success: #2d6a4f;
+$color-warning: #f48c06;
+$color-error: #d00000;
+$color-info: #0077b6;
+
+// Gradients
+$gradient-primary: linear-gradient(135deg, $color-primary 0%, $color-cyan 100%);
+$gradient-accent: linear-gradient(135deg, #ff6b35 0%, #f7c59f 100%);
+$gradient-hero: linear-gradient(135deg, #e85d04 0%, #f48c06 50%, #ffba08 100%);
+$gradient-text: linear-gradient(135deg, $color-primary 0%, $color-accent 100%);
+
+// Shadows (softer, warmer)
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+$shadow-glow: 0 4px 20px rgba($color-primary, 0.15);
+
+// Border Colors
+$border-dark: rgba($color-primary, 0.15);
+$border-dark-hover: rgba($color-primary, 0.4);
+$border-light: #e8e0d8;
+$border-light-hover: $color-primary;
+
+// Code Colors (warm terminal)
+$code-bg: #2b2b2b;
+$code-text: #f8f8f2;
+$code-comment: #75715e;
+$code-keyword: #f92672;
+$code-string: #e6db74;

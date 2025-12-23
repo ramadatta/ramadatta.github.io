@@ -1,0 +1,229 @@
+@charset "UTF-8";
+
+// ==============================================================================
+// BASE STYLES - WARM SUNSET THEME
+// Light, friendly, with monospace fonts
+// ==============================================================================
+
+@import 'themes';
+
+// Reset & Box Sizing
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Typography Scale - Keep JetBrains Mono for that techy feel
+$font-family-heading: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+$font-family-body: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+$font-family-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 1.875rem;
+$font-size-4xl: 2.25rem;
+$font-size-5xl: 3rem;
+
+// Spacing Scale
+$spacing-1: 0.25rem;
+$spacing-2: 0.5rem;
+$spacing-3: 0.75rem;
+$spacing-4: 1rem;
+$spacing-5: 1.25rem;
+$spacing-6: 1.5rem;
+$spacing-8: 2rem;
+$spacing-10: 2.5rem;
+$spacing-12: 3rem;
+$spacing-16: 4rem;
+$spacing-20: 5rem;
+
+// Transitions
+$transition-fast: 150ms ease;
+$transition-base: 250ms ease;
+$transition-slow: 400ms ease;
+
+// Border Radius - Slightly rounded for friendliness
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-full: 9999px;
+
+// Container
+$container-max: 1100px;
+$container-narrow: 720px;
+
+// ==============================================================================
+// BASE ELEMENTS
+// ==============================================================================
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-family-body;
+  font-size: $font-size-sm;
+  line-height: 1.8;
+  background-color: $bg-dark;
+  color: $text-dark-primary;
+  min-height: 100vh;
+  
+  // Subtle warm gradient background
+  background-image: 
+    radial-gradient(ellipse at top right, rgba($color-primary, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba($color-cyan, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: $spacing-4;
+  color: $text-dark-primary;
+}
+
+h1 { font-size: $font-size-3xl; }
+h2 { font-size: $font-size-2xl; }
+h3 { font-size: $font-size-xl; }
+h4 { font-size: $font-size-lg; }
+h5 { font-size: $font-size-base; }
+h6 { font-size: $font-size-sm; }
+
+// Paragraphs
+p {
+  margin-bottom: $spacing-4;
+  color: $text-dark-secondary;
+}
+
+// Links
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: all $transition-fast;
+  border-bottom: 1px solid transparent;
+  
+  &:hover {
+    color: $color-accent;
+    border-bottom-color: $color-accent;
+  }
+}
+
+// Lists
+ul, ol {
+  margin-bottom: $spacing-4;
+  padding-left: $spacing-6;
+  
+  li {
+    margin-bottom: $spacing-2;
+    color: $text-dark-secondary;
+    
+    &::marker {
+      color: $color-primary;
+    }
+  }
+}
+
+// Blockquotes
+blockquote {
+  border-left: 4px solid $color-primary;
+  padding-left: $spacing-6;
+  margin: $spacing-8 0;
+  font-style: italic;
+  color: $text-dark-secondary;
+  background: $bg-dark-surface;
+  padding: $spacing-6;
+  border-radius: 0 $radius-md $radius-md 0;
+  
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Code
+code {
+  font-family: $font-family-mono;
+  font-size: 0.9em;
+  background: $code-bg;
+  color: $code-text;
+  padding: $spacing-1 $spacing-2;
+  border-radius: $radius-sm;
+}
+
+pre {
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  background: $code-bg;
+  color: $code-text;
+  padding: $spacing-6;
+  border-radius: $radius-lg;
+  overflow-x: auto;
+  margin: $spacing-6 0;
+  
+  code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+  }
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: $radius-lg;
+}
+
+// Horizontal Rule
+hr {
+  border: none;
+  height: 2px;
+  background: $gradient-primary;
+  margin: $spacing-12 0;
+  opacity: 0.3;
+  border-radius: $radius-full;
+}
+
+// Selection
+::selection {
+  background: rgba($color-primary, 0.2);
+  color: $text-dark-primary;
+}
+
+// ==============================================================================
+// UTILITY CLASSES
+// ==============================================================================
+
+.container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $spacing-6;
+}
+
+.gradient-text {
+  background: $gradient-text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

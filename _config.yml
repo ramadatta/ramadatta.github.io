@@ -1,0 +1,90 @@
+# ==============================================================================
+# Site Settings
+# ==============================================================================
+title: Sai Rama Sridatta Prakki
+description: >-
+  Bioinformatics PhD Student @ Helmholtz Munich • Single-cell genomics • 
+  Sharing discoveries, code, and scientific adventures.
+author:
+  name: Datta
+  email: srsridatta.prakki@helmholtz-munich.de
+  bio: "PhD student exploring the lung at single-cell resolution"
+
+url: "https://ramadatta.github.io"
+baseurl: ""
+
+# ==============================================================================
+# Build Settings
+# ==============================================================================
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# ==============================================================================
+# Include _pages directory
+# ==============================================================================
+include:
+  - _pages
+
+# ==============================================================================
+# Sass/SCSS
+# ==============================================================================
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# ==============================================================================
+# Collections
+# ==============================================================================
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+# ==============================================================================
+# Defaults
+# ==============================================================================
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "page"
+  - scope:
+      path: "_pages"
+    values:
+      layout: "page"
+
+# ==============================================================================
+# Social Links
+# ==============================================================================
+social:
+  github: ramadatta
+  linkedin: prakki-sai-rama-sridatta-data
+  email: srsridatta.prakki@helmholtz-munich.de
+
+# ==============================================================================
+# Theme Settings
+# ==============================================================================
+theme_style: dark
+
+# ==============================================================================
+# Exclude from processing
+# ==============================================================================
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
+  - vendor/
+  - .ruby-version

@@ -1,0 +1,1179 @@
+@charset "UTF-8";
+
+// ==============================================================================
+// COMPONENT STYLES - WARM SUNSET THEME
+// Friendly, inviting UI components
+// ==============================================================================
+
+@import 'themes';
+@import 'base';
+
+// ==============================================================================
+// BUTTONS
+// ==============================================================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: $spacing-3 $spacing-6;
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: $radius-lg;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  &-primary {
+    background: $gradient-primary;
+    color: white;
+    border-color: transparent;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-glow;
+      color: white;
+      border-bottom: 2px solid transparent;
+    }
+  }
+  
+  &-secondary {
+    background: white;
+    color: $color-primary;
+    border-color: $color-primary;
+    
+    &:hover {
+      background: $color-primary;
+      color: white;
+      border-bottom: 2px solid $color-primary;
+    }
+  }
+  
+  &-ghost {
+    background: rgba($color-primary, 0.08);
+    color: $color-primary;
+    
+    &:hover {
+      background: rgba($color-primary, 0.15);
+    }
+  }
+}
+
+// ==============================================================================
+// PROFILE SECTION
+// ==============================================================================
+
+.profile-section {
+  display: flex;
+  gap: $spacing-8;
+  align-items: center;
+  margin-bottom: $spacing-10;
+  flex-wrap: wrap;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.profile-photo {
+  flex-shrink: 0;
+  
+  img {
+    width: 180px;
+    height: 180px;
+    border-radius: $radius-full;
+    object-fit: cover;
+    border: 4px solid $color-primary;
+    box-shadow: $shadow-glow;
+  }
+}
+
+.profile-intro {
+  flex: 1;
+  
+  h1 {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-2;
+    color: $text-dark-primary;
+    
+    @media (min-width: 768px) {
+      font-size: $font-size-4xl;
+    }
+  }
+  
+  .tagline {
+    font-size: $font-size-lg;
+    color: $color-primary;
+    font-weight: 600;
+    margin-bottom: $spacing-4;
+  }
+  
+  p {
+    font-size: $font-size-base;
+    line-height: 1.8;
+  }
+}
+
+// ==============================================================================
+// SECTION TABS
+// ==============================================================================
+
+.section-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-2;
+  margin: $spacing-8 0;
+  padding: $spacing-4 0;
+  border-top: 1px solid $border-light;
+  border-bottom: 1px solid $border-light;
+  position: sticky;
+  top: 60px;
+  background: rgba($bg-dark, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 50;
+}
+
+.tab-link {
+  padding: $spacing-2 $spacing-4;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $text-dark-secondary;
+  border-radius: $radius-md;
+  border-bottom: none;
+  transition: all $transition-fast;
+  
+  &:hover {
+    color: $color-primary;
+    background: rgba($color-primary, 0.08);
+    border-bottom: none;
+  }
+  
+  &.active {
+    color: white;
+    background: $gradient-primary;
+  }
+}
+
+// ==============================================================================
+// CONTENT SECTIONS
+// ==============================================================================
+
+.section-divider {
+  border: none;
+  height: 2px;
+  background: $gradient-primary;
+  margin: $spacing-10 0;
+  opacity: 0.3;
+  border-radius: $radius-full;
+}
+
+.content-section {
+  padding: $spacing-6 0;
+  scroll-margin-top: 100px;
+}
+
+.section-title {
+  font-size: $font-size-2xl;
+  color: $color-primary;
+  margin-bottom: $spacing-6;
+  padding-bottom: $spacing-3;
+  border-bottom: 3px solid $color-primary;
+  display: inline-block;
+  
+  &::before {
+    content: '//';
+    margin-right: $spacing-2;
+    opacity: 0.5;
+  }
+}
+
+.content-section h3 {
+  color: $color-accent;
+  font-size: $font-size-lg;
+  margin-top: $spacing-8;
+  margin-bottom: $spacing-4;
+  padding-left: $spacing-3;
+  border-left: 3px solid $color-primary;
+}
+
+.feature-list {
+  list-style: none;
+  padding-left: 0;
+  
+  li {
+    position: relative;
+    padding: $spacing-3 0 $spacing-3 $spacing-8;
+    margin-bottom: $spacing-2;
+    background: $bg-dark-surface;
+    border-radius: $radius-md;
+    border-left: 3px solid $color-primary;
+    
+    &::before {
+      content: '\2192';
+      position: absolute;
+      left: $spacing-3;
+      color: $color-primary;
+      font-weight: bold;
+    }
+    
+    strong {
+      color: $color-primary;
+    }
+  }
+}
+
+.presentation-list {
+  list-style: none;
+  padding-left: 0;
+  
+  li {
+    padding: $spacing-4;
+    margin-bottom: $spacing-4;
+    background: $bg-dark-elevated;
+    border: 1px solid $border-light;
+    border-radius: $radius-lg;
+    border-left: 4px solid $color-primary;
+    
+    strong {
+      color: $text-dark-primary;
+      font-size: $font-size-base;
+    }
+    
+    em {
+      color: $text-dark-muted;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+.placeholder-text {
+  color: $text-dark-muted;
+  font-style: italic;
+  padding: $spacing-4;
+  background: $bg-dark-surface;
+  border-radius: $radius-md;
+  border-left: 3px solid $border-light;
+}
+
+// ==============================================================================
+// EXPERIENCE TIMELINE
+// ==============================================================================
+
+.experience-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+}
+
+.experience-item {
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+  padding: $spacing-6;
+  border-left: 4px solid $color-primary;
+  
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-2;
+    flex-wrap: wrap;
+    gap: $spacing-2;
+  }
+  
+  .experience-date {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-primary;
+  }
+  
+  .experience-location {
+    font-size: $font-size-xs;
+    color: $text-dark-muted;
+    background: $bg-dark-surface;
+    padding: $spacing-1 $spacing-2;
+    border-radius: $radius-sm;
+  }
+  
+  h3 {
+    color: $text-dark-primary;
+    margin-bottom: $spacing-1;
+    font-size: $font-size-lg;
+    border: none;
+    padding: 0;
+  }
+  
+  .experience-org {
+    color: $text-dark-secondary;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-4;
+  }
+  
+  ul {
+    margin: 0;
+    padding-left: $spacing-6;
+    
+    li {
+      font-size: $font-size-sm;
+      margin-bottom: $spacing-2;
+      color: $text-dark-secondary;
+      
+      &::marker {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+// ==============================================================================
+// EDUCATION GRID
+// ==============================================================================
+
+.education-grid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+}
+
+.education-item {
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+  padding: $spacing-6;
+  border-left: 4px solid $color-primary;
+  
+  .education-year {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-primary;
+    display: block;
+    margin-bottom: $spacing-2;
+  }
+  
+  h3 {
+    color: $text-dark-primary;
+    margin-bottom: $spacing-1;
+    font-size: $font-size-base;
+    border: none;
+    padding: 0;
+  }
+  
+  p {
+    color: $text-dark-secondary;
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+}
+
+// ==============================================================================
+// PUBLICATIONS
+// ==============================================================================
+
+.publication-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+}
+
+.publication-item {
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+  padding: $spacing-5;
+  position: relative;
+  padding-left: $spacing-16;
+  
+  .pub-year {
+    position: absolute;
+    left: $spacing-4;
+    top: $spacing-5;
+    font-size: $font-size-sm;
+    font-weight: 700;
+    color: $color-primary;
+  }
+  
+  p {
+    margin: 0;
+    font-size: $font-size-sm;
+    line-height: 1.6;
+    
+    strong {
+      color: $text-dark-primary;
+      display: block;
+      margin-bottom: $spacing-1;
+    }
+    
+    em {
+      color: $color-primary;
+    }
+    
+    u {
+      text-decoration: none;
+      font-weight: 600;
+      color: $color-accent;
+    }
+    
+    a {
+      font-weight: 500;
+    }
+  }
+}
+
+.see-more {
+  margin-top: $spacing-6;
+  text-align: center;
+  
+  a {
+    font-weight: 600;
+    color: $color-primary;
+  }
+}
+
+// ==============================================================================
+// SKILLS GRID
+// ==============================================================================
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $spacing-6;
+}
+
+.skill-category {
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+  padding: $spacing-5;
+  
+  h3 {
+    color: $color-primary;
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: $spacing-4;
+    padding-bottom: $spacing-2;
+    border-bottom: 2px solid $border-light;
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-2;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: $spacing-1 $spacing-3;
+  font-size: $font-size-xs;
+  font-weight: 500;
+  background: $gradient-primary;
+  color: white;
+  border-radius: $radius-full;
+}
+
+// ==============================================================================
+// CERTIFICATIONS
+// ==============================================================================
+
+.cert-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-2;
+  margin-top: $spacing-4;
+}
+
+.cert-item {
+  display: inline-block;
+  padding: $spacing-2 $spacing-3;
+  font-size: $font-size-xs;
+  background: $bg-dark-surface;
+  color: $text-dark-secondary;
+  border-radius: $radius-md;
+  border: 1px solid $border-light;
+}
+
+// ==============================================================================
+// COMMENTS SECTION
+// ==============================================================================
+
+.comments-section {
+  margin-top: $spacing-12;
+  padding-top: $spacing-8;
+  border-top: 2px solid $border-light;
+}
+
+.comments-title {
+  font-size: $font-size-xl;
+  color: $color-primary;
+  margin-bottom: $spacing-2;
+}
+
+.comments-note {
+  font-size: $font-size-sm;
+  color: $text-dark-muted;
+  margin-bottom: $spacing-6;
+}
+
+.giscus {
+  margin-top: $spacing-4;
+}
+
+// ==============================================================================
+// CONTACT GRID
+// ==============================================================================
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $spacing-6;
+  margin-top: $spacing-6;
+}
+
+.contact-item {
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+  padding: $spacing-6;
+  
+  strong {
+    display: block;
+    color: $color-primary;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  a, span {
+    color: $text-dark-primary;
+    font-size: $font-size-base;
+  }
+  
+  a:hover {
+    color: $color-accent;
+  }
+}
+
+// ==============================================================================
+// BLOG FILTERS
+// ==============================================================================
+
+.blog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-4;
+  margin-bottom: $spacing-6;
+  padding: $spacing-6;
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 250px;
+  position: relative;
+  
+  input {
+    width: 100%;
+    padding: $spacing-3 $spacing-4 $spacing-3 $spacing-10;
+    font-family: $font-family-mono;
+    font-size: $font-size-sm;
+    border: 2px solid $border-light;
+    border-radius: $radius-md;
+    background: white;
+    color: $text-dark-primary;
+    transition: border-color $transition-fast;
+    
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+    }
+    
+    &::placeholder {
+      color: $text-dark-muted;
+    }
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: $spacing-3;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-dark-muted;
+  }
+}
+
+.filter-section {
+  display: flex;
+  gap: $spacing-4;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  
+  label {
+    font-size: $font-size-sm;
+    font-weight: 500;
+    color: $text-dark-secondary;
+  }
+  
+  select {
+    padding: $spacing-2 $spacing-4;
+    font-family: $font-family-mono;
+    font-size: $font-size-sm;
+    border: 2px solid $border-light;
+    border-radius: $radius-md;
+    background: white;
+    color: $text-dark-primary;
+    cursor: pointer;
+    
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+    }
+  }
+}
+
+// ==============================================================================
+// TAGS CLOUD
+// ==============================================================================
+
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-2;
+  margin-bottom: $spacing-6;
+}
+
+.tags-label {
+  font-size: $font-size-sm;
+  color: $text-dark-muted;
+  font-weight: 500;
+}
+
+.tag-btn {
+  padding: $spacing-1 $spacing-3;
+  font-family: $font-family-mono;
+  font-size: $font-size-xs;
+  font-weight: 500;
+  color: $color-primary;
+  background: rgba($color-primary, 0.08);
+  border: 1px solid transparent;
+  border-radius: $radius-full;
+  cursor: pointer;
+  transition: all $transition-fast;
+  
+  &:hover, &.active {
+    background: $color-primary;
+    color: white;
+  }
+}
+
+// ==============================================================================
+// POSTS COUNT
+// ==============================================================================
+
+.posts-count {
+  font-size: $font-size-sm;
+  color: $text-dark-muted;
+  margin-bottom: $spacing-6;
+  
+  span {
+    font-weight: 700;
+    color: $color-primary;
+  }
+}
+
+// ==============================================================================
+// CARDS
+// ==============================================================================
+
+.card {
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+  padding: $spacing-6;
+  transition: all $transition-base;
+  
+  &:hover {
+    border-color: $color-primary;
+    box-shadow: $shadow-glow;
+    transform: translateY(-4px);
+  }
+}
+
+// ==============================================================================
+// TAGS
+// ==============================================================================
+
+.tag {
+  display: inline-block;
+  padding: $spacing-1 $spacing-3;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+  border-radius: $radius-full;
+}
+
+.tag-small {
+  display: inline-block;
+  padding: 2px $spacing-2;
+  font-size: $font-size-xs;
+  color: $text-dark-muted;
+  background: rgba($color-primary, 0.05);
+  border-radius: $radius-sm;
+}
+
+.tag-more {
+  display: inline-block;
+  padding: $spacing-1 $spacing-2;
+  font-size: $font-size-xs;
+  color: $text-dark-muted;
+}
+
+// ==============================================================================
+// ABOUT PAGE
+// ==============================================================================
+
+.about-page {
+  .hero-section {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .hero-content {
+    max-width: $container-max;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+    
+    li {
+      position: relative;
+      padding-left: $spacing-6;
+      margin-bottom: $spacing-3;
+      
+      &::before {
+        content: '\2192';
+        position: absolute;
+        left: 0;
+        color: $color-primary;
+        font-weight: bold;
+      }
+    }
+  }
+  
+  ol {
+    li {
+      margin-bottom: $spacing-4;
+      
+      strong {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+.cta-buttons {
+  display: flex;
+  gap: $spacing-4;
+  margin-top: $spacing-8;
+  flex-wrap: wrap;
+}
+
+// ==============================================================================
+// BLOG PAGE
+// ==============================================================================
+
+.blog-page {
+  max-width: $container-max;
+  margin: 0 auto;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: $spacing-10;
+  
+  h1 {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-4;
+    color: $text-dark-primary;
+  }
+  
+  .blog-subtitle {
+    font-size: $font-size-base;
+    color: $text-dark-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+}
+
+.post-card {
+  display: flex;
+  gap: $spacing-6;
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+  padding: $spacing-6;
+  transition: all $transition-base;
+  
+  &:hover {
+    border-color: $color-primary;
+    transform: translateY(-4px);
+    box-shadow: $shadow-glow;
+  }
+}
+
+.post-card-content {
+  flex: 1;
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  font-size: $font-size-sm;
+  color: $text-dark-muted;
+  margin-bottom: $spacing-3;
+  
+  time {
+    color: $color-primary;
+    font-weight: 500;
+  }
+  
+  .post-views {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+    
+    svg {
+      opacity: 0.7;
+    }
+  }
+}
+
+.meta-divider {
+  opacity: 0.3;
+}
+
+.post-card-title {
+  font-size: $font-size-xl;
+  margin-bottom: $spacing-3;
+  
+  a {
+    color: $text-dark-primary;
+    border-bottom: none;
+    
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+.post-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-2;
+  margin-bottom: $spacing-3;
+}
+
+.post-card-excerpt {
+  color: $text-dark-secondary;
+  margin-bottom: $spacing-4;
+  line-height: 1.7;
+}
+
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  font-weight: 600;
+  color: $color-primary;
+  border-bottom: none;
+  
+  .arrow {
+    transition: transform $transition-fast;
+  }
+  
+  &:hover {
+    color: $color-accent;
+    
+    .arrow {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.post-card-thumbnail {
+  width: 160px;
+  flex-shrink: 0;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: $radius-md;
+  }
+  
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.no-posts, .no-results {
+  text-align: center;
+  padding: $spacing-16;
+  color: $text-dark-muted;
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+}
+
+// ==============================================================================
+// BLOG POST
+// ==============================================================================
+
+.blog-post {
+  max-width: $container-narrow;
+  margin: 0 auto;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.post-header {
+  margin-bottom: $spacing-10;
+  padding-bottom: $spacing-8;
+  border-bottom: 2px solid $border-light;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  margin-bottom: $spacing-4;
+  
+  time {
+    color: $color-primary;
+    font-size: $font-size-sm;
+    font-weight: 500;
+  }
+}
+
+.post-tags {
+  display: flex;
+  gap: $spacing-2;
+}
+
+.post-title {
+  font-size: $font-size-3xl;
+  line-height: 1.2;
+  margin-bottom: $spacing-4;
+  color: $text-dark-primary;
+  
+  @media (min-width: 768px) {
+    font-size: $font-size-4xl;
+  }
+}
+
+.post-description {
+  font-size: $font-size-lg;
+  color: $text-dark-secondary;
+  line-height: 1.6;
+}
+
+.post-content {
+  h2, h3, h4 {
+    margin-top: $spacing-10;
+    color: $color-primary;
+  }
+  
+  figure {
+    margin: $spacing-8 0;
+    
+    img {
+      display: block;
+      margin: 0 auto;
+      border-radius: $radius-lg;
+      box-shadow: $shadow-md;
+    }
+    
+    figcaption {
+      text-align: center;
+      font-size: $font-size-sm;
+      color: $text-dark-muted;
+      margin-top: $spacing-3;
+    }
+  }
+}
+
+.post-footer {
+  margin-top: $spacing-12;
+  padding-top: $spacing-8;
+  border-top: 2px solid $border-light;
+}
+
+.post-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-4;
+  margin-bottom: $spacing-8;
+}
+
+.nav-prev,
+.nav-next {
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-4;
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-md;
+  transition: all $transition-fast;
+  
+  &:hover {
+    border-color: $color-primary;
+    transform: translateY(-2px);
+    box-shadow: $shadow-sm;
+  }
+}
+
+.nav-next {
+  text-align: right;
+}
+
+.nav-label {
+  font-size: $font-size-sm;
+  color: $color-primary;
+  margin-bottom: $spacing-1;
+  font-weight: 600;
+}
+
+.nav-title {
+  font-weight: 600;
+  color: $text-dark-primary;
+}
+
+.back-to-blog {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  color: $color-primary;
+  font-weight: 500;
+  border-bottom: none;
+  
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+// ==============================================================================
+// PROJECTS PAGE
+// ==============================================================================
+
+.page-header {
+  margin-bottom: $spacing-10;
+  
+  .page-title {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-4;
+    color: $text-dark-primary;
+  }
+  
+  .page-description {
+    font-size: $font-size-base;
+    color: $text-dark-secondary;
+    max-width: $container-narrow;
+  }
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-6;
+}
+
+.project-card {
+  background: $bg-dark-elevated;
+  border: 1px solid $border-light;
+  border-radius: $radius-lg;
+  padding: $spacing-6;
+  transition: all $transition-base;
+  
+  &:hover {
+    border-color: $color-primary;
+    transform: translateY(-4px);
+    box-shadow: $shadow-glow;
+  }
+  
+  h3 {
+    margin-bottom: $spacing-3;
+    color: $text-dark-primary;
+    
+    a {
+      color: $text-dark-primary;
+      border-bottom: none;
+      
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+  
+  p {
+    margin-bottom: $spacing-4;
+  }
+  
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2;
+  }
+}
+
+// ==============================================================================
+// ANIMATIONS
+// ==============================================================================
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Staggered animation for lists
+.posts-list .post-card,
+.projects-grid .project-card {
+  animation: fadeInUp 0.6s ease-out both;
+  
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
