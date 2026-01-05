@@ -10,7 +10,15 @@ title: ""
   <div class="profile-intro">
     <h1>Hey, I'm Datta (Sai Rama Sridatta Prakki)!</h1>
     <p class="tagline">Doctoral Candidate @ Helmholtz Center Munich</p>
-    <p>Diving deep into the fascinating world of <strong>lung single-cell genomics</strong>. With 10+ years of bioinformatics experience spanning genomics, infectious diseases, and now single cell genomics, I decode what our cells are whispering to us using Python, R, and AI tools.</p>
+    <p>Diving deep into the fascinating world of <strong>lung single-cell genomics</strong>. With 15+ years of bioinformatics experience spanning genomics, infectious diseases, and now single cell genomics, I decode what our cells are whispering to us using Python, R, and AI tools.</p>
+    <a href="/assets/pdf/Prakki_CV.pdf" download class="btn btn-primary" style="margin-top: 1rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      Download CV
+    </a>
   </div>
 </div>
 
@@ -19,7 +27,7 @@ title: ""
 <section id="research" class="content-section">
   <h2 class="section-title">Research</h2>
   
-  <p>My research focuses on understanding lung biology at single-cell resolution at the <strong>Research Unit for Precision Regenerative Medicine</strong> and <strong>Institute of Computational Biology</strong>, Helmholtz Munich.</p>
+  <p>My current research focuses on understanding lung biology at single-cell resolution at the <strong>Research Unit for Precision Regenerative Medicine</strong> and <strong>Institute of Computational Biology</strong>, Helmholtz Munich.</p>
   
   <ul class="feature-list">
     <li><strong>sc/snRNA-seq analysis</strong> — Processing and analyzing single-cell/nucleus RNA-seq data from lung tissues (human/mouse)</li>
@@ -30,8 +38,8 @@ title: ""
   
   <h3>Current Projects</h3>
   <ol>
-    <li><strong>Lung Cell Atlas</strong> — Comprehensive characterization of lung cell populations in health and disease</li>
-    <li><strong>Fibrosis Mechanisms</strong> — Understanding cellular changes in pulmonary fibrosis</li>
+    <li><strong>Profiling of in vivo IPF Lung Tissues</strong> — Characterizing Early Disease Cell States in Idiopathic Pulmonary Fibrosis (IPF) Using MicroCT Staging and Single-Nucleus Transcriptomics</li>
+    <li><strong>Exploring of fibrosis induced ex vivo Lung Tissues</strong> — Time-Resolved Single-Nuclei RNA-Seq in Fibrotic Human Precision-Cut Lung Slices coupled to perturbations </li>
     <li><strong>Bleomycin Aging App</strong> — <a href="https://hschillerlabshiny.shinyapps.io/BleomycinAging" target="_blank">Interactive R Shiny application</a> for exploring lung aging data</li>
   </ol>
   
@@ -50,7 +58,7 @@ title: ""
   <div class="experience-timeline">
     <div class="experience-item">
       <div class="experience-header">
-        <span class="experience-date">May 2023 – Present</span>
+        <span class="experience-date">June 2023 – Present</span>
         <span class="experience-location">Germany</span>
       </div>
       <h3>Doctoral Candidate</h3>
@@ -196,7 +204,7 @@ title: ""
     </div>
   </div>
   
-  <p class="see-more"><a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">View all publications on Google Scholar →</a></p>
+  <p class="see-more"><a href="https://scholar.google.com/citations?hl=en&user=kiCDFpIAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">View all publications on Google Scholar →</a></p>
 </section>
 
 <hr class="section-divider">
@@ -259,7 +267,7 @@ title: ""
       <div class="skill-tags">
         <span class="skill-tag">AI app development (Google Gemini)</span>
         <span class="skill-tag">AI-assisted coding (Cursor)</span>
-        <span class="skill-tag">Knowledge synthesis & Viz (NotebookLM)</span>
+        <span class="skill-tag">Knowledge synthesis (NotebookLM)</span>
       </div>
     </div>
     <div class="skill-category">
@@ -316,11 +324,11 @@ title: ""
       <a href="https://www.biostars.org/u/3738/" target="_blank">Profile: Prakki Rama</a>
     </li>
     <li>
-      <strong>Tutorial Videos</strong> — Beginner Bioinformatics content<br>
-      <a href="https://bit.ly/2L3hMzo" target="_blank">Beginner Bioinformatics Commands</a> | <a href="https://bit.ly/3CNjekD" target="_blank">Genome Alignment using BRIG</a>
+      <strong>Tutorial Videos</strong> — Bioinformatics related content<br>
+      <a href="https://www.youtube.com/@asearchforsolutions" target="_blank">A Search For Solutions</a>
     </li>
     <li>
-      <strong>Blog</strong> — A Search for Solutions<br>
+      <strong>Blog</strong> — Fixes in software/bugs/myrants in the past years<br>
       <a href="http://asearchforsolutions.blogspot.com/" target="_blank">asearchforsolutions.blogspot.com</a>
     </li>
   </ul>
@@ -345,7 +353,7 @@ title: ""
   
   <ul class="presentation-list">
     <li>
-      <strong>EHLRS Grant Award (2,000 EUR)</strong> — 2025<br>
+      <strong>Environmental Health and Lung Research School (EHLRS) Grant Award (2,000 EUR)</strong> — 2025<br>
       <em>Project: "Plasticity Unforeseen: Loss of PTK7/SOX4 in human fibrotic lung slices drives Pulmonary Epithelial AT2 Reprogramming (PULP-in-PEAR)"</em><br>
       Helmholtz Munich, Comprehensive Pneumology Center
     </li>
