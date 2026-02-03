@@ -118,12 +118,6 @@ CD68: **1.00** | CD3D: 0.03 | CD19: 0.00 | ACTB: 0.73
 | Within this cluster, which genes are relatively strongest?            | `"group"`        | sequential (YlOrRd, Purples…) |
 | I want absolute comparison across everything                          | `None`           | diverging or raw scale       |
 
-<div style="background: #f0f8ff; border-left: 5px solid #1e90ff; padding: 1.2rem; margin: 1.8rem 0; border-radius: 4px;">
-  <strong>Pro tip 2026 style</strong><br>
-  Generate <strong>three small multiples</strong> side-by-side: <code>None</code> + <code>"var"</code> + <code>"group"</code>.  
-  Readers will instantly understand why scaling matters — and thank you later.
-</div>
-
 ---
 
 ## Ready-to-copy Scanpy snippets
