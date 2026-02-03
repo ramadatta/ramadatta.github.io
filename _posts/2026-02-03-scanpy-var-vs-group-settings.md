@@ -1,229 +1,166 @@
 ---
 layout: post
-title: "Scanpy `standard_scale`: var vs group (with worked calculations)"
+title: "Scanpy `standard_scale`: var vs group — finally clear (with manual calculations)"
 date: 2026-02-03
-description: "Understanding the difference between standard_scale='var' and 'group' in Scanpy heatmaps with worked calculations and examples"
-tags: [single-cell, scanpy, scanpy-plotting, visualization]
-categories: [bioinformatics]
+description: "Deep-dive into standard_scale='var' vs 'group' in Scanpy heatmaps, dotplots & matrixplots — complete with step-by-step math and when to choose each."
+tags: [single-cell, scanpy, heatmap, visualization, bioinformatics]
+categories: [single-cell-analysis]
 giscus_comments: true
+toc: true
 ---
 
-<figure style="text-align:center; margin-bottom: 1.5rem;">
+<div style="text-align:center; margin: 2.5rem 0;">
   <a href="https://scanpy.readthedocs.io/en/stable/" target="_blank" rel="noopener noreferrer">
     <img src="{{ '/assets/images/scanpy-logo.svg' | relative_url }}"
          alt="Scanpy – Single-Cell Analysis in Python"
-         style="max-width: 260px; height: auto;">
+         style="max-width: 280px; height: auto; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));">
   </a>
-  <figcaption style="margin-top: 0.5rem; font-size: 0.9rem;">
-    Powered by <a href="https://scanpy.readthedocs.io/en/stable/" target="_blank" rel="noopener noreferrer">Scanpy</a>
-  </figcaption>
-</figure>
+  <p style="margin-top: 1rem; font-size: 1.1rem; color: #555; font-style: italic;">
+    source: <a href="https://scanpy.readthedocs.io/" target="_blank">Scanpy</a>
+  </p>
+</div>
 
-When you make a heatmap (or dotplot/matrixplot) in Scanpy, `standard_scale` can be a helpful option for visualization. It applies the same min–max scaling formula, but along different axes. The two settings answer different questions, so it’s worth being explicit about which one you want.
+When creating heatmaps, dotplots or matrixplots in Scanpy, the `standard_scale` parameter dramatically changes what the reader perceives — even though both options use the **same min-max formula**:
 
-This post walks through a small example with **full calculations** so you can see exactly what changes.
+$$
+\text{scaled} = \frac{x - \min}{\max - \min} \quad \in [0,1]
+$$
 
----
+The **only difference** is **along which axis** the min & max are calculated.
 
-## The two scaling modes
+- `standard_scale="var"`   → **column-wise** (per gene across groups)  
+- `standard_scale="group"` → **row-wise**   (per group across genes)
 
-Both modes use min–max scaling:
-
-\[
-\text{scaled} = \frac{x - \min(x)}{\max(x) - \min(x)}
-\]
-
-The difference is where the min and max are computed:
-
-- `standard_scale="var"`: compute min/max **per gene** across groups (column-wise)
-- `standard_scale="group"`: compute min/max **per group** across genes (row-wise)
-
-Both produce values in \([0, 1]\), but the interpretation differs depending on which axis you scaled within.
+Let’s compute both versions manually on a tiny realistic toy dataset so the difference becomes intuitive.
 
 ---
 
-## The raw data
+## Toy dataset — mean expression per cluster
 
-We’ll use three groups and four genes:
+| Cluster       | CD68  | CD3D  | CD19  | ACTB  |
+|---------------|-------|-------|-------|-------|
+| Macrophages   | 200   | 20    | 15    | 150   |
+| T cells       | 10    | 180   | 25    | 140   |
+| B cells       | 25    | 30    | 190   | 145   |
 
-- **CD68, CD3D, CD19**: marker genes in this toy example
-- **ACTB**: a housekeeping-style gene often used as a control
-
-Raw values (think: average expression per group, simplified):
-
-| Group        | CD68 | CD3D | CD19 | ACTB |
-|-------------|-----:|-----:|-----:|-----:|
-| Macrophages |  200 |   20 |   15 |  150 |
-| T cells     |   10 |  180 |   25 |  140 |
-| B cells     |   25 |   30 |  190 |  145 |
+Classic markers + one housekeeping gene.
 
 ---
 
-## `standard_scale="var"` (scale each gene across groups)
+## Option 1: `standard_scale="var"` — scale **each gene** across clusters
 
-Here, each gene is scaled independently using its min and max across the groups.
+**Goal:** answer “Which cluster expresses this gene the most / least?”
 
-### CD68 (values: 200, 10, 25)
-- min = 10
-- max = 200
-- range = 200 − 10 = 190
+For every **column**, compute its own min & max.
 
-Calculations:
-- Macrophages: \((200 - 10) / 190 = 190/190 = 1.00\)
-- T cells: \((10 - 10) / 190 = 0/190 = 0.00\)
-- B cells: \((25 - 10) / 190 = 15/190 \approx 0.0789 \rightarrow 0.08\)
+**CD68** (10, 200, 25) → min=10, max=200, range=190  
+Macrophages: (200-10)/190 = **1.00**  
+T cells:     (10-10)/190  = **0.00**  
+B cells:     (25-10)/190  ≈ **0.08**
 
-### CD3D (values: 20, 180, 30)
-- min = 20
-- max = 180
-- range = 180 − 20 = 160
+**CD3D** (20, 180, 30) → min=20, max=180, range=160  
+→ 0.00 | **1.00** | 0.06
 
-Calculations:
-- Macrophages: \((20 - 20) / 160 = 0.00\)
-- T cells: \((180 - 20) / 160 = 160/160 = 1.00\)
-- B cells: \((30 - 20) / 160 = 10/160 = 0.0625 \rightarrow 0.06\)
+**CD19** (15, 25, 190) → min=15, max=190, range=175  
+→ 0.00 | 0.06 | **1.00**
 
-### CD19 (values: 15, 25, 190)
-- min = 15
-- max = 190
-- range = 190 − 15 = 175
+**ACTB** (150, 140, 145) → min=140, max=150, range=10  
+→ **1.00** | 0.00 | 0.50
 
-Calculations:
-- Macrophages: \((15 - 15) / 175 = 0.00\)
-- T cells: \((25 - 15) / 175 = 10/175 \approx 0.0571 \rightarrow 0.06\)
-- B cells: \((190 - 15) / 175 = 175/175 = 1.00\)
+**Scaled matrix (`"var"`):**
 
-### ACTB (values: 150, 140, 145)
-- min = 140
-- max = 150
-- range = 150 − 140 = 10
+| Cluster       | CD68  | CD3D  | CD19  | ACTB  |
+|---------------|-------|-------|-------|-------|
+| Macrophages   | **1.00** | 0.00  | 0.00  | **1.00** |
+| T cells       | 0.00  | **1.00** | 0.06  | 0.00  |
+| B cells       | 0.08  | 0.06  | **1.00** | 0.50  |
 
-Calculations:
-- Macrophages: \((150 - 140) / 10 = 10/10 = 1.00\)
-- T cells: \((140 - 140) / 10 = 0/10 = 0.00\)
-- B cells: \((145 - 140) / 10 = 5/10 = 0.50\)
-
-### Result (`standard_scale="var"`)
-
-| Group        | CD68 | CD3D | CD19 | ACTB |
-|-------------|-----:|-----:|-----:|-----:|
-| Macrophages | 1.00 | 0.00 | 0.00 | 1.00 |
-| T cells     | 0.00 | 1.00 | 0.06 | 0.00 |
-| B cells     | 0.08 | 0.06 | 1.00 | 0.50 |
-
-**How to read this:** for each gene, the values show which group is highest vs lowest *for that gene*.  
-A useful reminder: after `var` scaling, color/intensity is **not comparable across different genes**, because each gene has been stretched to fill \([0,1]\) on its own scale.
+> **Key insight**  
+> After `"var"` scaling you **cannot compare intensity across genes** — every gene is stretched to use the full [0–1] range independently.  
+> Perfect when you want to spot **marker specificity**.
 
 ---
 
-## `standard_scale="group"` (scale each group across genes)
+## Option 2: `standard_scale="group"` — scale **each cluster** across genes
 
-Here, each group (row) is scaled independently using its min and max across the genes shown.
+**Goal:** answer “Which genes stand out the most **inside this cluster**?”
 
-### Macrophages row (values: 200, 20, 15, 150)
-- min = 15
-- max = 200
-- range = 200 − 15 = 185
+For every **row**, compute its own min & max.
 
-Calculations:
-- CD68: \((200 - 15) / 185 = 185/185 = 1.00\)
-- CD3D: \((20 - 15) / 185 = 5/185 \approx 0.0270 \rightarrow 0.03\)
-- CD19: \((15 - 15) / 185 = 0.00\)
-- ACTB: \((150 - 15) / 185 = 135/185 \approx 0.7297 \rightarrow 0.73\)
+**Macrophages** (200, 20, 15, 150) → min=15, max=200, range=185  
+CD68: **1.00** | CD3D: 0.03 | CD19: 0.00 | ACTB: 0.73
 
-### T cells row (values: 10, 180, 25, 140)
-- min = 10
-- max = 180
-- range = 180 − 10 = 170
+**T cells** (10, 180, 25, 140) → min=10, max=180, range=170  
+→ 0.00 | **1.00** | 0.09 | 0.76
 
-Calculations:
-- CD68: \((10 - 10) / 170 = 0.00\)
-- CD3D: \((180 - 10) / 170 = 170/170 = 1.00\)
-- CD19: \((25 - 10) / 170 = 15/170 \approx 0.0882 \rightarrow 0.09\)
-- ACTB: \((140 - 10) / 170 = 130/170 \approx 0.7647 \rightarrow 0.76\)
+**B cells** (25, 30, 190, 145) → min=25, max=190, range=165  
+→ 0.00 | 0.03 | **1.00** | 0.73
 
-### B cells row (values: 25, 30, 190, 145)
-- min = 25
-- max = 190
-- range = 190 − 25 = 165
+**Scaled matrix (`"group"`):**
 
-Calculations:
-- CD68: \((25 - 25) / 165 = 0.00\)
-- CD3D: \((30 - 25) / 165 = 5/165 \approx 0.0303 \rightarrow 0.03\)
-- CD19: \((190 - 25) / 165 = 165/165 = 1.00\)
-- ACTB: \((145 - 25) / 165 = 120/165 \approx 0.7273 \rightarrow 0.73\)
+| Cluster       | CD68  | CD3D  | CD19  | ACTB  |
+|---------------|-------|-------|-------|-------|
+| Macrophages   | **1.00** | 0.03  | 0.00  | 0.73  |
+| T cells       | 0.00  | **1.00** | 0.09  | 0.76  |
+| B cells       | 0.00  | 0.03  | **1.00** | 0.73  |
 
-### Result (`standard_scale="group"`)
-
-| Group        | CD68 | CD3D | CD19 | ACTB |
-|-------------|-----:|-----:|-----:|-----:|
-| Macrophages | 1.00 | 0.03 | 0.00 | 0.73 |
-| T cells     | 0.00 | 1.00 | 0.09 | 0.76 |
-| B cells     | 0.00 | 0.03 | 1.00 | 0.73 |
-
-**How to read this:** within each group, the values show how genes rank relative to each other *within that group*.  
-A useful reminder: after `group` scaling, the same gene’s scaled values are **not directly comparable across different groups**, because each row uses its own min/max.
+> **Key insight**  
+> Now gene values **cannot be compared across clusters** — each cluster has its own internal [0–1] stretch.  
+> Excellent when showing **intra-cluster gene ranking** or signature composition.
 
 ---
 
-## Choosing between them
+## Quick decision guide
 
-A simple way to decide is to match the setting to the question you want the figure to emphasize:
+| Question you want the figure to answer                                 | Recommended     | Typical cmap suggestion     |
+|-----------------------------------------------------------------------|------------------|------------------------------|
+| Which cluster has the highest expression of **gene X**?               | `"var"`          | sequential (e.g. Blues, viridis, Reds) |
+| Within this cluster, which genes are relatively strongest?            | `"group"`        | sequential (YlOrRd, Purples…) |
+| I want absolute comparison across everything                          | `None`           | diverging or raw scale       |
 
-### Use `standard_scale="var"` when the plot is gene-centric
-You want to see, for each gene, which group is higher vs lower (e.g., marker-style plots).
-
-### Use `standard_scale="group"` when the plot is group-centric
-You want to see, within each group, which genes stand out relative to the other genes plotted (e.g., “signature composition” within a cluster).
-
----
-
-## A practical tip: keep an unscaled reference around
-
-Scaled views can be great for patterns, but it’s often helpful to also look at an unscaled (or differently scaled) view alongside, especially when interpreting small differences or control genes.
+<div style="background: #f0f8ff; border-left: 5px solid #1e90ff; padding: 1.2rem; margin: 1.8rem 0; border-radius: 4px;">
+  <strong>Pro tip 2026 style</strong><br>
+  Generate <strong>three small multiples</strong> side-by-side: <code>None</code> + <code>"var"</code> + <code>"group"</code>.  
+  Readers will instantly understand why scaling matters — and thank you later.
+</div>
 
 ---
 
-## Copy/paste Scanpy snippets
-
-These are commonly used with `matrixplot`/`dotplot`:
+## Ready-to-copy Scanpy snippets
 
 ```python
 import scanpy as sc
 
-genes = ["CD68", "CD3D", "CD19", "ACTB"]
+marker_genes = ["CD68", "CD3D", "CD19", "ACTB"]
+groupby     = "celltype"          # or "leiden", "anno"...
 
-# Scale per gene across groups
-sc.pl.matrixplot(
-    adata,
-    var_names=genes,
-    groupby="celltype",
-    standard_scale="var",
-)
+# Most common: per-gene scaling (marker view)
+sc.pl.matrixplot(adata, marker_genes, groupby,
+                 standard_scale="var",
+                 cmap="Blues", dendrogram=True,
+                 title="Per-gene scaling — marker specificity")
 
-# Scale per group across genes
-sc.pl.matrixplot(
-    adata,
-    var_names=genes,
-    groupby="celltype",
-    standard_scale="group",
-)
+# Per-group scaling (signature composition view)
+sc.pl.matrixplot(adata, marker_genes, groupby,
+                 standard_scale="group",
+                 cmap="YlOrRd", dendrogram=True,
+                 title="Per-group scaling — intra-cluster ranking")
 
-# Unscaled reference
-sc.pl.matrixplot(
-    adata,
-    var_names=genes,
-    groupby="celltype",
-    standard_scale=None,
-)
+# Raw / absolute reference (often surprisingly useful)
+sc.pl.matrixplot(adata, marker_genes, groupby,
+                 standard_scale=None,
+                 cmap="viridis", layer="log1p",
+                 title="No scaling — absolute means")
 ```
+
+Bonus: try `sc.pl.dotplot(…)` with the same `standard_scale` logic — same interpretation applies.
 
 ---
 
-## Summary
+## TL;DR takeaway
 
-* `standard_scale="var"`: min–max per gene across groups (good for “which group is highest for gene X?”)
-* `standard_scale="group"`: min–max per group across genes (good for “which genes stand out in this group?”)
+- `"var"`   = compare **clusters within one gene** → great for marker panels  
+- `"group"` = compare **genes within one cluster** → great for cluster signatures  
+- Always ask: *“What comparison do I actually want to preserve?”*
 
-Both are useful as long as you keep in mind which comparisons the scaling preserves, and which ones it changes.
-
+Happy plotting!
