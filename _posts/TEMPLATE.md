@@ -141,10 +141,20 @@ For static images (PNG, JPG, SVG):
 
 ## Tables
 
+Tables are automatically styled with visible borders, alternating row colors, and hover effects:
+
 | Column 1 | Column 2 | Column 3 |
 |----------|----------|----------|
 | Data 1   | Data 2   | Data 3   |
 | Data 4   | Data 5   | Data 6   |
+
+**Table Styling Features:**
+- Visible borders on all cells
+- Header row with darker background
+- Alternating row colors for readability
+- Hover effect on rows
+- Right-aligned numeric columns (use `:` in header alignment, e.g., `|-----:|`)
+- Responsive and mobile-friendly
 
 ---
 

@@ -184,6 +184,51 @@ img {
   border-radius: $radius-lg;
 }
 
+// Tables
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: $spacing-6 0;
+  font-size: $font-size-sm;
+  background: $bg-dark-surface;
+  border-radius: $radius-md;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  th, td {
+    padding: $spacing-3 $spacing-4;
+    text-align: left;
+    border: 1px solid rgba($color-primary, 0.2);
+  }
+  
+  th {
+    background: rgba($color-primary, 0.15);
+    font-weight: 600;
+    color: $text-dark-primary;
+    border-bottom: 2px solid $color-primary;
+  }
+  
+  td {
+    color: $text-dark-secondary;
+    border-top: 1px solid rgba($color-primary, 0.15);
+  }
+  
+  tr:nth-child(even) {
+    background: rgba($color-primary, 0.05);
+  }
+  
+  tr:hover {
+    background: rgba($color-primary, 0.1);
+    transition: background $transition-fast;
+  }
+  
+  // Right-aligned columns (for numbers) - use : in markdown alignment
+  th:last-child,
+  td:last-child {
+    text-align: right;
+  }
+}
+
 // Horizontal Rule
 hr {
   border: none;
