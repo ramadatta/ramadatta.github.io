@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 // ==============================================================================
-// BASE STYLES - WARM SUNSET THEME
-// Light, friendly, with monospace fonts
+// BASE STYLES - VISUAL CINNAMON THEME
+// Minimal, clean aesthetic with system fonts
 // ==============================================================================
 
 @import 'themes';
@@ -14,10 +14,10 @@
   padding: 0;
 }
 
-// Typography Scale - Keep JetBrains Mono for that techy feel
-$font-family-heading: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-$font-family-body: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
-$font-family-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+// Typography Scale - Visual Cinnamon style (Cabrio font)
+$font-family-heading: "Cabrio", sans-serif;
+$font-family-body: "Cabrio", sans-serif;
+$font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 $font-size-xs: 0.75rem;
 $font-size-sm: 0.875rem;
@@ -71,20 +71,17 @@ html {
 
 body {
   font-family: $font-family-body;
-  font-size: $font-size-sm;
-  line-height: 1.8;
+  font-size: 1.125rem;              // 18px base (Visual Cinnamon style)
+  line-height: 1.65;                // Visual Cinnamon line-height
   background-color: $bg-dark;
   color: $text-dark-primary;
   min-height: 100vh;
   
-  // Subtle warm gradient background
-  background-image: 
-    radial-gradient(ellipse at top right, rgba($color-primary, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at bottom left, rgba($color-cyan, 0.05) 0%, transparent 50%);
-  background-attachment: fixed;
+  // Clean solid background (no gradients for Visual Cinnamon)
+  background-image: none;
 }
 
-// Headings
+// Headings - Visual Cinnamon sizes
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-heading;
   font-weight: 700;
@@ -93,39 +90,53 @@ h1, h2, h3, h4, h5, h6 {
   color: $text-dark-primary;
 }
 
-h1 { font-size: $font-size-3xl; }
-h2 { font-size: $font-size-2xl; }
-h3 { font-size: $font-size-xl; }
+h1 { 
+  font-size: 2.8rem;                // Visual Cinnamon h1 size
+  margin-top: 2rem;
+}
+h2 { 
+  font-size: 2rem;                  // Visual Cinnamon h2 size
+  margin-top: 2.5rem;
+}
+h3 { 
+  font-size: 1.6rem;                // Visual Cinnamon h3 size
+  margin-top: 2rem;
+}
 h4 { font-size: $font-size-lg; }
 h5 { font-size: $font-size-base; }
 h6 { font-size: $font-size-sm; }
 
-// Paragraphs
+// Paragraphs - Visual Cinnamon spacing
 p {
-  margin-bottom: $spacing-4;
-  color: $text-dark-secondary;
+  margin-bottom: 1.4rem;            // Visual Cinnamon paragraph spacing
+  color: $text-dark-primary;         // Pure black for main text
 }
 
-// Links
+// Links - Visual Cinnamon style (underline on hover)
 a {
-  color: $color-primary;
+  color: $color-primary;            // #42c0c9 teal
   text-decoration: none;
-  transition: all $transition-fast;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid $color-primary;
+  transition: color 0.2s;
   
-  &:hover {
-    color: $color-accent;
+  &:hover, &:focus {
+    color: $color-primary-dark;     // #2a9ba3 darker teal
+    border-bottom-color: $color-primary-dark;
+  }
+  
+  &:visited {
+    color: $color-accent;            // #551a8b purple for visited
     border-bottom-color: $color-accent;
   }
 }
 
-// Lists
+// Lists - Visual Cinnamon spacing
 ul, ol {
   margin-bottom: $spacing-4;
   padding-left: $spacing-6;
   
   li {
-    margin-bottom: $spacing-2;
+    margin-bottom: 1.4rem;          // Visual Cinnamon list item spacing
     color: $text-dark-secondary;
     
     &::marker {
@@ -150,23 +161,23 @@ blockquote {
   }
 }
 
-// Code
+// Code - Visual Cinnamon style (light background)
 code {
   font-family: $font-family-mono;
   font-size: 0.9em;
-  background: $code-bg;
-  color: $code-text;
-  padding: $spacing-1 $spacing-2;
-  border-radius: $radius-sm;
+  background: $code-bg;              // #f8f8f8 light gray
+  color: $code-text;                 // #222222 dark text
+  padding: 0.2em 0.4em;              // Visual Cinnamon padding
+  border-radius: 3px;                 // Visual Cinnamon border radius
 }
 
 pre {
   font-family: $font-family-mono;
   font-size: $font-size-sm;
-  background: $code-bg;
-  color: $code-text;
+  background: $code-bg;              // #f8f8f8 light gray
+  color: $code-text;                 // #222222 dark text
   padding: $spacing-6;
-  border-radius: $radius-lg;
+  border-radius: 3px;                 // Visual Cinnamon border radius
   overflow-x: auto;
   margin: $spacing-6 0;
   
@@ -229,14 +240,13 @@ table {
   }
 }
 
-// Horizontal Rule
+// Horizontal Rule - Visual Cinnamon minimal style
 hr {
   border: none;
-  height: 2px;
-  background: $gradient-primary;
+  height: 1px;
+  background: $border-dark;          // #e0e0e0 light gray
   margin: $spacing-12 0;
-  opacity: 0.3;
-  border-radius: $radius-full;
+  opacity: 1;
 }
 
 // Selection
@@ -250,9 +260,9 @@ hr {
 // ==============================================================================
 
 .container {
-  max-width: $container-max;
+  max-width: 800px;                   // Visual Cinnamon max-width for readability
   margin: 0 auto;
-  padding: 0 $spacing-6;
+  padding: 1.5rem;                    // Visual Cinnamon padding
 }
 
 .gradient-text {

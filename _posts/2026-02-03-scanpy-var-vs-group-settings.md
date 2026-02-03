@@ -112,11 +112,11 @@ CD68: **1.00** | CD3D: 0.03 | CD19: 0.00 | ACTB: 0.73
 
 ## Quick decision guide
 
-| Question you want the figure to answer                                 | Recommended     | Typical cmap suggestion     |
-|-----------------------------------------------------------------------|------------------|------------------------------|
-| Which cluster has the highest expression of **gene X**?               | `"var"`          | sequential (e.g. Blues, viridis, Reds) |
-| Within this cluster, which genes are relatively strongest?            | `"group"`        | sequential (YlOrRd, Purples…) |
-| I want absolute comparison across everything                          | `None`           | diverging or raw scale       |
+| Question you want the figure to answer                                 | Recommended     |
+|-----------------------------------------------------------------------|------------------|
+| Which cluster has the highest expression of **gene X**?               | `"var"`          |
+| Within this cluster, which genes are relatively strongest?            | `"group"`        |
+| I want absolute comparison across everything                          | `None`           |
 
 ---
 

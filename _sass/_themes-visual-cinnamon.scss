@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+// ==============================================================================
+// THEME: VISUAL CINNAMON
+// Minimal, clean theme inspired by visualcinnamon.com
+// Clean white background with subtle grays and teal links
+// ==============================================================================
+
+// Primary Colors (mapped to Visual Cinnamon palette)
+$color-primary: #42c0c9;            // Teal links
+$color-primary-light: #2a9ba3;     // Darker teal for hover
+$color-primary-dark: #2a9ba3;      // Darker teal
+
+// Accent Colors
+$color-accent: #551a8b;            // Purple for visited links
+$color-accent-light: #42c0c9;      // Teal
+$color-accent-dark: #2a9ba3;       // Dark teal
+
+// Neutral tones
+$color-mint: #42c0c9;              // Teal (used for links)
+$color-cyan: #42c0c9;              // Teal
+$color-peach: #f8f8f8;             // Light gray for code
+
+// Background Colors (Light Theme - Visual Cinnamon style)
+$bg-dark: #ffffff;                 // Pure white (or #fcfcfc for slightly off-white)
+$bg-dark-elevated: #ffffff;        // Pure White for cards
+$bg-dark-surface: #f8f8f8;         // Light gray for code blocks
+
+// Text Colors
+$text-dark-primary: #000000;       // Pure black (primary text)
+$text-dark-secondary: #333333;     // Dark gray (secondary text)
+$text-dark-muted: #666666;         // Medium gray
+
+$text-light-primary: #000000;
+$text-light-secondary: #333333;
+$text-light-muted: #666666;
+
+// Semantic Colors
+$color-success: #2d6a4f;
+$color-warning: #f48c06;
+$color-error: #d00000;
+$color-info: #42c0c9;
+
+// Gradients (minimal - subtle gradients for Visual Cinnamon, mostly solid)
+$gradient-primary: linear-gradient(135deg, #42c0c9 0%, #42c0c9 100%);  // Solid teal as gradient
+$gradient-accent: linear-gradient(135deg, #2a9ba3 0%, #2a9ba3 100%);  // Solid dark teal as gradient
+$gradient-hero: linear-gradient(135deg, #42c0c9 0%, #42c0c9 100%);      // Solid teal as gradient
+$gradient-text: linear-gradient(135deg, #42c0c9 0%, #42c0c9 100%);     // Solid teal as gradient
+
+// Shadows (subtle, minimal)
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 2px 6px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-glow: 0 2px 8px rgba(66, 192, 201, 0.15);
+
+// Border Colors
+$border-dark: #e0e0e0;              // Light gray border (Visual Cinnamon style)
+$border-dark-hover: #c0c0c0;       // Slightly darker on hover
+$border-light: #e0e0e0;            // Light gray
+$border-light-hover: #42c0c9;      // Teal on hover
+
+// Code Colors (light theme - Visual Cinnamon style)
+$code-bg: #f8f8f8;                  // Light gray background
+$code-text: #000000;                // Pure black text
+$code-comment: #666666;             // Gray comments
+$code-keyword: #42c0c9;             // Teal keywords
+$code-string: #2d6a4f;             // Green strings
