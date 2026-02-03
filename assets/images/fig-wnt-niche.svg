@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Wnt niche schematic showing fibroblast-derived Wnt signals supporting adjacent AT2 cells; after injury, AT2 cells can also produce Wnt ligands.">
+  <defs>
+    <style>
+      .bg { fill: #0b1220; }
+      .panel { fill: #101a2f; stroke: #2a3a66; stroke-width: 2; rx: 18; }
+      .title { fill: #e7eefc; font: 700 28px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+      .label { fill: #d6e2ff; font: 600 20px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+      .small { fill: #b8c7ef; font: 500 16px -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }
+      .cellAT2 { fill: #4cc9f0; stroke: #b8f0ff; stroke-width: 2; }
+      .cellFib { fill: #cdb4ff; stroke: #efe6ff; stroke-width: 2; }
+      .wnt { fill: #80ffdb; opacity: 0.9; }
+      .arrow { stroke: #9fb4ff; stroke-width: 4; fill: none; marker-end: url(#arrowhead); opacity: 0.95; }
+      .dashed { stroke-dasharray: 10 10; opacity: 0.85; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#9fb4ff"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="520"/>
+  <text class="title" x="60" y="70">A short-range Wnt niche in the alveolus (conceptual)</text>
+  <text class="small" x="60" y="100">Steady state: mesenchymal Wnt supports Wnt-responsive AT2s. Injury: epithelial autocrine Wnt can broaden signaling.</text>
+
+  <!-- Panel left: steady state -->
+  <rect class="panel" x="60" y="140" width="520" height="320"/>
+  <text class="label" x="90" y="185">Steady state niche</text>
+  <text class="small" x="90" y="215">Pdgfrα⁺ fibroblasts provide Wnt ligands to adjacent AT2 cells.</text>
+
+  <!-- fibroblast -->
+  <ellipse class="cellFib" cx="190" cy="330" rx="85" ry="50"/>
+  <text class="label" x="138" y="337">Fibroblast</text>
+  <text class="small" x="145" y="365">Wnt ligands</text>
+
+  <!-- AT2 -->
+  <circle class="cellAT2" cx="420" cy="300" r="60"/>
+  <text class="label" x="395" y="308">AT2</text>
+  <text class="small" x="377" y="336">Axin2⁺</text>
+
+  <!-- Wnt particles -->
+  <circle class="wnt" cx="300" cy="280" r="10"/>
+  <circle class="wnt" cx="320" cy="310" r="8"/>
+  <circle class="wnt" cx="290" cy="335" r="7"/>
+  <circle class="wnt" cx="340" cy="275" r="6"/>
+  <circle class="wnt" cx="350" cy="330" r="9"/>
+
+  <path class="arrow" d="M265 320 C305 305, 335 300, 365 300"/>
+  <text class="small" x="285" y="260">short-range</text>
+
+  <!-- Panel right: injury -->
+  <rect class="panel" x="620" y="140" width="520" height="320"/>
+  <text class="label" x="650" y="185">After injury</text>
+  <text class="small" x="650" y="215">AT2 cells can upregulate Wnt ligands (autocrine) while niches remodel.</text>
+
+  <!-- fibroblast (remodeled) -->
+  <ellipse class="cellFib" cx="750" cy="340" rx="85" ry="50" opacity="0.65"/>
+  <text class="label" x="697" y="347" opacity="0.9">Fibroblast</text>
+  <text class="small" x="705" y="375" opacity="0.9">niche shifts</text>
+
+  <!-- AT2 producing Wnt -->
+  <circle class="cellAT2" cx="980" cy="290" r="60"/>
+  <text class="label" x="955" y="298">AT2</text>
+  <text class="small" x="925" y="326">autocrine Wnt</text>
+
+  <!-- Wnt particles around AT2 -->
+  <circle class="wnt" cx="910" cy="255" r="10"/>
+  <circle class="wnt" cx="920" cy="320" r="8"/>
+  <circle class="wnt" cx="1045" cy="260" r="7"/>
+  <circle class="wnt" cx="1060" cy="315" r="9"/>
+  <circle class="wnt" cx="1015" cy="225" r="6"/>
+
+  <!-- arrows (autocrine + paracrine) -->
+  <path class="arrow dashed" d="M940 250 C960 240, 1000 240, 1020 255"/>
+  <text class="small" x="880" y="240">autocrine loop</text>
+  <path class="arrow" d="M830 330 C875 320, 900 310, 930 300"/>
+
+  <text class="small" x="60" y="495">Wnt shown as green particles; figure is conceptual and not to scale.</text>
+</svg>
+
