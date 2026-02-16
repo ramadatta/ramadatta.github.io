@@ -275,7 +275,7 @@ toc: true
   </g>
 </svg>
 
-<div class="fc-caption"><strong>Figure 2.</strong> Decision flowchart for choosing between DESeq2, edgeR, and limma-voom based on data type, sample size, and analysis priorities.</div>
+<div class="fc-caption"><strong>Figure 1.</strong> Decision flowchart for choosing between DESeq2, edgeR, and limma-voom based on data type, sample size, and analysis priorities.</div>
       </div>
 
 ---
@@ -286,7 +286,7 @@ They often agree on strong signals, but they can diverge on borderline genes —
 
 <figure>
   <img src="{{ '/assets/images/deseq2_vs_edgeR.png' | relative_url }}" alt="DESeq2 vs edgeR comparison" />
-  <figcaption><strong>Figure 1.</strong> Overview of DESeq2 and edgeR for RNA-seq differential expression analysis.</figcaption>
+  <figcaption><strong>Figure 2.</strong> Overview of DESeq2 and edgeR for RNA-seq differential expression analysis.</figcaption>
 </figure>
 
 ---
