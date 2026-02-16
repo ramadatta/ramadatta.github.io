@@ -20,6 +20,276 @@ They often agree on strong signals, but they can diverge on borderline genes —
 
 ---
 
+## For the impatient: what should I choose
+
+<div id="decision-flowchart" style="margin:2em 0;user-select:none;">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+#decision-flowchart svg { width:100%; max-width:1200px; display:block; margin:0 auto; }
+
+/* Animated flowing dashes on paths */
+@keyframes flowDash {
+  to { stroke-dashoffset: -24; }
+}
+@keyframes flowDashSlow {
+  to { stroke-dashoffset: -32; }
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@keyframes fadeSlideIn {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes subtlePulse {
+  0%, 100% { filter: drop-shadow(0 0 3px var(--glow, transparent)); }
+  50% { filter: drop-shadow(0 0 10px var(--glow, transparent)); }
+}
+
+.fc-path {
+  stroke-dasharray: 6, 6;
+  animation: flowDash 0.8s linear infinite;
+}
+.fc-path-long {
+  stroke-dasharray: 8, 8;
+  animation: flowDashSlow 1s linear infinite;
+}
+
+/* Node hover lift */
+.fc-node { transition: filter 0.25s, transform 0.25s; cursor: default; }
+.fc-node:hover { filter: brightness(1.15) drop-shadow(0 4px 12px rgba(0,0,0,0.15)); }
+
+/* Terminal node glow pulse */
+.fc-terminal { animation: subtlePulse 3s ease-in-out infinite; }
+.fc-terminal-deseq2 { --glow: #42c0c9; }
+.fc-terminal-edger  { --glow: #42c0c9; }
+.fc-terminal-warn   { --glow: #f48c06; }
+.fc-terminal-voom   { --glow: #42c0c9; }
+
+/* Staggered entrance */
+.fc-anim-1 { animation: fadeSlideIn 0.5s 0.05s both; }
+.fc-anim-2 { animation: fadeSlideIn 0.5s 0.15s both; }
+.fc-anim-3 { animation: fadeSlideIn 0.5s 0.25s both; }
+.fc-anim-4 { animation: fadeSlideIn 0.5s 0.35s both; }
+.fc-anim-5 { animation: fadeSlideIn 0.5s 0.45s both; }
+.fc-anim-6 { animation: fadeSlideIn 0.5s 0.55s both; }
+.fc-anim-7 { animation: fadeSlideIn 0.5s 0.65s both; }
+
+/* Caption */
+.fc-caption {
+  text-align:center; margin-top:12px;
+  font-family:'DM Sans',sans-serif; font-size:13px; color:#666666;
+  line-height:1.5;
+}
+.fc-caption strong { color:#000000; }
+</style>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" style="font-family:'DM Sans',sans-serif;">
+  <defs>
+    <!-- Subtle grid pattern -->
+    <pattern id="fcGrid" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0V30H0" fill="none" stroke="#e0e0e0" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+    <!-- Noise texture -->
+    <filter id="fcNoise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="grey"/>
+      <feBlend in="SourceGraphic" in2="grey" mode="multiply"/>
+    </filter>
+    <!-- Glow filters - updated to theme colors -->
+    <filter id="glowAmber" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feFlood flood-color="#f48c06" flood-opacity="0.25" result="c"/>
+      <feComposite in="c" in2="b" operator="in" result="g"/>
+      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowTeal" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feFlood flood-color="#42c0c9" flood-opacity="0.25" result="c"/>
+      <feComposite in="c" in2="b" operator="in" result="g"/>
+      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <!-- Gradient backgrounds for cards - light theme -->
+    <linearGradient id="bgStart" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0f9fa"/><stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="bgQuestion" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f8f8f8"/>
+    </linearGradient>
+    <linearGradient id="bgChoice" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f8f8f8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="680" rx="16" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+  <rect width="900" height="680" rx="16" fill="url(#fcGrid)" opacity="0.4"/>
+
+  <!-- ═══════ PATHS (drawn first, behind nodes) ═══════ -->
+
+  <!-- Start → 3 data type options (curved) -->
+  <!-- Start → Bulk (left) -->
+  <path d="M340 58 C340 85, 195 85, 195 108" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+  <!-- Start → Pseudo-bulk (center) -->
+  <path d="M450 58 L450 108" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+  <!-- Start → Single-cell (right) -->
+  <path d="M560 58 C560 85, 720 85, 720 108" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+
+  <!-- Bulk → Sample size -->
+  <path d="M195 152 C195 175, 330 175, 330 198" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+  <!-- Pseudo → Sample size -->
+  <path d="M450 152 C450 175, 450 175, 450 198" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+
+  <!-- Sample size → n=1, n=2-3, n≥4 -->
+  <path d="M330 242 C330 265, 150 262, 150 288" fill="none" stroke="#f48c06" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+  <path d="M420 242 L420 288" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+  <path d="M510 242 C510 265, 630 262, 630 288" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+
+  <!-- n=1 → STOP -->
+  <path d="M150 332 L150 378" fill="none" stroke="#f48c06" stroke-width="2" class="fc-path-long" opacity="0.7"/>
+  <!-- n=2-3 → edgeR small -->
+  <path d="M420 332 L420 378" fill="none" stroke="#42c0c9" stroke-width="2" class="fc-path-long" opacity="0.7"/>
+  <!-- n≥4 → Priority -->
+  <path d="M630 332 L630 378" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+
+  <!-- Priority → 3 choices -->
+  <path d="M560 422 C560 448, 420 445, 420 468" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+  <path d="M630 422 L630 468" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+  <path d="M700 422 C700 448, 810 445, 810 468" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+
+  <!-- Choice → Terminal -->
+  <path d="M420 512 L420 558" fill="none" stroke="#42c0c9" stroke-width="2" class="fc-path-long" opacity="0.7"/>
+  <path d="M630 512 L630 558" fill="none" stroke="#42c0c9" stroke-width="2" class="fc-path-long" opacity="0.7"/>
+  <path d="M810 512 L810 558" fill="none" stroke="#42c0c9" stroke-width="2" class="fc-path-long" opacity="0.7"/>
+
+  <!-- SC → SC Tools -->
+  <path d="M720 152 L720 198" fill="none" stroke="#f48c06" stroke-width="1.8" class="fc-path" opacity="0.6"/>
+
+  <!-- ═══════ NODES ═══════ -->
+
+  <!-- Row 0: START -->
+  <g class="fc-node fc-anim-1">
+    <rect x="320" y="18" width="260" height="40" rx="20" fill="url(#bgStart)" stroke="#42c0c9" stroke-width="2" filter="url(#cardShadow)"/>
+    <text x="450" y="43" text-anchor="middle" fill="#000000" font-size="14" font-weight="700">What type of RNA-seq data?</text>
+  </g>
+
+  <!-- Row 1: Data types -->
+  <g class="fc-node fc-anim-2">
+    <rect x="115" y="108" width="160" height="44" rx="8" fill="url(#bgChoice)" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <text x="195" y="135" text-anchor="middle" fill="#000000" font-size="13" font-weight="600">Bulk RNA-seq</text>
+  </g>
+  <g class="fc-node fc-anim-2">
+    <rect x="350" y="108" width="200" height="44" rx="8" fill="url(#bgChoice)" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <text x="450" y="135" text-anchor="middle" fill="#000000" font-size="13" font-weight="600">Pseudo-bulk (scRNA-seq)</text>
+  </g>
+  <g class="fc-node fc-anim-2">
+    <rect x="630" y="108" width="180" height="44" rx="8" fill="url(#bgChoice)" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <text x="720" y="135" text-anchor="middle" fill="#000000" font-size="13" font-weight="600">Single-cell (cell-level)</text>
+  </g>
+
+  <!-- Row 2: Sample size question -->
+  <g class="fc-node fc-anim-3">
+    <rect x="280" y="198" width="280" height="44" rx="8" fill="url(#bgQuestion)" stroke="#42c0c9" stroke-width="2" filter="url(#cardShadow)"/>
+    <text x="287" y="217" fill="#42c0c9" font-size="10" font-weight="700" font-family="'JetBrains Mono',monospace">?</text>
+    <text x="420" y="226" text-anchor="middle" fill="#000000" font-size="13" font-weight="600">How many biological replicates?</text>
+  </g>
+
+  <!-- SC → Warning -->
+  <g class="fc-node fc-anim-3 fc-terminal fc-terminal-warn" filter="url(#glowAmber)">
+    <rect x="630" y="198" width="180" height="56" rx="8" fill="#fff5eb" stroke="#f48c06" stroke-width="1.5"/>
+    <text x="720" y="221" text-anchor="middle" fill="#f48c06" font-size="11" font-weight="700">⚠ scRNA-seq tools</text>
+    <text x="720" y="239" text-anchor="middle" fill="#e85d04" font-size="10.5">Aggregate to pseudo-bulk</text>
+  </g>
+
+  <!-- Row 3: Sample size options -->
+  <g class="fc-node fc-anim-4">
+    <rect x="80" y="288" width="140" height="44" rx="8" fill="url(#bgChoice)" stroke="#f48c06" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <text x="150" y="310" text-anchor="middle" fill="#000000" font-size="13" font-weight="700">n = 1</text>
+    <text x="150" y="324" text-anchor="middle" fill="#666666" font-size="10">no replicates</text>
+  </g>
+  <g class="fc-node fc-anim-4">
+    <rect x="340" y="288" width="160" height="44" rx="8" fill="url(#bgChoice)" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <text x="420" y="310" text-anchor="middle" fill="#000000" font-size="13" font-weight="700">n = 2–3</text>
+    <text x="420" y="324" text-anchor="middle" fill="#666666" font-size="10">small</text>
+  </g>
+  <g class="fc-node fc-anim-4">
+    <rect x="560" y="288" width="140" height="44" rx="8" fill="url(#bgChoice)" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <text x="630" y="310" text-anchor="middle" fill="#000000" font-size="13" font-weight="700">n ≥ 4</text>
+    <text x="630" y="324" text-anchor="middle" fill="#666666" font-size="10">moderate+</text>
+  </g>
+
+  <!-- Row 4: STOP + edgeR small + Priority -->
+  <g class="fc-node fc-anim-5 fc-terminal fc-terminal-warn" filter="url(#glowAmber)">
+    <rect x="48" y="378" width="204" height="64" rx="8" fill="#fff5eb" stroke="#f48c06" stroke-width="2"/>
+    <text x="150" y="402" text-anchor="middle" fill="#f48c06" font-size="13" font-weight="700">⛔ STOP</text>
+    <text x="150" y="420" text-anchor="middle" fill="#e85d04" font-size="10.5">DE is not reliable.</text>
+    <text x="150" y="434" text-anchor="middle" fill="#d00000" font-size="10">Cannot estimate biological variability.</text>
+  </g>
+
+  <g class="fc-node fc-anim-5 fc-terminal fc-terminal-edger" filter="url(#glowTeal)">
+    <rect x="310" y="378" width="220" height="64" rx="8" fill="#f0f9fa" stroke="#42c0c9" stroke-width="2"/>
+    <text x="420" y="402" text-anchor="middle" fill="#42c0c9" font-size="13" font-weight="700">→ edgeR QL pipeline</text>
+    <text x="420" y="420" text-anchor="middle" fill="#2a9ba3" font-size="10.5">Better Type I error control</text>
+    <text x="420" y="434" text-anchor="middle" fill="#2a9ba3" font-size="10">with small sample sizes</text>
+  </g>
+
+  <g class="fc-node fc-anim-5">
+    <rect x="570" y="378" width="180" height="44" rx="8" fill="url(#bgQuestion)" stroke="#42c0c9" stroke-width="2" filter="url(#cardShadow)"/>
+    <text x="577" y="397" fill="#42c0c9" font-size="10" font-weight="700" font-family="'JetBrains Mono',monospace">?</text>
+    <text x="660" y="406" text-anchor="middle" fill="#000000" font-size="12.5" font-weight="600">What matters most?</text>
+  </g>
+
+  <!-- Row 5: Priority choices -->
+  <g class="fc-node fc-anim-6">
+    <rect x="330" y="468" width="180" height="44" rx="8" fill="#f0f9fa" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <text x="420" y="488" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">Safe defaults +</text>
+    <text x="420" y="503" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">LFC shrinkage</text>
+  </g>
+  <g class="fc-node fc-anim-6">
+    <rect x="540" y="468" width="180" height="44" rx="8" fill="#f0f9fa" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <text x="630" y="488" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">Maximum control +</text>
+    <text x="630" y="503" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">QL calibration</text>
+  </g>
+  <g class="fc-node fc-anim-6">
+    <rect x="740" y="468" width="140" height="44" rx="8" fill="#f0f9fa" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <text x="810" y="488" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">Already in limma</text>
+    <text x="810" y="503" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">ecosystem</text>
+  </g>
+
+  <!-- Row 6: Terminal results -->
+  <g class="fc-node fc-anim-7 fc-terminal fc-terminal-deseq2" filter="url(#glowTeal)">
+    <rect x="340" y="558" width="160" height="48" rx="24" fill="#ffffff" stroke="#42c0c9" stroke-width="2"/>
+    <text x="420" y="587" text-anchor="middle" fill="#42c0c9" font-size="15" font-weight="700" font-family="'JetBrains Mono',monospace">DESeq2</text>
+  </g>
+  <g class="fc-node fc-anim-7 fc-terminal fc-terminal-edger" filter="url(#glowTeal)">
+    <rect x="540" y="558" width="180" height="48" rx="24" fill="#ffffff" stroke="#42c0c9" stroke-width="2"/>
+    <text x="630" y="587" text-anchor="middle" fill="#42c0c9" font-size="15" font-weight="700" font-family="'JetBrains Mono',monospace">edgeR QL</text>
+  </g>
+  <g class="fc-node fc-anim-7 fc-terminal fc-terminal-voom" filter="url(#glowTeal)">
+    <rect x="740" y="558" width="140" height="48" rx="24" fill="#ffffff" stroke="#42c0c9" stroke-width="2"/>
+    <text x="810" y="587" text-anchor="middle" fill="#42c0c9" font-size="15" font-weight="700" font-family="'JetBrains Mono',monospace">limma-voom</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(50, 630)" opacity="0.8">
+    <circle cx="8" cy="8" r="5" fill="#f48c06" opacity="0.7"/>
+    <text x="20" y="12" fill="#666666" font-size="10">Stop / Warning</text>
+    <circle cx="128" cy="8" r="5" fill="#42c0c9" opacity="0.7"/>
+    <text x="140" y="12" fill="#666666" font-size="10">DESeq2 / edgeR / limma-voom</text>
+    <line x1="280" y1="8" x2="310" y2="8" stroke="#42c0c9" stroke-width="1.8" stroke-dasharray="6,6" opacity="0.6"/>
+    <text x="318" y="12" fill="#666666" font-size="10">Decision flow</text>
+  </g>
+</svg>
+
+<div class="fc-caption"><strong>Figure 2.</strong> Decision flowchart for choosing between DESeq2, edgeR, and limma-voom based on data type, sample size, and analysis priorities.</div>
+      </div>
+
+---
 ## 1. The Shared Statistical Foundation
 
 For each gene *g* in each sample *i*, DESeq2 and edgeR treat the read count as:
@@ -457,277 +727,6 @@ No results section is complete without these checks.
 | **Overfitting covariates** | Adding irrelevant covariates wastes degrees of freedom with small n. |
 | **No pre-filtering** | Inflates multiple-testing burden and distorts FDR. |
 | **Intersecting two tools** | Not validation — both use NB GLMs. Reduces sensitivity for false comfort. |
-
----
-
-## 11. Which One Should I Use?
-
-<div id="decision-flowchart" style="margin:2em 0;user-select:none;">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
-#decision-flowchart svg { width:100%; max-width:1200px; display:block; margin:0 auto; }
-
-/* Animated flowing dashes on paths */
-@keyframes flowDash {
-  to { stroke-dashoffset: -24; }
-}
-@keyframes flowDashSlow {
-  to { stroke-dashoffset: -32; }
-}
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-@keyframes fadeSlideIn {
-  from { opacity:0; transform:translateY(8px); }
-  to { opacity:1; transform:translateY(0); }
-}
-@keyframes subtlePulse {
-  0%, 100% { filter: drop-shadow(0 0 3px var(--glow, transparent)); }
-  50% { filter: drop-shadow(0 0 10px var(--glow, transparent)); }
-}
-
-.fc-path {
-  stroke-dasharray: 6, 6;
-  animation: flowDash 0.8s linear infinite;
-}
-.fc-path-long {
-  stroke-dasharray: 8, 8;
-  animation: flowDashSlow 1s linear infinite;
-}
-
-/* Node hover lift */
-.fc-node { transition: filter 0.25s, transform 0.25s; cursor: default; }
-.fc-node:hover { filter: brightness(1.15) drop-shadow(0 4px 12px rgba(0,0,0,0.15)); }
-
-/* Terminal node glow pulse */
-.fc-terminal { animation: subtlePulse 3s ease-in-out infinite; }
-.fc-terminal-deseq2 { --glow: #42c0c9; }
-.fc-terminal-edger  { --glow: #42c0c9; }
-.fc-terminal-warn   { --glow: #f48c06; }
-.fc-terminal-voom   { --glow: #42c0c9; }
-
-/* Staggered entrance */
-.fc-anim-1 { animation: fadeSlideIn 0.5s 0.05s both; }
-.fc-anim-2 { animation: fadeSlideIn 0.5s 0.15s both; }
-.fc-anim-3 { animation: fadeSlideIn 0.5s 0.25s both; }
-.fc-anim-4 { animation: fadeSlideIn 0.5s 0.35s both; }
-.fc-anim-5 { animation: fadeSlideIn 0.5s 0.45s both; }
-.fc-anim-6 { animation: fadeSlideIn 0.5s 0.55s both; }
-.fc-anim-7 { animation: fadeSlideIn 0.5s 0.65s both; }
-
-/* Caption */
-.fc-caption {
-  text-align:center; margin-top:12px;
-  font-family:'DM Sans',sans-serif; font-size:13px; color:#666666;
-  line-height:1.5;
-}
-.fc-caption strong { color:#000000; }
-</style>
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" style="font-family:'DM Sans',sans-serif;">
-  <defs>
-    <!-- Subtle grid pattern -->
-    <pattern id="fcGrid" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
-      <path d="M30 0V30H0" fill="none" stroke="#e0e0e0" stroke-width="0.5" opacity="0.3"/>
-    </pattern>
-    <!-- Noise texture -->
-    <filter id="fcNoise">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" result="noise"/>
-      <feColorMatrix type="saturate" values="0" in="noise" result="grey"/>
-      <feBlend in="SourceGraphic" in2="grey" mode="multiply"/>
-    </filter>
-    <!-- Glow filters - updated to theme colors -->
-    <filter id="glowAmber" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="b"/>
-      <feFlood flood-color="#f48c06" flood-opacity="0.25" result="c"/>
-      <feComposite in="c" in2="b" operator="in" result="g"/>
-      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="glowTeal" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="b"/>
-      <feFlood flood-color="#42c0c9" flood-opacity="0.25" result="c"/>
-      <feComposite in="c" in2="b" operator="in" result="g"/>
-      <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="120%">
-      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.1"/>
-    </filter>
-    <!-- Gradient backgrounds for cards - light theme -->
-    <linearGradient id="bgStart" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#f0f9fa"/><stop offset="100%" stop-color="#ffffff"/>
-    </linearGradient>
-    <linearGradient id="bgQuestion" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f8f8f8"/>
-    </linearGradient>
-    <linearGradient id="bgChoice" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f8f8f8"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Background -->
-  <rect width="900" height="680" rx="16" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
-  <rect width="900" height="680" rx="16" fill="url(#fcGrid)" opacity="0.4"/>
-
-  <!-- ═══════ PATHS (drawn first, behind nodes) ═══════ -->
-
-  <!-- Start → 3 data type options (curved) -->
-  <!-- Start → Bulk (left) -->
-  <path d="M340 58 C340 85, 195 85, 195 108" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-  <!-- Start → Pseudo-bulk (center) -->
-  <path d="M450 58 L450 108" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-  <!-- Start → Single-cell (right) -->
-  <path d="M560 58 C560 85, 720 85, 720 108" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-
-  <!-- Bulk → Sample size -->
-  <path d="M195 152 C195 175, 330 175, 330 198" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-  <!-- Pseudo → Sample size -->
-  <path d="M450 152 C450 175, 450 175, 450 198" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-
-  <!-- Sample size → n=1, n=2-3, n≥4 -->
-  <path d="M330 242 C330 265, 150 262, 150 288" fill="none" stroke="#f48c06" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-  <path d="M420 242 L420 288" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-  <path d="M510 242 C510 265, 630 262, 630 288" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-
-  <!-- n=1 → STOP -->
-  <path d="M150 332 L150 378" fill="none" stroke="#f48c06" stroke-width="2" class="fc-path-long" opacity="0.7"/>
-  <!-- n=2-3 → edgeR small -->
-  <path d="M420 332 L420 378" fill="none" stroke="#42c0c9" stroke-width="2" class="fc-path-long" opacity="0.7"/>
-  <!-- n≥4 → Priority -->
-  <path d="M630 332 L630 378" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-
-  <!-- Priority → 3 choices -->
-  <path d="M560 422 C560 448, 420 445, 420 468" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-  <path d="M630 422 L630 468" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-  <path d="M700 422 C700 448, 810 445, 810 468" fill="none" stroke="#42c0c9" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-
-  <!-- Choice → Terminal -->
-  <path d="M420 512 L420 558" fill="none" stroke="#42c0c9" stroke-width="2" class="fc-path-long" opacity="0.7"/>
-  <path d="M630 512 L630 558" fill="none" stroke="#42c0c9" stroke-width="2" class="fc-path-long" opacity="0.7"/>
-  <path d="M810 512 L810 558" fill="none" stroke="#42c0c9" stroke-width="2" class="fc-path-long" opacity="0.7"/>
-
-  <!-- SC → SC Tools -->
-  <path d="M720 152 L720 198" fill="none" stroke="#f48c06" stroke-width="1.8" class="fc-path" opacity="0.6"/>
-
-  <!-- ═══════ NODES ═══════ -->
-
-  <!-- Row 0: START -->
-  <g class="fc-node fc-anim-1">
-    <rect x="320" y="18" width="260" height="40" rx="20" fill="url(#bgStart)" stroke="#42c0c9" stroke-width="2" filter="url(#cardShadow)"/>
-    <text x="450" y="43" text-anchor="middle" fill="#000000" font-size="14" font-weight="700">What type of RNA-seq data?</text>
-  </g>
-
-  <!-- Row 1: Data types -->
-  <g class="fc-node fc-anim-2">
-    <rect x="115" y="108" width="160" height="44" rx="8" fill="url(#bgChoice)" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
-    <text x="195" y="135" text-anchor="middle" fill="#000000" font-size="13" font-weight="600">Bulk RNA-seq</text>
-  </g>
-  <g class="fc-node fc-anim-2">
-    <rect x="350" y="108" width="200" height="44" rx="8" fill="url(#bgChoice)" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
-    <text x="450" y="135" text-anchor="middle" fill="#000000" font-size="13" font-weight="600">Pseudo-bulk (scRNA-seq)</text>
-  </g>
-  <g class="fc-node fc-anim-2">
-    <rect x="630" y="108" width="180" height="44" rx="8" fill="url(#bgChoice)" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
-    <text x="720" y="135" text-anchor="middle" fill="#000000" font-size="13" font-weight="600">Single-cell (cell-level)</text>
-  </g>
-
-  <!-- Row 2: Sample size question -->
-  <g class="fc-node fc-anim-3">
-    <rect x="280" y="198" width="280" height="44" rx="8" fill="url(#bgQuestion)" stroke="#42c0c9" stroke-width="2" filter="url(#cardShadow)"/>
-    <text x="287" y="217" fill="#42c0c9" font-size="10" font-weight="700" font-family="'JetBrains Mono',monospace">?</text>
-    <text x="420" y="226" text-anchor="middle" fill="#000000" font-size="13" font-weight="600">How many biological replicates?</text>
-  </g>
-
-  <!-- SC → Warning -->
-  <g class="fc-node fc-anim-3 fc-terminal fc-terminal-warn" filter="url(#glowAmber)">
-    <rect x="630" y="198" width="180" height="56" rx="8" fill="#fff5eb" stroke="#f48c06" stroke-width="1.5"/>
-    <text x="720" y="221" text-anchor="middle" fill="#f48c06" font-size="11" font-weight="700">⚠ scRNA-seq tools</text>
-    <text x="720" y="239" text-anchor="middle" fill="#e85d04" font-size="10.5">Aggregate to pseudo-bulk</text>
-  </g>
-
-  <!-- Row 3: Sample size options -->
-  <g class="fc-node fc-anim-4">
-    <rect x="80" y="288" width="140" height="44" rx="8" fill="url(#bgChoice)" stroke="#f48c06" stroke-width="1.5" filter="url(#cardShadow)"/>
-    <text x="150" y="310" text-anchor="middle" fill="#000000" font-size="13" font-weight="700">n = 1</text>
-    <text x="150" y="324" text-anchor="middle" fill="#666666" font-size="10">no replicates</text>
-  </g>
-  <g class="fc-node fc-anim-4">
-    <rect x="340" y="288" width="160" height="44" rx="8" fill="url(#bgChoice)" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
-    <text x="420" y="310" text-anchor="middle" fill="#000000" font-size="13" font-weight="700">n = 2–3</text>
-    <text x="420" y="324" text-anchor="middle" fill="#666666" font-size="10">small</text>
-  </g>
-  <g class="fc-node fc-anim-4">
-    <rect x="560" y="288" width="140" height="44" rx="8" fill="url(#bgChoice)" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
-    <text x="630" y="310" text-anchor="middle" fill="#000000" font-size="13" font-weight="700">n ≥ 4</text>
-    <text x="630" y="324" text-anchor="middle" fill="#666666" font-size="10">moderate+</text>
-  </g>
-
-  <!-- Row 4: STOP + edgeR small + Priority -->
-  <g class="fc-node fc-anim-5 fc-terminal fc-terminal-warn" filter="url(#glowAmber)">
-    <rect x="48" y="378" width="204" height="64" rx="8" fill="#fff5eb" stroke="#f48c06" stroke-width="2"/>
-    <text x="150" y="402" text-anchor="middle" fill="#f48c06" font-size="13" font-weight="700">⛔ STOP</text>
-    <text x="150" y="420" text-anchor="middle" fill="#e85d04" font-size="10.5">DE is not reliable.</text>
-    <text x="150" y="434" text-anchor="middle" fill="#d00000" font-size="10">Cannot estimate biological variability.</text>
-  </g>
-
-  <g class="fc-node fc-anim-5 fc-terminal fc-terminal-edger" filter="url(#glowTeal)">
-    <rect x="310" y="378" width="220" height="64" rx="8" fill="#f0f9fa" stroke="#42c0c9" stroke-width="2"/>
-    <text x="420" y="402" text-anchor="middle" fill="#42c0c9" font-size="13" font-weight="700">→ edgeR QL pipeline</text>
-    <text x="420" y="420" text-anchor="middle" fill="#2a9ba3" font-size="10.5">Better Type I error control</text>
-    <text x="420" y="434" text-anchor="middle" fill="#2a9ba3" font-size="10">with small sample sizes</text>
-  </g>
-
-  <g class="fc-node fc-anim-5">
-    <rect x="570" y="378" width="180" height="44" rx="8" fill="url(#bgQuestion)" stroke="#42c0c9" stroke-width="2" filter="url(#cardShadow)"/>
-    <text x="577" y="397" fill="#42c0c9" font-size="10" font-weight="700" font-family="'JetBrains Mono',monospace">?</text>
-    <text x="660" y="406" text-anchor="middle" fill="#000000" font-size="12.5" font-weight="600">What matters most?</text>
-  </g>
-
-  <!-- Row 5: Priority choices -->
-  <g class="fc-node fc-anim-6">
-    <rect x="330" y="468" width="180" height="44" rx="8" fill="#f0f9fa" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
-    <text x="420" y="488" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">Safe defaults +</text>
-    <text x="420" y="503" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">LFC shrinkage</text>
-  </g>
-  <g class="fc-node fc-anim-6">
-    <rect x="540" y="468" width="180" height="44" rx="8" fill="#f0f9fa" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
-    <text x="630" y="488" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">Maximum control +</text>
-    <text x="630" y="503" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">QL calibration</text>
-  </g>
-  <g class="fc-node fc-anim-6">
-    <rect x="740" y="468" width="140" height="44" rx="8" fill="#f0f9fa" stroke="#42c0c9" stroke-width="1.5" filter="url(#cardShadow)"/>
-    <text x="810" y="488" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">Already in limma</text>
-    <text x="810" y="503" text-anchor="middle" fill="#000000" font-size="11.5" font-weight="600">ecosystem</text>
-  </g>
-
-  <!-- Row 6: Terminal results -->
-  <g class="fc-node fc-anim-7 fc-terminal fc-terminal-deseq2" filter="url(#glowTeal)">
-    <rect x="340" y="558" width="160" height="48" rx="24" fill="#ffffff" stroke="#42c0c9" stroke-width="2"/>
-    <text x="420" y="587" text-anchor="middle" fill="#42c0c9" font-size="15" font-weight="700" font-family="'JetBrains Mono',monospace">DESeq2</text>
-  </g>
-  <g class="fc-node fc-anim-7 fc-terminal fc-terminal-edger" filter="url(#glowTeal)">
-    <rect x="540" y="558" width="180" height="48" rx="24" fill="#ffffff" stroke="#42c0c9" stroke-width="2"/>
-    <text x="630" y="587" text-anchor="middle" fill="#42c0c9" font-size="15" font-weight="700" font-family="'JetBrains Mono',monospace">edgeR QL</text>
-  </g>
-  <g class="fc-node fc-anim-7 fc-terminal fc-terminal-voom" filter="url(#glowTeal)">
-    <rect x="740" y="558" width="140" height="48" rx="24" fill="#ffffff" stroke="#42c0c9" stroke-width="2"/>
-    <text x="810" y="587" text-anchor="middle" fill="#42c0c9" font-size="15" font-weight="700" font-family="'JetBrains Mono',monospace">limma-voom</text>
-  </g>
-
-  <!-- Legend -->
-  <g transform="translate(50, 630)" opacity="0.8">
-    <circle cx="8" cy="8" r="5" fill="#f48c06" opacity="0.7"/>
-    <text x="20" y="12" fill="#666666" font-size="10">Stop / Warning</text>
-    <circle cx="128" cy="8" r="5" fill="#42c0c9" opacity="0.7"/>
-    <text x="140" y="12" fill="#666666" font-size="10">DESeq2 / edgeR / limma-voom</text>
-    <line x1="280" y1="8" x2="310" y2="8" stroke="#42c0c9" stroke-width="1.8" stroke-dasharray="6,6" opacity="0.6"/>
-    <text x="318" y="12" fill="#666666" font-size="10">Decision flow</text>
-  </g>
-</svg>
-
-<div class="fc-caption"><strong>Figure 2.</strong> Decision flowchart for choosing between DESeq2, edgeR, and limma-voom based on data type, sample size, and analysis priorities.</div>
-      </div>
 
 ---
 
