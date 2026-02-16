@@ -9,17 +9,6 @@ giscus_comments: true
 toc: true
 ---
 
-DESeq2 and edgeR are the two most widely used tools for differential expression analysis of RNA-seq count data. Both use **Negative Binomial generalized linear models**, and both are mature, well-validated, and actively maintained.
-
-They often agree on strong signals, but they can diverge on borderline genes — especially with small sample sizes, strong composition effects, or outliers — because dispersion estimation and hypothesis testing differ. This guide covers both the statistical machinery and the **experimental design specification**, which is where most real-world errors originate.
-
-<figure>
-  <img src="{{ '/assets/images/deseq2_vs_edgeR.png' | relative_url }}" alt="DESeq2 vs edgeR comparison" />
-  <figcaption><strong>Figure 1.</strong> Overview of DESeq2 and edgeR for RNA-seq differential expression analysis.</figcaption>
-</figure>
-
----
-
 ## For the impatient: what should I choose
 
 <div id="decision-flowchart" style="margin:2em 0;user-select:none;">
@@ -290,7 +279,23 @@ They often agree on strong signals, but they can diverge on borderline genes —
       </div>
 
 ---
+
+DESeq2 and edgeR are the two most widely used tools for differential expression analysis of RNA-seq count data. Both use **Negative Binomial generalized linear models**, and both are mature, well-validated, and actively maintained.
+
+They often agree on strong signals, but they can diverge on borderline genes — especially with small sample sizes, strong composition effects, or outliers — because dispersion estimation and hypothesis testing differ. This guide covers both the statistical machinery and the **experimental design specification**, which is where most real-world errors originate.
+
+<figure>
+  <img src="{{ '/assets/images/deseq2_vs_edgeR.png' | relative_url }}" alt="DESeq2 vs edgeR comparison" />
+  <figcaption><strong>Figure 1.</strong> Overview of DESeq2 and edgeR for RNA-seq differential expression analysis.</figcaption>
+</figure>
+
+---
+
 ## 1. The Shared Statistical Foundation
+
+
+---
+
 
 For each gene *g* in each sample *i*, DESeq2 and edgeR treat the read count as:
 
