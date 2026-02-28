@@ -9,7 +9,16 @@ giscus_comments: true
 thumbnail: https://microbenotes.com/wp-content/uploads/2023/02/Next-Generation-Sequencing-NGS.jpg
 ---
 
-# Prelude
+<style>
+/* Hide tag pills in post header for a cleaner look */
+.blog-post .post-tags,
+.blog-post .post-meta .meta-divider { display: none; }
+/* Consistent heading size: all main section titles same as Prelude */
+.post-content h2 { font-size: 1.22rem; font-weight: 700; margin-top: 1.6rem; margin-bottom: 0.6rem; }
+.post-content h3 { font-size: 1.05rem; font-weight: 600; margin-top: 1.1rem; margin-bottom: 0.4rem; }
+</style>
+
+## Prelude
 
 When people first enter genomics, sequencing can look like a menu of technologies: whole genome sequencing (WGS), whole exome sequencing (WES), RNA-seq, targeted panels, single-cell, methylation sequencing, and more.
 
