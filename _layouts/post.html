@@ -2,6 +2,12 @@
 layout: default
 ---
 
+<!-- Fixed TOC: sits in the left margin, takes zero space from the post -->
+<aside class="post-toc" id="post-toc" aria-label="On this page">
+  <div class="post-toc-title">On this page</div>
+  <nav class="post-toc-nav"></nav>
+</aside>
+
 <article class="blog-post" id="blog-post">
   <header class="post-header">
     <div class="post-meta">
@@ -23,14 +29,8 @@ layout: default
     {% endif %}
   </header>
   
-  <div class="post-with-toc">
-    <aside class="post-toc" id="post-toc" aria-label="On this page">
-      <div class="post-toc-title">On this page</div>
-      <nav class="post-toc-nav"></nav>
-    </aside>
-    <div class="post-content">
-      {{ content }}
-    </div>
+  <div class="post-content">
+    {{ content }}
   </div>
   
   <footer class="post-footer">
@@ -60,31 +60,31 @@ layout: default
 
 <script>
 (function() {
-  var post = document.getElementById('blog-post');
-  if (!post) return;
-  var content = post.querySelector('.post-content');
-  var tocNav = post.querySelector('.post-toc-nav');
+  var post     = document.getElementById('blog-post');
   var tocAside = document.getElementById('post-toc');
-  if (!content || !tocNav || !tocAside) return;
+  if (!post || !tocAside) return;
+
+  var content = post.querySelector('.post-content');
+  var tocNav  = tocAside.querySelector('.post-toc-nav');
+  if (!content || !tocNav) return;
+
+  // ── Build TOC ──────────────────────────────────────────────────────────────
   var headings = content.querySelectorAll('h2, h3');
-  if (headings.length === 0) {
-    tocAside.style.display = 'none';
-    return;
-  }
+  if (headings.length === 0) { tocAside.style.display = 'none'; return; }
+
   var ul = document.createElement('ul');
   ul.className = 'post-toc-list';
   var currentSublist = null;
   var idToLink = {};
+
   for (var i = 0; i < headings.length; i++) {
     var h = headings[i];
-    var id = h.id;
-    if (!id) continue;
-    var text = h.textContent.trim();
+    if (!h.id) continue;
     var a = document.createElement('a');
-    a.href = '#' + id;
-    a.textContent = text;
+    a.href = '#' + h.id;
+    a.textContent = h.textContent.trim();
     a.className = 'post-toc-link' + (h.tagName === 'H3' ? ' post-toc-link--h3' : '');
-    idToLink[id] = a;
+    idToLink[h.id] = a;
     var li = document.createElement('li');
     li.appendChild(a);
     if (h.tagName === 'H2') {
@@ -101,43 +101,70 @@ layout: default
   }
   tocNav.appendChild(ul);
 
-  // Scroll-spy: highlight current section and keep active TOC link in view
+  // ── Position TOC fixed in the left margin (takes ZERO space from post) ─────
+  var TOC_GAP = 20; // px gap between TOC right edge and post left edge
+  var MIN_LEFT = 8; // don't let it go off-screen
+
+  function positionToc() {
+    var postRect = post.getBoundingClientRect();
+    var tocWidth = tocAside.offsetWidth || 190;
+    var left = postRect.left - tocWidth - TOC_GAP;
+    if (left < MIN_LEFT) {
+      // Not enough viewport space — hide TOC (narrow screen)
+      tocAside.classList.add('post-toc--hidden');
+    } else {
+      tocAside.classList.remove('post-toc--hidden');
+      tocAside.style.left = left + 'px';
+      tocAside.style.width = Math.min(tocWidth, postRect.left - TOC_GAP - MIN_LEFT) + 'px';
+    }
+  }
+
+  window.addEventListener('resize', positionToc, { passive: true });
+  positionToc();
+
+  // ── Scroll-spy: highlight current section, scroll only the TOC panel ───────
   var HEADER_OFFSET = 120;
-  var lastActiveId = null;
+  var lastActiveId  = null;
+
+  function scrollTocToLink(link) {
+    if (tocAside.scrollHeight <= tocAside.clientHeight) return;
+    var linkRect  = link.getBoundingClientRect();
+    var asideRect = tocAside.getBoundingClientRect();
+    var linkPos   = tocAside.scrollTop + (linkRect.top - asideRect.top);
+    var target    = linkPos - (tocAside.clientHeight - link.offsetHeight) / 2;
+    target = Math.max(0, Math.min(target, tocAside.scrollHeight - tocAside.clientHeight));
+    tocAside.scrollTop = target;
+  }
+
   function setActive(id) {
     Object.keys(idToLink).forEach(function(k) {
       idToLink[k].classList.toggle('is-active', k === id);
     });
     if (id && idToLink[id] && id !== lastActiveId) {
       lastActiveId = id;
-      idToLink[id].scrollIntoView({ block: 'nearest', behavior: 'smooth', inline: 'nearest' });
+      scrollTocToLink(idToLink[id]);
     }
   }
+
   function updateActive() {
     var current = null;
     for (var j = 0; j < headings.length; j++) {
       var head = headings[j];
       if (!head.id) continue;
-      var rect = head.getBoundingClientRect();
-      if (rect.top <= HEADER_OFFSET) {
-        current = head.id;
-      }
+      if (head.getBoundingClientRect().top <= HEADER_OFFSET) current = head.id;
     }
-    if (current === null && headings.length > 0 && headings[0].id) {
-      current = headings[0].id;
-    }
+    if (!current && headings[0] && headings[0].id) current = headings[0].id;
     if (current) setActive(current);
   }
+
   var ticking = false;
   window.addEventListener('scroll', function() {
     if (!ticking) {
-      requestAnimationFrame(function() {
-        updateActive();
-        ticking = false;
-      });
+      requestAnimationFrame(function() { updateActive(); ticking = false; });
       ticking = true;
     }
   }, { passive: true });
+
   updateActive();
 })();
 </script>
