@@ -9,7 +9,7 @@ giscus_comments: true
 thumbnail: https://microbenotes.com/wp-content/uploads/2023/02/Next-Generation-Sequencing-NGS.jpg
 ---
 
-# The "Why" Behind Various Sequencing Modalities
+# Prelude
 
 When people first enter genomics, sequencing can look like a menu of technologies: whole genome sequencing (WGS), whole exome sequencing (WES), RNA-seq, targeted panels, single-cell, methylation sequencing, and more.
 
@@ -42,7 +42,7 @@ This post focuses on **sequencing-based genomic and transcriptomic modalities**;
 }
 
 .impatient-header h2 {
-  font-size: 1.55rem;
+  font-size: 1.45rem;
   font-weight: 700;
   color: var(--global-text-color, #333);
   margin-bottom: 0.25rem;
@@ -50,7 +50,7 @@ This post focuses on **sequencing-based genomic and transcriptomic modalities**;
 
 .impatient-subtitle {
   text-align: center;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   color: var(--global-text-color-light, #828282);
   margin-bottom: 1.8rem;
   line-height: 1.5;
@@ -87,7 +87,7 @@ This post focuses on **sequencing-based genomic and transcriptomic modalities**;
   align-items: center;
   gap: 0.7rem;
   padding: 0.75rem 1rem;
-  font-size: 0.9rem;
+  font-size: 0.83rem;
   color: var(--global-text-color, #333);
   font-weight: 500;
   line-height: 1.4;
@@ -101,7 +101,7 @@ This post focuses on **sequencing-based genomic and transcriptomic modalities**;
   content: '+';
   margin-left: auto;
   flex-shrink: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 300;
   color: var(--global-text-color-light, #828282);
   transition: transform 0.25s ease, color 0.25s ease;
@@ -122,7 +122,7 @@ This post focuses on **sequencing-based genomic and transcriptomic modalities**;
   border-radius: 50%;
   background: var(--global-theme-color, #2698BA);
   color: #fff;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
   flex-shrink: 0;
   letter-spacing: -0.01em;
@@ -132,7 +132,7 @@ This post focuses on **sequencing-based genomic and transcriptomic modalities**;
 .seq-body {
   padding: 0 1rem 0.85rem 1rem;
   margin-left: 2.15rem;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   line-height: 1.6;
   color: var(--global-text-color, #333);
 }
@@ -144,7 +144,7 @@ This post focuses on **sequencing-based genomic and transcriptomic modalities**;
 /* Modality tag */
 .seq-modality {
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   padding: 0.18rem 0.55rem;
@@ -159,7 +159,7 @@ This post focuses on **sequencing-based genomic and transcriptomic modalities**;
 .seq-tradeoff {
   display: block;
   margin-top: 0.35rem;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: var(--global-text-color-light, #828282);
   font-style: italic;
 }
@@ -167,7 +167,7 @@ This post focuses on **sequencing-based genomic and transcriptomic modalities**;
 /* Responsive */
 @media (max-width: 600px) {
   .impatient-section { margin: 1.5rem 0 2rem; }
-  .seq-card summary { font-size: 0.84rem; padding: 0.65rem 0.75rem; }
+  .seq-card summary { font-size: 0.78rem; padding: 0.65rem 0.75rem; }
   .seq-body { margin-left: 1.8rem; }
 }
 </style>
