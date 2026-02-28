@@ -955,21 +955,29 @@
 // BLOG POST TOC — fixed in left gutter, zero impact on post width
 // ==============================================================================
 
-// TOC lives outside the article flow; JS positions it to the left of the post
+// TOC lives outside the article flow, fixed in the left margin.
+//
+// Layout maths (when viewport >= 800px):
+//   .container    : max-width 800px, padding 24px each side → content 752px
+//   .blog-post    : max-width 720px, margin auto → left edge = 50vw - 360px
+//   TOC right edge: 50vw - 360px - 20px gap = 50vw - 380px from left
+//                   expressed as `right: calc(50vw + 380px)`
+//   At vw ≤ 1180px the left edge would be negative → hide via media query.
 .post-toc {
   position: fixed;
   top: 88px;
-  width: 230px;              // JS may override on resize
+  // Anchor right edge just left of the blog post
+  right: calc(50vw + 380px);
+  width: 210px;
   max-height: calc(100vh - 110px);
   overflow-y: auto;
   padding: $spacing-2 $spacing-3 $spacing-2 0;
   border-right: 1px solid $border-light;
   z-index: 90;
-  background: $bg-dark;     // match page background so it never overlaps text
-  transition: opacity $transition-fast;
+  background: $bg-dark;
 
-  // JS adds this class when there is no space (narrow viewport)
-  &.post-toc--hidden {
+  // Hide when viewport is too narrow for the TOC to fit without overlapping
+  @media (max-width: 1180px) {
     display: none;
   }
 }

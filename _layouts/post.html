@@ -101,27 +101,6 @@ layout: default
   }
   tocNav.appendChild(ul);
 
-  // ── Position TOC fixed in the left margin (takes ZERO space from post) ─────
-  var TOC_GAP = 20; // px gap between TOC right edge and post left edge
-  var MIN_LEFT = 8; // don't let it go off-screen
-
-  function positionToc() {
-    var postRect = post.getBoundingClientRect();
-    var tocWidth = tocAside.offsetWidth || 230;
-    var left = postRect.left - tocWidth - TOC_GAP;
-    if (left < MIN_LEFT) {
-      // Not enough viewport space — hide TOC (narrow screen)
-      tocAside.classList.add('post-toc--hidden');
-    } else {
-      tocAside.classList.remove('post-toc--hidden');
-      tocAside.style.left = left + 'px';
-      tocAside.style.width = Math.min(tocWidth, postRect.left - TOC_GAP - MIN_LEFT) + 'px';
-    }
-  }
-
-  window.addEventListener('resize', positionToc, { passive: true });
-  positionToc();
-
   // ── Scroll-spy: highlight current section, scroll only the TOC panel ───────
   var HEADER_OFFSET = 120;
   var lastActiveId  = null;
