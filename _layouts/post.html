@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<article class="blog-post">
+<article class="blog-post" id="blog-post">
   <header class="post-header">
     <div class="post-meta">
       <time datetime="{{ page.date | date_to_xmlschema }}">
@@ -23,8 +23,14 @@ layout: default
     {% endif %}
   </header>
   
-  <div class="post-content">
-    {{ content }}
+  <div class="post-with-toc">
+    <aside class="post-toc" id="post-toc" aria-label="On this page">
+      <div class="post-toc-title">On this page</div>
+      <nav class="post-toc-nav"></nav>
+    </aside>
+    <div class="post-content">
+      {{ content }}
+    </div>
   </div>
   
   <footer class="post-footer">
@@ -51,4 +57,47 @@ layout: default
   <!-- Comments Section -->
   {% include comments.html %}
 </article>
+
+<script>
+(function() {
+  var post = document.getElementById('blog-post');
+  if (!post) return;
+  var content = post.querySelector('.post-content');
+  var tocNav = post.querySelector('.post-toc-nav');
+  var tocAside = document.getElementById('post-toc');
+  if (!content || !tocNav || !tocAside) return;
+  var headings = content.querySelectorAll('h2, h3');
+  if (headings.length === 0) {
+    tocAside.style.display = 'none';
+    return;
+  }
+  var ul = document.createElement('ul');
+  ul.className = 'post-toc-list';
+  var currentSublist = null;
+  for (var i = 0; i < headings.length; i++) {
+    var h = headings[i];
+    var id = h.id;
+    if (!id) continue;
+    var text = h.textContent.trim();
+    var a = document.createElement('a');
+    a.href = '#' + id;
+    a.textContent = text;
+    a.className = 'post-toc-link' + (h.tagName === 'H3' ? ' post-toc-link--h3' : '');
+    var li = document.createElement('li');
+    li.appendChild(a);
+    if (h.tagName === 'H2') {
+      ul.appendChild(li);
+      currentSublist = null;
+    } else {
+      if (!currentSublist) {
+        currentSublist = document.createElement('ul');
+        currentSublist.className = 'post-toc-sublist';
+        ul.lastChild.appendChild(currentSublist);
+      }
+      currentSublist.appendChild(li);
+    }
+  }
+  tocNav.appendChild(ul);
+})();
+</script>
 

@@ -955,6 +955,96 @@
   max-width: $container-narrow;
   margin: 0 auto;
   animation: fadeInUp 0.6s ease-out;
+
+  &:has(.post-with-toc) {
+    max-width: none;
+  }
+}
+
+.post-with-toc {
+  display: flex;
+  gap: $spacing-8;
+  align-items: flex-start;
+
+  @media (max-width: 900px) {
+    .post-toc {
+      display: none;
+    }
+  }
+}
+
+.post-toc {
+  width: 200px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  padding: $spacing-4 0;
+  border-right: 1px solid $border-light;
+  padding-right: $spacing-4;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+}
+
+.post-toc-title {
+  font-size: $font-size-xs;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $text-dark-muted;
+  margin-bottom: $spacing-3;
+}
+
+.post-toc-nav {
+  .post-toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .post-toc-sublist {
+    list-style: none;
+    margin: 0 0 $spacing-1 0;
+    padding-left: $spacing-3;
+    border-left: 1px solid $border-light;
+  }
+
+  .post-toc-link {
+    display: block;
+    font-size: $font-size-sm;
+    color: $text-dark-secondary;
+    text-decoration: none;
+    padding: $spacing-1 0;
+    line-height: 1.35;
+    border-bottom: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &.post-toc-link--h3 {
+      font-size: $font-size-xs;
+      color: $text-dark-muted;
+      padding: 0.15em 0;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+.post-with-toc .post-content {
+  flex: 1;
+  min-width: 0;
+}
+
+// Scroll margin so TOC links don't hide heading under sticky header
+.post-content h2,
+.post-content h3 {
+  scroll-margin-top: 88px;
 }
 
 .post-header {
