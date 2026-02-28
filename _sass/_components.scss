@@ -956,34 +956,47 @@
   margin: 0 auto;
   animation: fadeInUp 0.6s ease-out;
 
+  // When TOC exists: use full width so TOC sits in left margin (no wasted whitespace)
   &:has(.post-with-toc) {
     max-width: none;
+    display: block;
   }
 }
 
 .post-with-toc {
   display: flex;
+  flex-direction: row;
   gap: $spacing-8;
   align-items: flex-start;
-
-  @media (max-width: 900px) {
-    .post-toc {
-      display: none;
-    }
+  max-width: $container-max;
+  margin: 0 auto;
+  // TOC in left margin; content column keeps reading width
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: $spacing-4;
   }
 }
 
+// TOC: fixed in left margin, always visible, uses otherwise wasted whitespace
 .post-toc {
-  width: 200px;
+  width: 220px;
   flex-shrink: 0;
   position: sticky;
-  top: 80px;
+  top: 88px;
   padding: $spacing-4 0;
-  border-right: 1px solid $border-light;
   padding-right: $spacing-4;
+  border-right: 1px solid $border-light;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
 
-  @media (max-width: 900px) {
-    display: none;
+  @media (max-width: 768px) {
+    width: 100%;
+    max-height: none;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid $border-light;
+    padding-bottom: $spacing-4;
+    margin-bottom: $spacing-2;
   }
 }
 
@@ -1018,19 +1031,34 @@
     padding: $spacing-1 0;
     line-height: 1.35;
     border-bottom: none;
-    transition: color $transition-fast;
+    transition: color $transition-fast, background $transition-fast;
+    border-radius: $radius-sm;
+    padding-left: $spacing-2;
+    margin-left: -$spacing-2;
 
     &:hover {
       color: $color-primary;
     }
 
+    &.is-active {
+      color: $color-primary;
+      font-weight: 600;
+      background: rgba($color-primary, 0.1);
+    }
+
     &.post-toc-link--h3 {
       font-size: $font-size-xs;
       color: $text-dark-muted;
-      padding: 0.15em 0;
+      padding: 0.15em 0 0.15em $spacing-2;
 
       &:hover {
         color: $color-primary;
+      }
+
+      &.is-active {
+        color: $color-primary;
+        font-weight: 600;
+        background: rgba($color-primary, 0.1);
       }
     }
   }
@@ -1039,6 +1067,7 @@
 .post-with-toc .post-content {
   flex: 1;
   min-width: 0;
+  max-width: $container-narrow;
 }
 
 // Scroll margin so TOC links don't hide heading under sticky header

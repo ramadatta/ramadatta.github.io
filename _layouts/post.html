@@ -74,6 +74,7 @@ layout: default
   var ul = document.createElement('ul');
   ul.className = 'post-toc-list';
   var currentSublist = null;
+  var idToLink = {};
   for (var i = 0; i < headings.length; i++) {
     var h = headings[i];
     var id = h.id;
@@ -83,6 +84,7 @@ layout: default
     a.href = '#' + id;
     a.textContent = text;
     a.className = 'post-toc-link' + (h.tagName === 'H3' ? ' post-toc-link--h3' : '');
+    idToLink[id] = a;
     var li = document.createElement('li');
     li.appendChild(a);
     if (h.tagName === 'H2') {
@@ -98,6 +100,40 @@ layout: default
     }
   }
   tocNav.appendChild(ul);
+
+  // Scroll-spy: highlight TOC link for the section currently in view
+  var HEADER_OFFSET = 120;
+  function setActive(id) {
+    Object.keys(idToLink).forEach(function(k) {
+      idToLink[k].classList.toggle('is-active', k === id);
+    });
+  }
+  function updateActive() {
+    var current = null;
+    for (var j = 0; j < headings.length; j++) {
+      var head = headings[j];
+      if (!head.id) continue;
+      var rect = head.getBoundingClientRect();
+      if (rect.top <= HEADER_OFFSET) {
+        current = head.id;
+      }
+    }
+    if (current === null && headings.length > 0 && headings[0].id) {
+      current = headings[0].id;
+    }
+    if (current) setActive(current);
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        updateActive();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+  updateActive();
 })();
 </script>
 
