@@ -959,7 +959,7 @@
 .post-toc {
   position: fixed;
   top: 88px;
-  width: 190px;              // JS may override on resize
+  width: 230px;              // JS may override on resize
   max-height: calc(100vh - 110px);
   overflow-y: auto;
   padding: $spacing-2 $spacing-3 $spacing-2 0;

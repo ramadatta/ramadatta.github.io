@@ -107,7 +107,7 @@ layout: default
 
   function positionToc() {
     var postRect = post.getBoundingClientRect();
-    var tocWidth = tocAside.offsetWidth || 190;
+    var tocWidth = tocAside.offsetWidth || 230;
     var left = postRect.left - tocWidth - TOC_GAP;
     if (left < MIN_LEFT) {
       // Not enough viewport space — hide TOC (narrow screen)
