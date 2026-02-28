@@ -101,12 +101,17 @@ layout: default
   }
   tocNav.appendChild(ul);
 
-  // Scroll-spy: highlight TOC link for the section currently in view
+  // Scroll-spy: highlight current section and keep active TOC link in view
   var HEADER_OFFSET = 120;
+  var lastActiveId = null;
   function setActive(id) {
     Object.keys(idToLink).forEach(function(k) {
       idToLink[k].classList.toggle('is-active', k === id);
     });
+    if (id && idToLink[id] && id !== lastActiveId) {
+      lastActiveId = id;
+      idToLink[id].scrollIntoView({ block: 'nearest', behavior: 'smooth', inline: 'nearest' });
+    }
   }
   function updateActive() {
     var current = null;

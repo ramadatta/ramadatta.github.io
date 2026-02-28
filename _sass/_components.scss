@@ -951,40 +951,43 @@
 // BLOG POST
 // ==============================================================================
 
+// Post pages with TOC: widen container so TOC lives in left margin without shrinking content
+.container:has(.blog-post .post-with-toc) {
+  max-width: 960px;
+}
+
 .blog-post {
   max-width: $container-narrow;
   margin: 0 auto;
   animation: fadeInUp 0.6s ease-out;
 
-  // When TOC exists: use full width so TOC sits in left margin (no wasted whitespace)
   &:has(.post-with-toc) {
     max-width: none;
     display: block;
   }
 }
 
+// TOC in left margin; content stays fixed width (no space taken from blog)
 .post-with-toc {
   display: flex;
   flex-direction: row;
-  gap: $spacing-8;
+  gap: $spacing-6;
   align-items: flex-start;
-  max-width: $container-max;
-  margin: 0 auto;
-  // TOC in left margin; content column keeps reading width
+  margin: 0;
+  justify-content: flex-start;
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: $spacing-4;
   }
 }
 
-// TOC: fixed in left margin, always visible, uses otherwise wasted whitespace
 .post-toc {
-  width: 220px;
+  width: 200px;
   flex-shrink: 0;
   position: sticky;
   top: 88px;
-  padding: $spacing-4 0;
-  padding-right: $spacing-4;
+  padding: $spacing-2 0 $spacing-2 $spacing-2;
   border-right: 1px solid $border-light;
   max-height: calc(100vh - 120px);
   overflow-y: auto;
@@ -995,7 +998,7 @@
     position: static;
     border-right: none;
     border-bottom: 1px solid $border-light;
-    padding-bottom: $spacing-4;
+    padding-bottom: $spacing-3;
     margin-bottom: $spacing-2;
   }
 }
@@ -1006,7 +1009,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: $text-dark-muted;
-  margin-bottom: $spacing-3;
+  margin-bottom: $spacing-2;
 }
 
 .post-toc-nav {
@@ -1014,13 +1017,21 @@
     list-style: none;
     margin: 0;
     padding: 0;
+
+    > li {
+      margin-bottom: 0;
+    }
   }
 
   .post-toc-sublist {
     list-style: none;
-    margin: 0 0 $spacing-1 0;
-    padding-left: $spacing-3;
+    margin: 0;
+    padding-left: $spacing-2;
     border-left: 1px solid $border-light;
+
+    li {
+      margin-bottom: 0;
+    }
   }
 
   .post-toc-link {
@@ -1028,13 +1039,12 @@
     font-size: $font-size-sm;
     color: $text-dark-secondary;
     text-decoration: none;
-    padding: $spacing-1 0;
-    line-height: 1.35;
+    padding: 0.2em 0 0.2em $spacing-1;
+    line-height: 1.28;
     border-bottom: none;
     transition: color $transition-fast, background $transition-fast;
     border-radius: $radius-sm;
-    padding-left: $spacing-2;
-    margin-left: -$spacing-2;
+    margin-left: -$spacing-1;
 
     &:hover {
       color: $color-primary;
@@ -1043,13 +1053,13 @@
     &.is-active {
       color: $color-primary;
       font-weight: 600;
-      background: rgba($color-primary, 0.1);
+      background: rgba($color-primary, 0.12);
     }
 
     &.post-toc-link--h3 {
       font-size: $font-size-xs;
       color: $text-dark-muted;
-      padding: 0.15em 0 0.15em $spacing-2;
+      padding: 0.12em 0 0.12em $spacing-1;
 
       &:hover {
         color: $color-primary;
@@ -1058,7 +1068,7 @@
       &.is-active {
         color: $color-primary;
         font-weight: 600;
-        background: rgba($color-primary, 0.1);
+        background: rgba($color-primary, 0.12);
       }
     }
   }
@@ -1068,6 +1078,7 @@
   flex: 1;
   min-width: 0;
   max-width: $container-narrow;
+  flex-shrink: 0;
 }
 
 // Scroll margin so TOC links don't hide heading under sticky header
