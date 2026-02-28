@@ -7,6 +7,7 @@ tags: [RNA-seq, differential-expression, DESeq2, edgeR, bioinformatics, statisti
 categories: [bioinformatics]
 giscus_comments: true
 toc: true
+thumbnail: /assets/images/deseq2_vs_edgeR.png
 ---
 
 ## For the impatient: what should I choose
