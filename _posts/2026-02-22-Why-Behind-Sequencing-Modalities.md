@@ -13,9 +13,14 @@ thumbnail: https://microbenotes.com/wp-content/uploads/2023/02/Next-Generation-S
 /* Hide tag pills in post header for a cleaner look */
 .blog-post .post-tags,
 .blog-post .post-meta .meta-divider { display: none; }
+/* Tighter line spacing */
+.blog-post .post-content { line-height: 1.5; }
+.blog-post .post-content p { margin-top: 0.5em; margin-bottom: 0.5em; }
+.blog-post .post-content ul, .blog-post .post-content ol { margin-top: 0.4em; margin-bottom: 0.4em; }
+.blog-post .post-content li { margin-top: 0.15em; margin-bottom: 0.15em; line-height: 1.45; }
 /* Consistent heading size: all main section titles same as Prelude */
-.post-content h2 { font-size: 1.22rem; font-weight: 700; margin-top: 1.6rem; margin-bottom: 0.6rem; }
-.post-content h3 { font-size: 1.05rem; font-weight: 600; margin-top: 1.1rem; margin-bottom: 0.4rem; }
+.post-content h2 { font-size: 1.22rem; font-weight: 700; margin-top: 1.2rem; margin-bottom: 0.4rem; }
+.post-content h3 { font-size: 1.05rem; font-weight: 600; margin-top: 0.85rem; margin-bottom: 0.3rem; }
 </style>
 
 ## Prelude
