@@ -952,32 +952,34 @@
 // ==============================================================================
 
 // ==============================================================================
-// BLOG POST TOC — fixed in left gutter, zero impact on post width
+// BLOG POST TOC — CSS Grid on .container gives TOC its own column
+// The post keeps its full reading width; TOC lives beside it, never overlaps.
 // ==============================================================================
 
-// TOC lives outside the article flow, fixed in the left margin.
-//
-// Layout maths (when viewport >= 800px):
-//   .container    : max-width 800px, padding 24px each side → content 752px
-//   .blog-post    : max-width 720px, margin auto → left edge = 50vw - 360px
-//   TOC right edge: 50vw - 360px - 20px gap = 50vw - 380px from left
-//                   expressed as `right: calc(50vw + 380px)`
-//   At vw ≤ 1180px the left edge would be negative → hide via media query.
+// On post pages the .container becomes a 2-column grid (TOC | Post).
+// On narrow viewports it falls back to a single column with no TOC.
+.container:has(> .post-toc) {
+  max-width: 1060px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0 $spacing-8;
+  align-items: start;
+
+  @media (max-width: 960px) {
+    max-width: 800px;
+    display: block;
+  }
+}
+
 .post-toc {
-  position: fixed;
+  position: sticky;
   top: 88px;
-  // Anchor right edge just left of the blog post
-  right: calc(50vw + 380px);
-  width: 210px;
   max-height: calc(100vh - 110px);
   overflow-y: auto;
-  padding: $spacing-2 $spacing-3 $spacing-2 0;
+  padding: $spacing-2 $spacing-4 $spacing-2 0;
   border-right: 1px solid $border-light;
-  z-index: 90;
-  background: $bg-dark;
 
-  // Hide when viewport is too narrow for the TOC to fit without overlapping
-  @media (max-width: 1180px) {
+  @media (max-width: 960px) {
     display: none;
   }
 }
@@ -1039,11 +1041,15 @@
   }
 }
 
-// Blog post itself — unchanged width, always centred
+// Blog post fills the second grid column; keeps its reading max-width
 .blog-post {
   max-width: $container-narrow;
-  margin: 0 auto;
+  margin: 0;
   animation: fadeInUp 0.6s ease-out;
+
+  @media (max-width: 960px) {
+    margin: 0 auto;
+  }
 }
 
 // Scroll margin so TOC links don't hide heading under sticky header
