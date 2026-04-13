@@ -37,31 +37,35 @@ We'll use one analogy and stretch it across all three models so the differences 
 
 The mapping looks like this:
 
-<figure>
-<div class="mermaid">
+<figure style="text-align: center;">
+<div class="mermaid" style="display: flex; justify-content: center;">
 flowchart LR
     subgraph Analogy["☕ The Analogy"]
-        A1[Coffee intake]
-        A2[Productivity]
-        A3[Sleep / Stress]
+        direction TB
+        A1(["☕ Coffee intake"])
+        A2(["⚡ Productivity"])
+        A3(["😴 Sleep / Stress"])
     end
 
     subgraph Biology["🧬 Single-Cell Reality"]
-        B1[Disease progression<br/>pseudotime]
-        B2[Gene expression<br/>regulon activity]
-        B3[Batch / Donor /<br/>nUMI / % mito]
+        direction TB
+        B1(["Disease progression<br/><i>pseudotime</i>"])
+        B2(["Gene expression<br/><i>regulon activity</i>"])
+        B3(["Batch · Donor<br/>nUMI · % mito"])
     end
 
-    A1 -->|maps to| B1
-    A2 -->|maps to| B2
-    A3 -->|maps to| B3
+    A1 ==>|maps to| B1
+    A2 ==>|maps to| B2
+    A3 ==>|maps to| B3
 
-    style A1 fill:#D4A574
-    style A2 fill:#90EE90
-    style A3 fill:#FFB6C1
-    style B1 fill:#D4A574
-    style B2 fill:#90EE90
-    style B3 fill:#FFB6C1
+    style Analogy fill:#FFF8E1,stroke:#E65100,stroke-width:3px,color:#BF360C
+    style Biology fill:#E8F5E9,stroke:#1B5E20,stroke-width:3px,color:#1B5E20
+    style A1 fill:#FFE0B2,stroke:#BF360C,stroke-width:2px,color:#3E2723
+    style A2 fill:#FFF59D,stroke:#F57F17,stroke-width:2px,color:#3E2723
+    style A3 fill:#FFCDD2,stroke:#B71C1C,stroke-width:2px,color:#3E2723
+    style B1 fill:#C8E6C9,stroke:#1B5E20,stroke-width:2px,color:#1B5E20
+    style B2 fill:#B2DFDB,stroke:#00695C,stroke-width:2px,color:#004D40
+    style B3 fill:#BBDEFB,stroke:#0D47A1,stroke-width:2px,color:#0D47A1
 </div>
 <figcaption><strong>Figure 1.</strong> The coffee-and-productivity analogy mapped onto single-cell gene expression. The same three roles — predictor, response, nuisance — appear in every model we'll discuss.</figcaption>
 </figure>
@@ -162,26 +166,19 @@ Crucially, a GAM keeps everything good about the GLM. You still use an NB family
 <figcaption><strong>Figure 3.</strong> LM vs NB-GLM vs GAM. The linear model fits a rigid straight line, the NB-GLM handles count data with a log link but still assumes linearity on the transformed scale, and the GAM uses penalized splines to capture non-linear expression dynamics along a continuum like pseudotime.</figcaption>
 </figure>
 
-<figure>
-<div class="mermaid">
-flowchart TD
-    subgraph LM_Panel["LM: straight line"]
-        LM1["Every cup = same boost<br/>Expression ~ a + bX"]
-    end
+<figure style="text-align: center;">
+<div class="mermaid" style="display: flex; justify-content: center;">
+flowchart LR
+    LM1["📏 <b>LM</b><br/>━━━━━━<br/>Straight line<br/><i>Y = a + bX</i><br/>Every cup = same boost"]
+    GLM1["📊 <b>GLM</b><br/>━━━━━━<br/>Linear on log scale<br/><i>log Y = a + bX</i><br/>Counts of tasks"]
+    GAM1["〰️ <b>GAM</b><br/>━━━━━━<br/>Flexible curve<br/><i>Y = a + s(X)</i><br/>Rise → peak → crash"]
 
-    subgraph GLM_Panel["GLM: linear on log scale"]
-        GLM1["Counts of tasks<br/>log Expression ~ Condition"]
-    end
+    LM1 ==>|"add link +<br/>count distribution"| GLM1
+    GLM1 ==>|"replace line<br/>with smoother"| GAM1
 
-    subgraph GAM_Panel["GAM: flexible curve"]
-        GAM1["Rise → peak → crash<br/>Expression ~ s Progression"]
-    end
-
-    LM_Panel --> GLM_Panel --> GAM_Panel
-
-    style LM1 fill:#ADD8E6
-    style GLM1 fill:#FFE4B5
-    style GAM1 fill:#DDA0DD
+    style LM1 fill:#BBDEFB,stroke:#0D47A1,stroke-width:3px,color:#0D47A1
+    style GLM1 fill:#FFE0B2,stroke:#E65100,stroke-width:3px,color:#BF360C
+    style GAM1 fill:#E1BEE7,stroke:#4A148C,stroke-width:3px,color:#4A148C
 </div>
 <figcaption><strong>Figure 4.</strong> The three models at a glance. LM assumes a straight line, GLM assumes a straight line <em>after</em> a link transformation (and handles counts), GAM assumes nothing about shape and lets a smoother find it.</figcaption>
 </figure>
@@ -212,30 +209,35 @@ Skip them and you risk attributing batch effects to biology — the most common 
 
 This is the distinction most people get tangled in. **GLM-based DGE** and **GAM-based trajectory analysis** are not competing methods — they answer different questions.
 
-<figure>
-<div class="mermaid">
+<figure style="text-align: center;">
+<div class="mermaid" style="display: flex; justify-content: center;">
 flowchart TB
-    Start([scRNA-seq count matrix])
+    Start(["🧬 scRNA-seq<br/>count matrix"])
+    Q{{"🤔 What is my<br/>biological question?"}}
 
-    Start --> Q{What is my<br/>biological question?}
+    Start ==> Q
 
-    Q -->|Groups: disease vs control| DGE[Differential Expression]
-    Q -->|Continuous: along progression| TRAJ[Trajectory Analysis]
+    Q ==>|"Groups<br/>disease vs control"| DGE["📊 <b>Differential<br/>Expression</b>"]
+    Q ==>|"Continuous<br/>along progression"| TRAJ["〰️ <b>Trajectory<br/>Analysis</b>"]
 
-    DGE --> PB[Aggregate to pseudobulk<br/>per sample × cell type]
-    PB --> GLM_Tool[DESeq2 / edgeR<br/>Negative Binomial GLM]
-    GLM_Tool --> GLM_Out[Log fold change<br/>+ p-value]
+    DGE ==> PB[["Aggregate to pseudobulk<br/>per sample × cell type"]]
+    PB ==> GLM_Tool["⚙️ <b>DESeq2 / edgeR</b><br/>Negative Binomial GLM"]
+    GLM_Tool ==> GLM_Out(["📈 Log fold change<br/>+ p-value"])
 
-    TRAJ --> PT[Infer pseudotime<br/>Slingshot / Monocle]
-    PT --> GAM_Tool[tradeSeq<br/>Negative Binomial GAM]
-    GAM_Tool --> GAM_Out[Smooth expression curve<br/>+ association p-value]
+    TRAJ ==> PT[["Infer pseudotime<br/>Slingshot / Monocle"]]
+    PT ==> GAM_Tool["⚙️ <b>tradeSeq</b><br/>Negative Binomial GAM"]
+    GAM_Tool ==> GAM_Out(["🌊 Smooth expression curve<br/>+ association p-value"])
 
-    style DGE fill:#FFE4B5
-    style TRAJ fill:#DDA0DD
-    style GLM_Tool fill:#FFE4B5
-    style GAM_Tool fill:#DDA0DD
-    style GLM_Out fill:#90EE90
-    style GAM_Out fill:#90EE90
+    style Start fill:#ECEFF1,stroke:#37474F,stroke-width:3px,color:#263238
+    style Q fill:#FFF9C4,stroke:#F57F17,stroke-width:3px,color:#E65100
+    style DGE fill:#FFE0B2,stroke:#E65100,stroke-width:3px,color:#BF360C
+    style TRAJ fill:#E1BEE7,stroke:#4A148C,stroke-width:3px,color:#4A148C
+    style PB fill:#FFF3E0,stroke:#E65100,stroke-width:2px,color:#BF360C
+    style PT fill:#F3E5F5,stroke:#4A148C,stroke-width:2px,color:#6A1B9A
+    style GLM_Tool fill:#FFCC80,stroke:#BF360C,stroke-width:3px,color:#3E2723
+    style GAM_Tool fill:#CE93D8,stroke:#4A148C,stroke-width:3px,color:#311B92
+    style GLM_Out fill:#C8E6C9,stroke:#2E7D32,stroke-width:3px,color:#1B5E20
+    style GAM_Out fill:#C8E6C9,stroke:#2E7D32,stroke-width:3px,color:#1B5E20
 </div>
 <figcaption><strong>Figure 5.</strong> The two pipelines side by side. GLMs answer "is expression different between these groups?" GAMs answer "how does expression change along this continuum?" Both need covariates; both need real biological replicates.</figcaption>
 </figure>
@@ -258,24 +260,27 @@ When you do need a summary number from a GAM, sensible alternatives are:
 
 ## A quick decision guide
 
-<figure>
-<div class="mermaid">
+<figure style="text-align: center;">
+<div class="mermaid" style="display: flex; justify-content: center;">
 flowchart TD
-    Q1{Is your predictor<br/>continuous or grouped?}
+    Q1{{"🤔 Is your predictor<br/><b>continuous</b> or <b>grouped</b>?"}}
 
-    Q1 -->|Grouped<br/>disease vs control| Q2{Is your response<br/>counts?}
-    Q1 -->|Continuous<br/>pseudotime| Q3{Do you expect a<br/>non-linear pattern?}
+    Q1 ==>|"Grouped<br/>disease vs control"| Q2{{"Is your response<br/><b>raw counts</b>?"}}
+    Q1 ==>|"Continuous<br/>pseudotime"| Q3{{"Do you expect a<br/><b>non-linear</b> pattern?"}}
 
-    Q2 -->|Yes counts| GLM1[GLM<br/>DESeq2 / edgeR<br/>on pseudobulk]
-    Q2 -->|No already transformed| LM1[LM<br/>limma-voom]
+    Q2 ==>|"Yes — counts"| GLM1["🎯 <b>GLM</b><br/>DESeq2 / edgeR<br/>on pseudobulk"]
+    Q2 ==>|"No — transformed"| LM1["📏 <b>LM</b><br/>limma-voom"]
 
-    Q3 -->|Yes rise / peak / fall| GAM1[GAM<br/>tradeSeq]
-    Q3 -->|No linear is fine| GLM2[GLM with<br/>pseudotime as covariate]
+    Q3 ==>|"Yes — rise / peak / fall"| GAM1["〰️ <b>GAM</b><br/>tradeSeq"]
+    Q3 ==>|"No — linear is fine"| GLM2["🎯 <b>GLM</b><br/>with pseudotime<br/>as covariate"]
 
-    style GLM1 fill:#FFE4B5
-    style GLM2 fill:#FFE4B5
-    style LM1 fill:#ADD8E6
-    style GAM1 fill:#DDA0DD
+    style Q1 fill:#FFF9C4,stroke:#F57F17,stroke-width:3px,color:#E65100
+    style Q2 fill:#FFF9C4,stroke:#F57F17,stroke-width:3px,color:#E65100
+    style Q3 fill:#FFF9C4,stroke:#F57F17,stroke-width:3px,color:#E65100
+    style GLM1 fill:#FFCC80,stroke:#BF360C,stroke-width:3px,color:#3E2723
+    style GLM2 fill:#FFCC80,stroke:#BF360C,stroke-width:3px,color:#3E2723
+    style LM1 fill:#90CAF9,stroke:#0D47A1,stroke-width:3px,color:#0D47A1
+    style GAM1 fill:#CE93D8,stroke:#4A148C,stroke-width:3px,color:#311B92
 </div>
 <figcaption><strong>Figure 6.</strong> A pragmatic decision tree for picking a model. The first branch is almost always the most important: are you comparing groups, or asking about a continuum?</figcaption>
 </figure>
