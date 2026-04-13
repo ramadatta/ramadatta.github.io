@@ -212,32 +212,27 @@ This is the distinction most people get tangled in. **GLM-based DGE** and **GAM-
 <figure style="text-align: center;">
 <div class="mermaid" style="display: flex; justify-content: center;">
 flowchart TB
-    Start(["🧬 scRNA-seq<br/>count matrix"])
-    Q{{"🤔 What is my<br/>biological question?"}}
+    Start([scRNA-seq count matrix])
 
-    Start ==> Q
+    Start --> Q{What is my<br/>biological question?}
 
-    Q ==>|"Groups<br/>disease vs control"| DGE["📊 <b>Differential<br/>Expression</b>"]
-    Q ==>|"Continuous<br/>along progression"| TRAJ["〰️ <b>Trajectory<br/>Analysis</b>"]
+    Q -->|Groups:<br/>disease vs control| DGE[Differential Expression]
+    Q -->|Continuous:<br/>along progression| TRAJ[Trajectory Analysis]
 
-    DGE ==> PB[["Aggregate to pseudobulk<br/>per sample × cell type"]]
-    PB ==> GLM_Tool["⚙️ <b>DESeq2 / edgeR</b><br/>Negative Binomial GLM"]
-    GLM_Tool ==> GLM_Out(["📈 Log fold change<br/>+ p-value"])
+    DGE --> PB[Aggregate to pseudobulk<br/>per sample x cell type]
+    PB --> GLM_Tool[DESeq2 / edgeR<br/>Negative Binomial GLM]
+    GLM_Tool --> GLM_Out([Log fold change<br/>+ p-value])
 
-    TRAJ ==> PT[["Infer pseudotime<br/>Slingshot / Monocle"]]
-    PT ==> GAM_Tool["⚙️ <b>tradeSeq</b><br/>Negative Binomial GAM"]
-    GAM_Tool ==> GAM_Out(["🌊 Smooth expression curve<br/>+ association p-value"])
+    TRAJ --> PT[Infer pseudotime<br/>Slingshot / Monocle]
+    PT --> GAM_Tool[tradeSeq<br/>Negative Binomial GAM]
+    GAM_Tool --> GAM_Out([Smooth expression curve<br/>+ association p-value])
 
-    style Start fill:#ECEFF1,stroke:#37474F,stroke-width:3px,color:#263238
-    style Q fill:#FFF9C4,stroke:#F57F17,stroke-width:3px,color:#E65100
-    style DGE fill:#FFE0B2,stroke:#E65100,stroke-width:3px,color:#BF360C
-    style TRAJ fill:#E1BEE7,stroke:#4A148C,stroke-width:3px,color:#4A148C
-    style PB fill:#FFF3E0,stroke:#E65100,stroke-width:2px,color:#BF360C
-    style PT fill:#F3E5F5,stroke:#4A148C,stroke-width:2px,color:#6A1B9A
-    style GLM_Tool fill:#FFCC80,stroke:#BF360C,stroke-width:3px,color:#3E2723
-    style GAM_Tool fill:#CE93D8,stroke:#4A148C,stroke-width:3px,color:#311B92
-    style GLM_Out fill:#C8E6C9,stroke:#2E7D32,stroke-width:3px,color:#1B5E20
-    style GAM_Out fill:#C8E6C9,stroke:#2E7D32,stroke-width:3px,color:#1B5E20
+    style DGE fill:#FFE4B5
+    style TRAJ fill:#DDA0DD
+    style GLM_Tool fill:#FFE4B5
+    style GAM_Tool fill:#DDA0DD
+    style GLM_Out fill:#90EE90
+    style GAM_Out fill:#90EE90
 </div>
 <figcaption><strong>Figure 5.</strong> The two pipelines side by side. GLMs answer "is expression different between these groups?" GAMs answer "how does expression change along this continuum?" Both need covariates; both need real biological replicates.</figcaption>
 </figure>
@@ -263,24 +258,21 @@ When you do need a summary number from a GAM, sensible alternatives are:
 <figure style="text-align: center;">
 <div class="mermaid" style="display: flex; justify-content: center;">
 flowchart TD
-    Q1{{"🤔 Is your predictor<br/><b>continuous</b> or <b>grouped</b>?"}}
+    Q1{Is your predictor<br/>continuous or grouped?}
 
-    Q1 ==>|"Grouped<br/>disease vs control"| Q2{{"Is your response<br/><b>raw counts</b>?"}}
-    Q1 ==>|"Continuous<br/>pseudotime"| Q3{{"Do you expect a<br/><b>non-linear</b> pattern?"}}
+    Q1 -->|Grouped:<br/>disease vs control| Q2{Is your response<br/>counts?}
+    Q1 -->|Continuous:<br/>pseudotime| Q3{Do you expect a<br/>non-linear pattern?}
 
-    Q2 ==>|"Yes — counts"| GLM1["🎯 <b>GLM</b><br/>DESeq2 / edgeR<br/>on pseudobulk"]
-    Q2 ==>|"No — transformed"| LM1["📏 <b>LM</b><br/>limma-voom"]
+    Q2 -->|Yes - counts| GLM1[GLM<br/>DESeq2 / edgeR<br/>on pseudobulk]
+    Q2 -->|No - already transformed| LM1[LM<br/>limma-voom]
 
-    Q3 ==>|"Yes — rise / peak / fall"| GAM1["〰️ <b>GAM</b><br/>tradeSeq"]
-    Q3 ==>|"No — linear is fine"| GLM2["🎯 <b>GLM</b><br/>with pseudotime<br/>as covariate"]
+    Q3 -->|Yes - rise / peak / fall| GAM1[GAM<br/>tradeSeq]
+    Q3 -->|No - linear is fine| GLM2[GLM with<br/>pseudotime as covariate]
 
-    style Q1 fill:#FFF9C4,stroke:#F57F17,stroke-width:3px,color:#E65100
-    style Q2 fill:#FFF9C4,stroke:#F57F17,stroke-width:3px,color:#E65100
-    style Q3 fill:#FFF9C4,stroke:#F57F17,stroke-width:3px,color:#E65100
-    style GLM1 fill:#FFCC80,stroke:#BF360C,stroke-width:3px,color:#3E2723
-    style GLM2 fill:#FFCC80,stroke:#BF360C,stroke-width:3px,color:#3E2723
-    style LM1 fill:#90CAF9,stroke:#0D47A1,stroke-width:3px,color:#0D47A1
-    style GAM1 fill:#CE93D8,stroke:#4A148C,stroke-width:3px,color:#311B92
+    style GLM1 fill:#FFE4B5
+    style GLM2 fill:#FFE4B5
+    style LM1 fill:#ADD8E6
+    style GAM1 fill:#DDA0DD
 </div>
 <figcaption><strong>Figure 6.</strong> A pragmatic decision tree for picking a model. The first branch is almost always the most important: are you comparing groups, or asking about a continuum?</figcaption>
 </figure>
