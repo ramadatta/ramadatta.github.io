@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Modeling Disease Progression in Single Cells: When to Reach for LM, GLM, or GAM"
+thumbnail: /assets/images/LM_vs_NBGLM_vs_GAM.png
 date: 2026-04-13
 description: "A practical, coffee-fueled guide to choosing between linear, generalized linear, and generalized additive models for single-cell gene expression analysis."
 tags: [single-cell, statistics, RNA-seq, GAM, GLM, differential-expression]
@@ -107,9 +108,9 @@ The log link keeps predictions non-negative, the NB distribution absorbs overdis
 
 This is the bridge to the tools. **DESeq2** <a href="https://doi.org/10.1186/s13059-014-0550-8" target="_blank" rel="noopener noreferrer">[2]</a> and **edgeR** <a href="https://doi.org/10.1093/bioinformatics/btp616" target="_blank" rel="noopener noreferrer">[3]</a> are both negative binomial GLMs under the hood, and they became workhorses for a specific reason: they don't just fit the NB model — they **estimate per-gene dispersion and then shrink it** toward a trend learned across all genes. That shrinkage step is what makes the models stable when you only have a handful of replicates (which, in single-cell experiments, is almost always the case). Match the distribution to the data, shrink the noisy bits, let covariates into the design — that combination is why these two tools have dominated differential expression for over a decade.
 
-<figure>
-<img src="/assets/images/LM_vs_NBGLM.png" alt="LM vs NB-GLM comparison" style="max-width:100%; height:auto;">
-<figcaption><strong>Figure A.</strong> LM vs Negative Binomial GLM. The linear model (left) forces a straight line through count data, predicting impossible negative values and ignoring overdispersion. The NB-GLM (right) uses a log link and a count-appropriate distribution to stay non-negative and capture the extra variability between samples.</figcaption>
+<figure style="text-align: center;">
+<img src="/assets/images/LM_vs_NBGLM.png" alt="LM vs NB-GLM comparison" style="max-width:100%; height:auto; display:block; margin:0 auto;">
+<figcaption><strong>Figure 2.</strong> LM vs Negative Binomial GLM. The linear model (left) forces a straight line through count data, predicting impossible negative values and ignoring overdispersion. The NB-GLM (right) uses a log link and a count-appropriate distribution to stay non-negative and capture the extra variability between samples.</figcaption>
 </figure>
 
 ### A modern wrinkle: pseudobulk
@@ -156,9 +157,9 @@ Crucially, a GAM keeps everything good about the GLM. You still use an NB family
 
 **tradeSeq** <a href="https://doi.org/10.1038/s41467-020-14766-3" target="_blank" rel="noopener noreferrer">[5]</a> is the tool that brings this idea to single-cell data specifically. For each gene, it fits a negative binomial GAM along pseudotime — one smoother per lineage — and then gives you a menu of tests built on top of that fit: is the gene associated with pseudotime at all? Does its start differ from its end? Do two lineages diverge from each other, and if so, where? It also supports cell-level weights to handle zero-inflation from dropout-prone protocols. That combination — NB-GAM per gene, per lineage, with biologically meaningful tests layered on top — is why tradeSeq is the default engine for trajectory-based differential expression.
 
-<figure>
-<img src="/assets/images/LM_vs_NBGLM_vs_GAM.png" alt="LM vs NB-GLM vs GAM comparison" style="max-width:100%; height:auto;">
-<figcaption><strong>Figure B.</strong> LM vs NB-GLM vs GAM. The linear model fits a rigid straight line, the NB-GLM handles count data with a log link but still assumes linearity on the transformed scale, and the GAM uses penalized splines to capture non-linear expression dynamics along a continuum like pseudotime.</figcaption>
+<figure style="text-align: center;">
+<img src="/assets/images/LM_vs_NBGLM_vs_GAM.png" alt="LM vs NB-GLM vs GAM comparison" style="max-width:100%; height:auto; display:block; margin:0 auto;">
+<figcaption><strong>Figure 3.</strong> LM vs NB-GLM vs GAM. The linear model fits a rigid straight line, the NB-GLM handles count data with a log link but still assumes linearity on the transformed scale, and the GAM uses penalized splines to capture non-linear expression dynamics along a continuum like pseudotime.</figcaption>
 </figure>
 
 <figure>
@@ -182,7 +183,7 @@ flowchart TD
     style GLM1 fill:#FFE4B5
     style GAM1 fill:#DDA0DD
 </div>
-<figcaption><strong>Figure 2.</strong> The three models at a glance. LM assumes a straight line, GLM assumes a straight line <em>after</em> a link transformation (and handles counts), GAM assumes nothing about shape and lets a smoother find it.</figcaption>
+<figcaption><strong>Figure 4.</strong> The three models at a glance. LM assumes a straight line, GLM assumes a straight line <em>after</em> a link transformation (and handles counts), GAM assumes nothing about shape and lets a smoother find it.</figcaption>
 </figure>
 
 ---
@@ -236,7 +237,7 @@ flowchart TB
     style GLM_Out fill:#90EE90
     style GAM_Out fill:#90EE90
 </div>
-<figcaption><strong>Figure 3.</strong> The two pipelines side by side. GLMs answer "is expression different between these groups?" GAMs answer "how does expression change along this continuum?" Both need covariates; both need real biological replicates.</figcaption>
+<figcaption><strong>Figure 5.</strong> The two pipelines side by side. GLMs answer "is expression different between these groups?" GAMs answer "how does expression change along this continuum?" Both need covariates; both need real biological replicates.</figcaption>
 </figure>
 
 ---
@@ -276,7 +277,7 @@ flowchart TD
     style LM1 fill:#ADD8E6
     style GAM1 fill:#DDA0DD
 </div>
-<figcaption><strong>Figure 4.</strong> A pragmatic decision tree for picking a model. The first branch is almost always the most important: are you comparing groups, or asking about a continuum?</figcaption>
+<figcaption><strong>Figure 6.</strong> A pragmatic decision tree for picking a model. The first branch is almost always the most important: are you comparing groups, or asking about a continuum?</figcaption>
 </figure>
 
 ---
