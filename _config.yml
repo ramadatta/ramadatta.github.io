@@ -3,12 +3,12 @@
 # ==============================================================================
 title: Sai Rama Sridatta Prakki
 description: >-
-  Bioinformatics PhD Student @ Helmholtz Munich • Single-cell genomics • 
-  Sharing discoveries, code, and scientific adventures.
+  Doctoral researcher in Bioinformatics @ Helmholtz Munich • Single-cell genomics,
+  lung fibrosis & regeneration • Reproducible analyses, code, and learning in public.
 author:
   name: Datta
   email: srsridatta.prakki@helmholtz-munich.de
-  bio: "PhD student exploring the lung at single-cell resolution"
+  bio: "Doctoral researcher in bioinformatics; single-cell genomics in lung fibrosis and regeneration"
 
 url: "https://ramadatta.github.io"
 baseurl: ""
@@ -26,25 +26,11 @@ plugins:
   - jekyll-seo-tag
 
 # ==============================================================================
-# Include _pages directory
-# ==============================================================================
-include:
-  - _pages
-
-# ==============================================================================
 # Sass/SCSS
 # ==============================================================================
 sass:
   sass_dir: _sass
   style: compressed
-
-# ==============================================================================
-# Collections
-# ==============================================================================
-collections:
-  projects:
-    output: true
-    permalink: /projects/:path/
 
 # ==============================================================================
 # Defaults
@@ -55,15 +41,6 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-  - scope:
-      path: ""
-      type: "projects"
-    values:
-      layout: "page"
-  - scope:
-      path: "_pages"
-    values:
-      layout: "page"
 
 # ==============================================================================
 # Social Links
@@ -88,3 +65,4 @@ exclude:
   - LICENSE
   - vendor/
   - .ruby-version
+  - assets/img/Prakki_DP.png   # full-size original; the site uses Prakki_DP_800.jpg

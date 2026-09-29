@@ -1,0 +1,712 @@
+@charset "UTF-8";
+
+// ==============================================================================
+// HOMEPAGE - ACADEMIC MINIMAL LAYOUT
+// Fixed sidebar (photo, name, section nav, links) + single reading column.
+// Colors come from the active theme; fonts from _base.scss.
+// ==============================================================================
+
+@import 'themes';
+@import 'base';
+
+$home-tint: rgba($color-primary, 0.08);
+
+.home-page {
+  font-size: 1rem;
+  line-height: 1.7;
+
+  a {
+    border-bottom: none;
+  }
+
+  ul, ol {
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 0;
+    }
+  }
+}
+
+.home-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 72px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+// ------------------------------------------------------------------------------
+// Sidebar
+// ------------------------------------------------------------------------------
+
+.home-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 56px 0 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+// Portrait in a thin editorial frame
+.home-photo {
+  display: block;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 68% 40%;
+  padding: 6px;
+  background: $bg-dark-surface;
+  border: 1px solid $border-light;
+  margin-bottom: 22px;
+}
+
+.home-name {
+  font-family: $font-family-heading;
+  font-weight: 500;
+  font-size: 1.65rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.home-role {
+  color: $text-dark-secondary;
+  font-size: 0.9rem;
+  margin: 8px 0 22px;
+}
+
+.home-nav {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid $border-light;
+  padding-top: 14px;
+
+  a {
+    color: $text-dark-secondary;
+    font-size: 0.88rem;
+    padding: 4px 0 4px 12px;
+    border-left: 2px solid transparent;
+    transition: color $transition-fast, border-color $transition-fast;
+
+    &:visited {
+      color: $text-dark-secondary;
+    }
+
+    &:hover,
+    &.is-active {
+      color: $text-dark-primary;
+      border-left-color: $color-primary;
+    }
+  }
+
+  .home-nav-blog,
+  .home-nav-blog:visited {
+    color: $color-primary;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
+  .home-nav-blog + .home-nav-blog {
+    margin-top: 0;
+  }
+}
+
+.home-links {
+  margin-top: auto;
+  padding-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  a,
+  a:visited {
+    font-size: 0.76rem;
+    color: $text-dark-primary;
+    border: 1px solid $border-light;
+    padding: 3px 10px;
+    transition: color $transition-fast, border-color $transition-fast;
+  }
+
+  a:hover {
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+}
+
+// ------------------------------------------------------------------------------
+// Main column
+// ------------------------------------------------------------------------------
+
+.home-main {
+  padding: 56px 0 96px;
+  max-width: 720px;
+
+  p {
+    color: $text-dark-secondary;
+    margin-bottom: 16px;
+  }
+
+  a,
+  a:visited {
+    color: $color-primary;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  strong {
+    color: $text-dark-primary;
+    font-weight: 600;
+  }
+}
+
+.home-news {
+  display: flex;
+  gap: 14px;
+  background: $bg-dark-surface;
+  border-left: 3px solid $color-primary;
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  margin-bottom: 40px;
+
+  b {
+    color: $color-primary;
+    white-space: nowrap;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.home-section {
+  scroll-margin-top: 24px;
+}
+
+// First section heading sits right under the news box
+.home-news + .home-section > .home-title:first-child {
+  margin-top: 0;
+}
+
+.home-title {
+  font-family: $font-family-heading;
+  font-weight: 500;
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 64px 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $border-light;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+
+  a {
+    font-family: $font-family-body;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+}
+
+.home-subtitle {
+  font-family: $font-family-body;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $text-dark-muted;
+  margin: 28px 0 4px;
+}
+
+// Generic list row: title + detail, separated by hairlines
+.home-item {
+  padding: 16px 0;
+  border-bottom: 1px solid $border-light;
+
+  h3 {
+    font-family: $font-family-body;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  p {
+    font-size: 0.93rem;
+    margin: 4px 0 0;
+  }
+
+  ul {
+    margin-top: 6px;
+    list-style: none;
+
+    li {
+      font-size: 0.9rem;
+      color: $text-dark-secondary;
+      padding-left: 16px;
+      position: relative;
+
+      &::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+// Dated row: fixed-width date column + content
+.home-row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid $border-light;
+
+  .home-date {
+    color: $text-dark-muted;
+    font-size: 0.84rem;
+    font-variant-numeric: tabular-nums;
+    padding-top: 2px;
+  }
+
+  h3 {
+    font-family: $font-family-body;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .home-org {
+    color: $text-dark-secondary;
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  ul {
+    margin-top: 6px;
+    list-style: none;
+
+    li {
+      font-size: 0.88rem;
+      color: $text-dark-secondary;
+      padding-left: 16px;
+      position: relative;
+
+      &::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+// Publication entry
+.home-pub {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid $border-light;
+
+  .home-date {
+    color: $text-dark-muted;
+    font-size: 0.86rem;
+    font-variant-numeric: tabular-nums;
+    padding-top: 3px;
+  }
+
+  .home-pub-title {
+    font-family: $font-family-heading;
+    font-size: 1.08rem;
+    line-height: 1.45;
+    color: $text-dark-primary;
+    margin: 0;
+  }
+
+  .home-pub-authors {
+    font-size: 0.86rem;
+    margin: 2px 0 0;
+
+    u {
+      text-decoration: none;
+      color: $text-dark-primary;
+      font-weight: 600;
+    }
+  }
+
+  .home-pub-venue {
+    font-size: 0.82rem;
+    margin: 0;
+
+    em {
+      color: $text-dark-primary;
+    }
+  }
+}
+
+.home-badge {
+  display: inline-block;
+  font-family: $font-family-body;
+  font-size: 0.68rem;
+  color: $text-dark-muted;
+  border: 1px solid $border-light;
+  padding: 0 6px;
+  margin-left: 6px;
+  vertical-align: 2px;
+}
+
+// Keyword tags
+.home-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+
+  span {
+    font-size: 0.74rem;
+    color: $color-primary;
+    background: $home-tint;
+    padding: 1px 8px;
+  }
+}
+
+// Tabs (Research subsections). Until the script marks them ready,
+// every panel is shown with its own subtitle, so content works without JS.
+.home-tablist {
+  display: none;
+}
+
+.home-tabs.is-ready {
+  .home-tablist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    border-bottom: 1px solid $border-light;
+    margin: 8px 0 22px;
+  }
+
+  .home-tabpanel .home-subtitle {
+    display: none;
+  }
+}
+
+.home-tablist button {
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: $text-dark-secondary;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: color $transition-fast, border-color $transition-fast, background $transition-fast;
+
+  &:hover {
+    color: $text-dark-primary;
+    background: $home-tint;
+  }
+
+  &[aria-selected="true"] {
+    color: $color-primary;
+    border-bottom-color: $color-primary;
+    font-weight: 600;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.home-tabpanel[hidden] {
+  display: none;
+}
+
+// Cards inside tab panels
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+
+  &--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  &--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.home-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(#ffffff, 0.45);
+  border: 1px solid $border-light;
+  border-top: 3px solid $color-primary;
+  padding: 18px 20px;
+  transition: border-color $transition-fast, background $transition-fast;
+
+  &:hover {
+    background: rgba(#ffffff, 0.8);
+    border-color: $border-dark-hover;
+    border-top-color: $color-primary;
+  }
+
+  h3 {
+    font-family: $font-family-heading;
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin: 4px 0 6px;
+  }
+
+  p {
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  .home-tags {
+    margin-top: 12px;
+  }
+}
+
+.home-card-kicker {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-primary;
+}
+
+// Release status pill inside a card kicker
+.home-status {
+  display: inline-block;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  padding: 1px 7px;
+  border: 1px solid $border-dark-hover;
+  color: $text-dark-muted;
+
+  &--live {
+    border-color: $color-success;
+    color: $color-success;
+  }
+}
+
+// Unreleased item: dashed outline, muted accent, no link
+.home-card--upcoming {
+  border-style: dashed;
+  border-top: 3px solid $border-dark-hover;
+
+  &:hover {
+    border-top-color: $border-dark-hover;
+  }
+}
+
+.home-card-note {
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: $text-dark-muted;
+}
+
+.home-main a.home-card-link {
+  overflow-wrap: anywhere;
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+// Bullet list with a muted detail on the right (certifications)
+.home-page ul.home-list {
+  list-style: none;
+  columns: 2;
+  column-gap: 32px;
+
+  li {
+    break-inside: avoid;
+    position: relative;
+    padding: 6px 0 6px 18px;
+    font-size: 0.92rem;
+    color: $text-dark-primary;
+    line-height: 1.45;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 0.95em;
+      width: 6px;
+      height: 6px;
+      background: $color-primary;
+    }
+
+    span {
+      display: block;
+      font-size: 0.8rem;
+      color: $text-dark-muted;
+    }
+  }
+}
+
+// Skills: category label + tags on one row
+.home-skill {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid $border-light;
+  align-items: baseline;
+
+  h3 {
+    font-family: $font-family-body;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .home-tags {
+    margin-top: 0;
+  }
+}
+
+// Latest blog posts
+.home-post {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 0;
+  border-bottom: 1px solid $border-light;
+
+  a,
+  a:visited {
+    color: $text-dark-primary;
+    font-weight: 500;
+  }
+
+  a:hover {
+    color: $color-primary;
+  }
+
+  span {
+    color: $text-dark-muted;
+    font-size: 0.84rem;
+    white-space: nowrap;
+  }
+}
+
+.home-footer {
+  color: $text-dark-muted;
+  font-size: 0.8rem;
+  margin-top: 72px;
+  padding-top: 18px;
+  border-top: 1px solid $border-light;
+}
+
+// ------------------------------------------------------------------------------
+// Responsive
+// ------------------------------------------------------------------------------
+
+@media (max-width: 900px) {
+  .home-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 0 20px;
+  }
+
+  .home-sidebar {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding: 36px 0 0;
+  }
+
+  .home-photo {
+    max-width: 220px;
+  }
+
+  // Section nav becomes a horizontally scrolling strip
+  .home-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 4px;
+    padding: 12px 0;
+    border-bottom: 1px solid $border-light;
+
+    a {
+      white-space: nowrap;
+      border-left: none;
+      border-bottom: 2px solid transparent;
+      padding: 4px 8px;
+
+      &:hover,
+      &.is-active {
+        border-bottom-color: $color-primary;
+      }
+    }
+
+    .home-nav-blog {
+      margin-top: 0;
+    }
+  }
+
+  .home-links {
+    margin-top: 0;
+    padding-top: 16px;
+  }
+
+  .home-main {
+    padding-top: 32px;
+  }
+
+  .home-row,
+  .home-skill {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .home-cards,
+  .home-cards--three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-page ul.home-list {
+    columns: 1;
+  }
+
+  .home-tablist {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    button {
+      white-space: nowrap;
+    }
+  }
+
+  .home-post {
+    flex-direction: column;
+    gap: 0;
+  }
+}

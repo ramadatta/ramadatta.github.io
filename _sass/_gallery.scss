@@ -1,0 +1,255 @@
+@charset "UTF-8";
+
+// ==============================================================================
+// GALLERY PAGE - photo albums shown as stacks, opened in a centered slideshow
+// ==============================================================================
+
+@import 'themes';
+@import 'base';
+
+.gallery-albums {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 40px 28px;
+  margin-top: 16px;
+}
+
+.gallery-album {
+  margin: 0;
+}
+
+// A pile of up to three photos; the top one is the cover
+.gallery-stack {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 6px;
+  }
+}
+
+.gallery-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 5px solid #ffffff;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba($text-dark-primary, 0.18);
+  transition: transform $transition-base;
+
+  &--1 {
+    z-index: 3;
+  }
+
+  &--2 {
+    z-index: 2;
+    transform: rotate(-4deg) translate(-6px, 2px);
+  }
+
+  &--3 {
+    z-index: 1;
+    transform: rotate(5deg) translate(8px, 4px);
+  }
+}
+
+.gallery-stack:hover {
+  .gallery-layer--1 {
+    transform: translateY(-4px);
+  }
+
+  .gallery-layer--2 {
+    transform: rotate(-8deg) translate(-18px, 4px);
+  }
+
+  .gallery-layer--3 {
+    transform: rotate(9deg) translate(20px, 6px);
+  }
+}
+
+.gallery-count {
+  position: absolute;
+  z-index: 4;
+  right: 12px;
+  bottom: 12px;
+  font-family: $font-family-body;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba($text-dark-primary, 0.72);
+  padding: 3px 9px;
+}
+
+.gallery-meta {
+  padding-top: 18px;
+  text-align: center;
+}
+
+.gallery-date {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-primary;
+}
+
+h2.gallery-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 2px 0 0;
+}
+
+p.gallery-caption {
+  font-size: 0.88rem;
+  color: $text-dark-secondary;
+  margin: 4px 0 0;
+}
+
+p.gallery-empty {
+  font-style: italic;
+  color: $text-dark-muted;
+}
+
+// ------------------------------------------------------------------------------
+// Slideshow viewer: fills the screen and centers the photo
+// ------------------------------------------------------------------------------
+
+.gallery-viewer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: rgba(20, 22, 18, 0.97);
+  color: #ffffff;
+
+  &[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &::backdrop {
+    background: transparent;
+  }
+}
+
+.gallery-viewer-img {
+  display: block;
+  max-width: calc(100vw - 160px);
+  max-height: calc(100vh - 120px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.gallery-viewer-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  font-size: 0.9rem;
+}
+
+.gallery-viewer-title {
+  font-family: $font-family-heading;
+  font-size: 1.1rem;
+}
+
+.gallery-viewer-count {
+  color: rgba(#ffffff, 0.65);
+  font-variant-numeric: tabular-nums;
+}
+
+.gallery-viewer-close {
+  margin-left: auto;
+}
+
+.gallery-viewer-close,
+.gallery-viewer-nav {
+  font: inherit;
+  color: #ffffff;
+  background: rgba(#ffffff, 0.08);
+  border: none;
+  cursor: pointer;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: rgba(#ffffff, 0.2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+}
+
+.gallery-viewer-close {
+  font-size: 1.6rem;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+}
+
+.gallery-viewer-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.2rem;
+  line-height: 1;
+  width: 52px;
+  height: 72px;
+}
+
+.gallery-viewer-prev {
+  left: 16px;
+}
+
+.gallery-viewer-next {
+  right: 16px;
+}
+
+.gallery-viewer.is-single {
+  .gallery-viewer-nav,
+  .gallery-viewer-count {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .gallery-albums {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 18px;
+  }
+
+  .gallery-viewer-img {
+    max-width: 100vw;
+    max-height: calc(100vh - 140px);
+  }
+
+  .gallery-viewer-nav {
+    top: auto;
+    bottom: 16px;
+    transform: none;
+    height: 52px;
+  }
+}

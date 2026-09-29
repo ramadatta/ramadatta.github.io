@@ -1,0 +1,172 @@
+{% comment %}
+  Photo albums: every folder inside assets/img/gallery/ becomes one album.
+  - The folder name is the album title. A leading date such as "2026-03_"
+    is shown as "Mar 2026" and albums are ordered newest first.
+  - Optional extras per album (title override, caption) live in _data/gallery.yml.
+{% endcomment %}
+{% assign gallery_root = "/assets/img/gallery/" %}
+{% assign image_exts = ".jpg,.jpeg,.png,.webp,.gif" | split: "," %}
+
+{% assign album_names = "" | split: "" %}
+{% for file in site.static_files %}
+  {% if file.path contains gallery_root %}
+    {% assign ext = file.extname | downcase %}
+    {% if image_exts contains ext %}
+      {% assign rel = file.path | remove_first: gallery_root %}
+      {% assign rel_parts = rel | split: "/" %}
+      {% if rel_parts.size > 1 %}
+        {% assign album_names = album_names | push: rel_parts.first %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% comment %}
+  Order albums newest first. The date is read from either a leading
+  "2026-03_" prefix or a trailing "(Mar 2026)" in the folder name.
+{% endcomment %}
+{% assign album_names = album_names | uniq %}
+{% assign album_keys = "" | split: "" %}
+{% for album in album_names %}
+  {% assign sort_key = "0000-00" %}
+  {% assign lead = album | slice: 0, 7 %}
+  {% assign lead_bits = lead | split: "-" %}
+  {% assign lead_char = lead | slice: 0 %}
+  {% if lead_bits.size == 2 and "0123456789" contains lead_char %}
+    {% assign sort_key = lead %}
+  {% elsif album contains "(" %}
+    {% assign inside = album | split: "(" | last | remove: ")" | strip %}
+    {% assign probe = "1 " | append: inside %}
+    {% assign parsed = probe | date: "%Y-%m" %}
+    {% if parsed != probe %}
+      {% assign sort_key = parsed %}
+    {% elsif inside.size == 4 %}
+      {% assign sort_key = inside | append: "-00" %}
+    {% endif %}
+  {% endif %}
+  {% assign keyed = sort_key | append: "|" | append: album %}
+  {% assign album_keys = album_keys | push: keyed %}
+{% endfor %}
+{% assign album_keys = album_keys | sort | reverse %}
+{% assign album_names = "" | split: "" %}
+{% for keyed in album_keys %}
+  {% assign album_name = keyed | split: "|" | last %}
+  {% assign album_names = album_names | push: album_name %}
+{% endfor %}
+
+{% if album_names.size > 0 %}
+  <div class="gallery-albums">
+    {% for album in album_names %}
+      {% assign album_prefix = gallery_root | append: album | append: "/" %}
+      {% assign photos = "" | split: "" %}
+      {% for file in site.static_files %}
+        {% if file.path contains album_prefix %}
+          {% assign ext = file.extname | downcase %}
+          {% if image_exts contains ext %}
+            {% assign photos = photos | push: file %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      {% assign photos = photos | sort: "name" %}
+
+      {% assign urls = "" | split: "" %}
+      {% for photo in photos %}
+        {% assign url = photo.path | relative_url | uri_escape %}
+        {% assign urls = urls | push: url %}
+      {% endfor %}
+
+      {% comment %} Title and date from the folder name {% endcomment %}
+      {% assign name_parts = album | split: "_" %}
+      {% assign first_char = name_parts.first | slice: 0 %}
+      {% assign album_title = album %}
+      {% assign album_date = "" %}
+      {% if name_parts.size > 1 and "0123456789" contains first_char %}
+        {% assign album_title = album | remove_first: name_parts.first | remove_first: "_" %}
+        {% assign date_bits = name_parts.first | split: "-" %}
+        {% if date_bits.size == 2 %}
+          {% assign album_date = name_parts.first | append: "-01" | date: "%b %Y" %}
+        {% elsif date_bits.size == 3 %}
+          {% assign album_date = name_parts.first | date: "%d %b %Y" %}
+        {% else %}
+          {% assign album_date = name_parts.first %}
+        {% endif %}
+      {% endif %}
+      {% assign album_title = album_title | replace: "_", " " | replace: "-", " " %}
+      {% assign extra = site.data.gallery[album] %}
+      {% if extra.title %}{% assign album_title = extra.title %}{% endif %}
+
+      <article class="gallery-album">
+        <button type="button" class="gallery-stack" data-title="{{ album_title | escape }}" data-photos='{{ urls | jsonify }}' aria-label="Open album: {{ album_title | escape }} ({{ photos.size }} photos)">
+          {% for photo in photos limit: 3 %}
+            <img class="gallery-layer gallery-layer--{{ forloop.index }}" src="{{ urls[forloop.index0] }}" alt="" loading="lazy">
+          {% endfor %}
+          <span class="gallery-count">{{ photos.size }} photo{% if photos.size != 1 %}s{% endif %}</span>
+        </button>
+        <div class="gallery-meta">
+          {% if album_date != "" %}<span class="gallery-date">{{ album_date }}</span>{% endif %}
+          <h2 class="gallery-title">{{ album_title }}</h2>
+          {% if extra.caption %}<p class="gallery-caption">{{ extra.caption }}</p>{% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="gallery-empty">Photos coming soon.</p>
+{% endif %}
+
+<dialog class="gallery-viewer" aria-label="Photo viewer">
+  <div class="gallery-viewer-top">
+    <span class="gallery-viewer-title"></span>
+    <span class="gallery-viewer-count"></span>
+    <button type="button" class="gallery-viewer-close" aria-label="Close">×</button>
+  </div>
+  <button type="button" class="gallery-viewer-nav gallery-viewer-prev" aria-label="Previous photo">‹</button>
+  <img class="gallery-viewer-img" alt="">
+  <button type="button" class="gallery-viewer-nav gallery-viewer-next" aria-label="Next photo">›</button>
+</dialog>
+
+<script>
+  // Album slideshow: click a stack to open; arrows / swipe to browse; Esc or background click to close
+  (function () {
+    var viewer = document.querySelector('.gallery-viewer');
+    var stacks = document.querySelectorAll('.gallery-stack');
+    if (!viewer || !stacks.length || typeof viewer.showModal !== 'function') return;
+    var img = viewer.querySelector('.gallery-viewer-img');
+    var title = viewer.querySelector('.gallery-viewer-title');
+    var count = viewer.querySelector('.gallery-viewer-count');
+    var photos = [], index = 0, startX = null;
+
+    function show(i) {
+      index = (i + photos.length) % photos.length;
+      img.src = photos[index];
+      img.alt = title.textContent + ', photo ' + (index + 1) + ' of ' + photos.length;
+      count.textContent = (index + 1) + ' / ' + photos.length;
+      viewer.classList.toggle('is-single', photos.length < 2);
+    }
+
+    stacks.forEach(function (stack) {
+      stack.addEventListener('click', function () {
+        photos = JSON.parse(stack.dataset.photos);
+        title.textContent = stack.dataset.title;
+        show(0);
+        viewer.showModal();
+      });
+    });
+
+    viewer.querySelector('.gallery-viewer-prev').addEventListener('click', function (e) { e.stopPropagation(); show(index - 1); });
+    viewer.querySelector('.gallery-viewer-next').addEventListener('click', function (e) { e.stopPropagation(); show(index + 1); });
+    viewer.querySelector('.gallery-viewer-close').addEventListener('click', function () { viewer.close(); });
+    img.addEventListener('click', function (e) { e.stopPropagation(); if (photos.length > 1) show(index + 1); });
+    viewer.addEventListener('click', function (e) { if (e.target === viewer) viewer.close(); });
+    viewer.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') show(index + 1);
+      if (e.key === 'ArrowLeft') show(index - 1);
+    });
+    viewer.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    viewer.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+      startX = null;
+    });
+  })();
+</script>

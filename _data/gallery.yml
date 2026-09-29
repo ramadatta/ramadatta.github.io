@@ -1,0 +1,15 @@
+# Gallery albums: every folder inside assets/img/gallery/ is one album.
+#
+# To add an album:
+#   1. Create a folder in assets/img/gallery/ and put the photos in it.
+#      The folder name becomes the album title. Start it with the date to
+#      show it on the album and keep albums newest first, e.g.
+#        assets/img/gallery/2026-03_ERS-Lung-Science-Conference-Estoril/
+#      shows as "ERS Lung Science Conference Estoril" · MAR 2026.
+#   2. That's it. Photos inside the folder are shown in file-name order.
+#
+# Optional: add a caption or a nicer title for an album (key = folder name):
+#
+# 2026-03_ERS-Lung-Science-Conference-Estoril:
+#   title: "ERS Lung Science Conference, Estoril"
+#   caption: "Presenting my poster on time-resolved snRNA-seq in human PCLS."

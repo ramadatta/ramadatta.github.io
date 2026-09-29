@@ -1,14 +1,9 @@
 @charset "UTF-8";
 
 // ==============================================================================
-// THEME SWITCHER
-// Switch between themes by commenting/uncommenting the import below
-// 
-// For detailed documentation, see: THEME_SYSTEM.md in the project root
+// ACTIVE THEME
+// Colors are defined in _themes-editorial.scss. To try a new palette, copy that
+// file, change the values, and import the copy here instead.
 // ==============================================================================
 
-// Active theme: visual-cinnamon
-@import 'themes-visual-cinnamon';
-
-// To switch back to warm sunset, comment above and uncomment below:
-// @import 'themes-warm-sunset';
+@import 'themes-editorial';

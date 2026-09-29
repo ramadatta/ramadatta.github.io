@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+// ==============================================================================
+// THEME: WARM EDITORIAL
+// Ported from NewChatgptSites_theme/datta-github-pages-editorial/styles.css
+// Warm ivory background, charcoal olive text, deep terracotta accents
+// ==============================================================================
+
+// Source palette
+$ed-ivory: #F5F1E8;                // Warm ivory (page background)
+$ed-charcoal: #242921;             // Charcoal olive (primary text)
+$ed-terracotta: #B93D23;           // Deep terracotta (accent)
+$ed-olive: #666B60;                // Muted olive gray (secondary text)
+$ed-stone: #D8D8CB;                // Soft stone (borders)
+$ed-cream: #F9E7B9;                // Golden cream (text on terracotta)
+$ed-warm-gray: #E8E5D9;            // Warm gray (surfaces)
+
+// Primary Colors
+$color-primary: $ed-terracotta;
+$color-primary-light: #CF5A40;
+$color-primary-dark: #8F2E1A;
+
+// Accent Colors
+$color-accent: $ed-charcoal;
+$color-accent-light: $ed-olive;
+$color-accent-dark: $ed-charcoal;
+
+// Neutral tones
+$color-mint: $ed-terracotta;
+$color-cyan: $ed-terracotta;
+$color-peach: $ed-cream;
+
+// Background Colors
+$bg-dark: $ed-ivory;
+$bg-dark-elevated: $ed-ivory;
+$bg-dark-surface: $ed-warm-gray;
+
+// Text Colors
+$text-dark-primary: $ed-charcoal;
+$text-dark-secondary: $ed-olive;
+$text-dark-muted: $ed-olive;
+
+$text-light-primary: $ed-charcoal;
+$text-light-secondary: $ed-olive;
+$text-light-muted: $ed-olive;
+
+// Semantic Colors
+$color-success: #4F6B3A;
+$color-warning: #C58A1E;
+$color-error: $ed-terracotta;
+$color-info: $ed-olive;
+
+// Gradients (editorial style is flat, so these are solid)
+$gradient-primary: linear-gradient(135deg, $ed-terracotta 0%, $ed-terracotta 100%);
+$gradient-accent: linear-gradient(135deg, $ed-charcoal 0%, $ed-charcoal 100%);
+$gradient-hero: linear-gradient(135deg, $ed-terracotta 0%, $ed-terracotta 100%);
+$gradient-text: linear-gradient(135deg, $ed-charcoal 0%, $ed-charcoal 100%);
+
+// Shadows (editorial style relies on borders, not shadows)
+$shadow-sm: none;
+$shadow-md: none;
+$shadow-lg: none;
+$shadow-glow: none;
+
+// Border Colors
+$border-dark: $ed-stone;
+$border-dark-hover: #C8C8BA;
+$border-light: $ed-stone;
+$border-light-hover: $ed-terracotta;
+
+// Code Colors
+$code-bg: $ed-warm-gray;
+$code-text: $ed-charcoal;
+$code-comment: $ed-olive;
+$code-keyword: $ed-terracotta;
+$code-string: #4F6B3A;

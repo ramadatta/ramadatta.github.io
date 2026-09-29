@@ -14,9 +14,9 @@
   padding: 0;
 }
 
-// Typography Scale - Visual Cinnamon style (Cabrio font)
-$font-family-heading: "Cabrio", sans-serif;
-$font-family-body: "Cabrio", sans-serif;
+// Typography - editorial pairing (Fraunces serif headings, Inter body)
+$font-family-heading: "Fraunces", Georgia, "Times New Roman", serif;
+$font-family-body: "Inter", Arial, Helvetica, sans-serif;
 $font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 $font-size-xs: 0.75rem;
@@ -48,10 +48,11 @@ $transition-base: 250ms ease;
 $transition-slow: 400ms ease;
 
 // Border Radius - Slightly rounded for friendliness
-$radius-sm: 4px;
-$radius-md: 8px;
-$radius-lg: 12px;
-$radius-xl: 16px;
+// Editorial theme uses square corners
+$radius-sm: 0;
+$radius-md: 0;
+$radius-lg: 0;
+$radius-xl: 0;
 $radius-full: 9999px;
 
 // Container
@@ -71,7 +72,7 @@ html {
 
 body {
   font-family: $font-family-body;
-  font-size: 1.125rem;              // 18px base (Visual Cinnamon style)
+  font-size: 1rem;                  // 16px base (editorial style)
   line-height: 1.65;                // Visual Cinnamon line-height
   background-color: $bg-dark;
   color: $text-dark-primary;
@@ -84,18 +85,23 @@ body {
 // Headings - Visual Cinnamon sizes
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-heading;
-  font-weight: 700;
-  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   margin-bottom: $spacing-4;
   color: $text-dark-primary;
 }
 
 h1 { 
-  font-size: 2.8rem;                // Visual Cinnamon h1 size
+  font-size: 2.8rem;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
   margin-top: 2rem;
 }
 h2 { 
-  font-size: 2rem;                  // Visual Cinnamon h2 size
+  font-size: 2rem;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
   margin-top: 2.5rem;
 }
 h3 { 
@@ -109,7 +115,7 @@ h6 { font-size: $font-size-sm; }
 // Paragraphs - Visual Cinnamon spacing
 p {
   margin-bottom: 1.4rem;            // Visual Cinnamon paragraph spacing
-  color: $text-dark-primary;         // Pure black for main text
+  color: $text-dark-secondary;       // Olive gray body text (editorial)
 }
 
 // Links - Visual Cinnamon style (underline on hover)
@@ -120,13 +126,13 @@ a {
   transition: color 0.2s;
   
   &:hover, &:focus {
-    color: $color-primary-dark;     // #2a9ba3 darker teal
+    color: $color-primary-dark;
     border-bottom-color: $color-primary-dark;
   }
   
   &:visited {
-    color: $color-accent;            // #551a8b purple for visited
-    border-bottom-color: $color-accent;
+    color: $color-primary;           // Visited links keep the accent color
+    border-bottom-color: $color-primary;
   }
 }
 
@@ -204,7 +210,6 @@ table {
   background: $bg-dark-surface;
   border-radius: $radius-md;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   
   th, td {
     padding: $spacing-3 $spacing-4;
@@ -251,8 +256,8 @@ hr {
 
 // Selection
 ::selection {
-  background: rgba($color-primary, 0.2);
-  color: $text-dark-primary;
+  background: $color-primary;
+  color: $color-peach;
 }
 
 // ==============================================================================

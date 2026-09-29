@@ -11,6 +11,11 @@
     
     <ul class="nav-menu">
       <li class="nav-item">
+        <a href="{{ '/' | relative_url }}#about" class="nav-link">
+          About
+        </a>
+      </li>
+      <li class="nav-item">
         <a href="{{ '/' | relative_url }}#research" class="nav-link">
           Research
         </a>
@@ -41,8 +46,8 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="{{ '/' | relative_url }}#contributions" class="nav-link">
-          Contributions
+        <a href="{{ '/' | relative_url }}#community" class="nav-link">
+          Community
         </a>
       </li>
       <li class="nav-item">
@@ -53,6 +58,11 @@
       <li class="nav-item">
         <a href="{{ '/' | relative_url }}#contact" class="nav-link">
           Contact
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ '/gallery/' | relative_url }}" class="nav-link {% if page.url contains '/gallery' %}active{% endif %}">
+          Gallery
         </a>
       </li>
       <li class="nav-item">
