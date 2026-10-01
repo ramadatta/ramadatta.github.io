@@ -32,11 +32,14 @@ links:
 <section id="about" class="home-section">
   <h2 class="home-title">About Me</h2>
 
-  <p>I'm a doctoral researcher in Bioinformatics at Helmholtz Munich with over a decade of experience turning complex biological data into reproducible, decision-ready insights. My current work focuses on single-cell genomics in lung fibrosis, regeneration, and the computational approaches that help decode complex cell states and cell types at unprecedented resolution.</p>
-  <p>My research path has spanned infectious disease genomics, fish genomics, and now human lung single-cell biology. Each domain has taught me something different about scale, noise, and biological interpretation, and I bring that breadth to every new problem I take on.</p>
-  <p>On the technical side, I work day-to-day in Python and R for single-cell analysis (Scanpy, Seurat, Bioconductor), with strong foundations in shell scripting, AWK/SED for flat-file wrangling and with Perl from my earlier years as a bioinformatician. I'm comfortable across UNIX/Linux environments, AWS, and HPC clusters, and I keep my work versioned and documented on <a href="https://github.com/ramadatta" target="_blank" rel="noopener noreferrer">GitHub</a>. I care about writing analyses that are reproducible, well-documented, and easy for someone else to pick up.</p>
-  <p>Beyond the day job, I like contributing in ways that are useful and concrete. I've been an active member of the BioStars bioinformatics community for over 13 years (<a href="https://www.biostars.org/u/3738/" target="_blank" rel="noopener noreferrer">BioStars profile</a>), I maintain a blog where I document unpolished discoveries and learning moments from my PhD journey (<a href="{{ '/blog/' | relative_url }}">blog</a>), and I run a small YouTube channel with tutorials and walkthroughs for fellow researchers (<a href="https://www.youtube.com/@asearchforsolutions" target="_blank" rel="noopener noreferrer">YouTube</a>). Sharing what I learn is one of the parts of this work I enjoy most. If I ever saved your time without knowing you, let me know ! ! :)</p>
-  <p>I value conversations that move easily between science, technology, ideas, and everyday life. If I resonate with you, I'd be happy to connect on this platform.</p>
+  <p>I am a computational biologist and final-year PhD candidate with 15+ years of experience spanning clinical genomics, NGS workflows, scientific computing, and single-cell disease biology.</p>
+  <p>My doctoral research applies human and mouse lung multi-omics to study fibrotic disease states, gene regulatory programs, and perturbation responses with relevance to translational research. As I move toward the final stage of my PhD, I am preparing to transition into industry R&amp;D, where I hope to contribute to computational biology strategies in target discovery, biomarker development, translational medicine, and precision medicine.</p>
+  <p>Technically, I work day-to-day in Python and R for single-cell and multi-omics analysis, including Scanpy, Seurat, and Bioconductor. I also bring a strong foundation in UNIX/Linux, shell scripting, AWK/SED, HPC environments, AWS, GitHub-based version control, and reproducible workflow development. Earlier in my career, Perl was a major part of my bioinformatics toolkit, and that background still shapes how I think about robust, practical data handling.</p>
+  <p>I care deeply about making analyses reproducible, well-documented, and easy for others to understand, reuse, and build upon. My code and selected projects are available on <a href="https://github.com/ramadatta" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+  <p>Beyond my research, I enjoy practical scientific community-building. I have spent 14+ years learning from and contributing to <a href="https://www.biostars.org/u/3738/" target="_blank" rel="noopener noreferrer">BioStars</a>, long before LLM-based tools became part of everyday bioinformatics workflows.</p>
+  <p>I also maintain a <a href="{{ '/blog/' | relative_url }}">blog</a> where I document discoveries, mistakes, and learning moments from my PhD journey, and I run a small <a href="https://www.youtube.com/@asearchforsolutions" target="_blank" rel="noopener noreferrer">YouTube channel</a> with tutorials and walkthroughs for researchers working through similar problems.</p>
+  <p>Sharing what I learn has become one of the most rewarding parts of my work. If something I wrote, answered, or explained ever saved your time without me knowing, let me know! :)</p>
+  <p>I value conversations that move naturally between science, technology, ideas, and everyday life. If my work or outlook resonates with you, I would be happy to connect here.</p>
 </section>
 
 <section id="research" class="home-section">
@@ -170,12 +173,13 @@ links:
   <div class="home-row">
     <span class="home-date">Jun 2023 – Present</span>
     <div>
-      <h3>Doctoral Candidate</h3>
+      <h3>Doctoral Candidate — Computational Biology</h3>
       <p class="home-org">Helmholtz Center Munich · Germany</p>
       <ul>
-        <li>sc/snRNA-seq data analysis from lung tissues (human/mouse)</li>
-        <li>Developing applications for the lung research community</li>
-        <li>Training colleagues on bioinformatics skills</li>
+        <li>Analyze human and mouse sc/snRNA-seq datasets from lung tissues to study cell states and molecular programs associated with pulmonary fibrosis.</li>
+        <li>Work with IPF and precision-cut lung slice datasets to investigate disease biology and experimental perturbation responses.</li>
+        <li>Develop computational tools and applications to support data exploration and interpretation for the lung research community.</li>
+        <li>Train wet-lab and computational colleagues in bioinformatics workflows, single-cell analysis, and reproducible data analysis practices.</li>
       </ul>
     </div>
   </div>
@@ -183,12 +187,12 @@ links:
     <span class="home-date">Jul 2019 – May 2023</span>
     <div>
       <h3>Senior Bioinformatician</h3>
-      <p class="home-org">National Centre for Infectious Diseases (NCID) · Singapore</p>
+      <p class="home-org">National Centre for Infectious Diseases · Singapore</p>
       <ul>
-        <li>Bacterial genome sequence analysis and reporting for infection control</li>
-        <li>Developed and published R package <strong>CPgeneProfiler</strong></li>
-        <li>Automated clinical bioinformatics using workflow management systems</li>
-        <li>HPC data management and analysis pipeline development</li>
+        <li>Performed bacterial whole-genome sequencing analysis and reporting to support infectious disease surveillance and infection-control investigations.</li>
+        <li>Developed and published the R package <strong>CPgeneProfiler</strong> for bacterial genomic feature profiling.</li>
+        <li>Built automated and reproducible clinical bioinformatics workflows using workflow management systems.</li>
+        <li>Managed sequencing datasets, HPC-based analysis pipelines, and computational infrastructure for clinical and public health genomics projects.</li>
       </ul>
     </div>
   </div>
@@ -196,11 +200,11 @@ links:
     <span class="home-date">Aug 2017 – Jun 2019</span>
     <div>
       <h3>Research Associate</h3>
-      <p class="home-org">Saw Swee Hock School of Public Health, NUS (External Staff at NCID) · Singapore</p>
+      <p class="home-org">Saw Swee Hock School of Public Health, NUS / NCID · Singapore</p>
       <ul>
-        <li>Developed SOPs for bioinformatics data analysis</li>
-        <li>Bacterial genome data and metadata management</li>
-        <li>HPC performance analysis and optimization</li>
+        <li>Developed standard operating procedures for bacterial genome sequence analysis.</li>
+        <li>Managed bacterial genomic datasets and associated metadata for infectious disease research and surveillance.</li>
+        <li>Optimized HPC workflows for large-scale genome analysis and computational performance.</li>
       </ul>
     </div>
   </div>
@@ -210,9 +214,9 @@ links:
       <h3>Bioinformatics Engineer</h3>
       <p class="home-org">Temasek Life Sciences Laboratory, NUS · Singapore</p>
       <ul>
-        <li>Participated in the <strong>Asian Seabass Genome Project</strong> with the South African National Bioinformatics Institute (SANBI), focusing on bioinformatics analysis</li>
-        <li>Involved in transcriptome analysis and genome assembly of Asian Seabass</li>
-        <li>Applied comparative genomics methods to Tilapia and Arowana datasets</li>
+        <li>Contributed to the <strong>Asian Seabass Genome Project</strong> in collaboration with the South African National Bioinformatics Institute.</li>
+        <li>Performed genome assembly, transcriptome analysis, and comparative genomics for aquaculture and evolutionary genomics projects.</li>
+        <li>Applied computational genomics approaches across Asian seabass, tilapia, and arowana datasets.</li>
       </ul>
     </div>
   </div>
@@ -222,7 +226,7 @@ links:
       <h3>Research Intern</h3>
       <p class="home-org">Genome Institute of Singapore, A*STAR · Singapore</p>
       <ul>
-        <li>Computational analysis of algal organism Botryococcus genomes and transcriptomes</li>
+        <li>Conducted computational analysis of algal genome and transcriptome datasets, including <em>Botryococcus</em> species.</li>
       </ul>
     </div>
   </div>
@@ -377,7 +381,7 @@ links:
 
   <div class="home-cards home-cards--three">
     <div class="home-card">
-      <span class="home-card-kicker">Q&amp;A forum · <span class="home-status home-status--live">13+ years</span></span>
+      <span class="home-card-kicker">Q&amp;A forum · <span class="home-status home-status--live">14+ years</span></span>
       <h3>Biostar</h3>
       <p>Active community member</p>
       <a class="home-card-link" href="https://www.biostars.org/u/3738/" target="_blank" rel="noopener noreferrer">Profile: Prakki Rama ↗</a>
