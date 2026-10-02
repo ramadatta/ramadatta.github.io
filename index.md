@@ -22,7 +22,7 @@ links:
   - { label: "LinkedIn", url: "https://www.linkedin.com/in/prakki-sai-rama-sridatta-data/" }
   - { label: "BioStars", url: "https://www.biostars.org/u/3738/" }
   - { label: "YouTube", url: "https://www.youtube.com/@asearchforsolutions" }
-  - { label: "Email", url: "mailto:srsridatta.prakki@helmholtz-munich.de" }
+  - { label: "Email", url: "mailto:ramadatta.g88@gmail.com" }
 ---
 
 <div class="home-open">
@@ -30,7 +30,7 @@ links:
   <p class="home-open-lead">Seeking <strong>Senior Scientist</strong> roles in therapeutics companies: computational biology for <strong>target discovery</strong>, with a focus on <strong>single-cell and spatial biology</strong>.</p>
   <p class="home-open-meta">Available from <strong>July 2027</strong> · Based in Munich until May 2027</p>
   <div class="home-open-actions">
-    <a class="home-btn home-btn--primary" href="mailto:srsridatta.prakki@helmholtz-munich.de?subject=Opportunity">Get in touch</a>
+    <a class="home-btn home-btn--primary" href="mailto:ramadatta.g88@gmail.com?subject=Opportunity">Get in touch</a>
     <a class="home-btn" href="{{ '/assets/pdf/Prakki_CV.pdf' | relative_url }}" download>Download CV</a>
   </div>
 </div>
@@ -513,7 +513,7 @@ links:
 
   <div class="home-row">
     <span class="home-date">Email</span>
-    <div><a href="mailto:srsridatta.prakki@helmholtz-munich.de">srsridatta.prakki@helmholtz-munich.de</a></div>
+    <div><a href="mailto:ramadatta.g88@gmail.com">ramadatta.g88@gmail.com</a></div>
   </div>
   <div class="home-row">
     <span class="home-date">LinkedIn</span>

@@ -3,12 +3,12 @@
 # ==============================================================================
 title: Sai Rama Sridatta Prakki
 description: >-
-  Doctoral researcher in Bioinformatics @ Helmholtz Munich • Single-cell genomics,
-  lung fibrosis & regeneration • Reproducible analyses, code, and learning in public.
+  Computational biologist at Helmholtz Munich • Single-cell, lung fibrosis/IPF &
+  clinical genomics • Translational multi-omics for target discovery & biomarkers.
 author:
   name: Datta
-  email: srsridatta.prakki@helmholtz-munich.de
-  bio: "Doctoral researcher in bioinformatics; single-cell genomics in lung fibrosis and regeneration"
+  email: ramadatta.g88@gmail.com
+  bio: "Computational biologist and doctoral researcher; single-cell and translational multi-omics in lung fibrosis/IPF"
 
 url: "https://ramadatta.github.io"
 baseurl: ""
@@ -48,7 +48,7 @@ defaults:
 social:
   github: ramadatta
   linkedin: prakki-sai-rama-sridatta-data
-  email: srsridatta.prakki@helmholtz-munich.de
+  email: ramadatta.g88@gmail.com
 
 # ==============================================================================
 # Theme Settings
