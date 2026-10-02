@@ -124,13 +124,23 @@ links:
 
     <div class="home-tabpanel" role="tabpanel" id="panel-tools" aria-labelledby="tab-tools">
       <h3 class="home-subtitle">Tools I've built</h3>
-      <div class="home-cards home-cards--three">
+      <div class="home-cards">
         <div class="home-card">
           <span class="home-card-kicker">Hugging Face Space</span>
           <h3>MAPLE</h3>
           <p>Turns marker genes into literature-backed cell type labels, with every call traced to a supporting sentence and PMID.</p>
           <div class="home-tags"><span>cell type annotation</span><span>literature mining</span><span>LLM</span></div>
           <a class="home-card-link" href="https://huggingface.co/spaces/ramadatta88/MAPLE" target="_blank" rel="noopener noreferrer">Try it on Hugging Face ↗</a>
+        </div>
+        <div class="home-card">
+          <span class="home-card-kicker">Web app · Google Gemini</span>
+          <h3>MarkerMind</h3>
+          <p>AI-powered literature mining: extracts cell types, their marker genes, the methods used to identify them, and the biological context from pasted text or uploaded PDFs.</p>
+          <div class="home-tags"><span>marker genes</span><span>literature mining</span><span>TypeScript</span><span>LLM</span></div>
+          <div class="home-card-links">
+            <a href="https://markermind.netlify.app/" target="_blank" rel="noopener noreferrer">Open the app ↗</a>
+            <a href="https://github.com/ramadatta/MarkerMind" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
         </div>
         <div class="home-card">
           <span class="home-card-kicker">Python package</span>
@@ -379,7 +389,13 @@ links:
   <span id="contributions"></span>
   <h2 class="home-title">Community</h2>
 
-  <div class="home-cards home-cards--three">
+  <div class="home-cards">
+    <div class="home-card">
+      <span class="home-card-kicker">Peer review · JOSS · 2026</span>
+      <h3>Reviewer, PPanGGOLiN v2</h3>
+      <p>Reviewed the software, documentation and paper of a prokaryotic pangenome analysis tool (v2.3.0) for the <em>Journal of Open Source Software</em></p>
+      <a class="home-card-link" href="https://github.com/openjournals/joss-reviews/issues/11101" target="_blank" rel="noopener noreferrer">Review thread ↗</a>
+    </div>
     <div class="home-card">
       <span class="home-card-kicker">Q&amp;A forum · <span class="home-status home-status--live">14+ years</span></span>
       <h3>Biostar</h3>
@@ -419,6 +435,14 @@ links:
 
 <section id="grants" class="home-section">
   <h2 class="home-title">Grants &amp; awards</h2>
+
+  <div class="home-row">
+    <span class="home-date">2025</span>
+    <div>
+      <h3>Honorable Mention, Posit Table Contest</h3>
+      <p class="home-org"><em>Paris 2024 Olympics: Medal Performance Analysis</em>, a publication-quality data table built in R<br>Posit · <a href="https://posit.co/blog/2025-table-contest-winners" target="_blank" rel="noopener noreferrer">Results</a> · <a href="https://github.com/rich-iannone/table-contest/discussions/14" target="_blank" rel="noopener noreferrer">Entry</a> · <a href="https://github.com/ramadatta/paris-2024-olympics-table" target="_blank" rel="noopener noreferrer">Code</a></p>
+    </div>
+  </div>
 
   <div class="home-row">
     <span class="home-date">2025</span>

@@ -531,6 +531,17 @@ $home-tint: rgba($color-primary, 0.08);
   color: $text-dark-muted;
 }
 
+// Several links at the bottom of one card
+.home-card-links {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
 .home-main a.home-card-link {
   overflow-wrap: anywhere;
   margin-top: auto;

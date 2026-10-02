@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -ohE \"\\\\\\\\\\\\$\\(color|bg|text|border|code|gradient|shadow\\)-[a-z-]+\" _sass/_base.scss _sass/_components.scss _sass/_layout.scss)",
+      "Bash(python3 -)",
+      "Bash(cat .ruby-version; ls ~/.rbenv/versions ~/.rubies /opt/homebrew/opt/ruby/bin 2>/dev/null; which -a ruby rbenv chruby-exec 2>/dev/null)",
+      "Read(//opt/homebrew/opt/ruby/**)"
+    ]
+  }
+}
