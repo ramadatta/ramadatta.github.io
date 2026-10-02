@@ -169,6 +169,90 @@ $home-tint: rgba($color-primary, 0.08);
   }
 }
 
+// "Open to opportunities" call-out for recruiters
+.home-open {
+  background: $text-dark-primary;
+  color: $bg-dark;
+  padding: 22px 24px;
+  margin-bottom: 18px;
+
+  .home-main & p {
+    color: rgba($bg-dark, 0.85);
+    margin: 0;
+  }
+
+  .home-main & strong {
+    color: $bg-dark;
+  }
+}
+
+.home-open-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-peach;
+
+  &::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6FCF8E;
+    box-shadow: 0 0 0 3px rgba(#6FCF8E, 0.25);
+  }
+}
+
+.home-main p.home-open-lead {
+  font-family: $font-family-heading;
+  font-size: 1.22rem;
+  line-height: 1.45;
+  margin-top: 10px;
+}
+
+.home-main p.home-open-meta {
+  font-size: 0.88rem;
+  margin-top: 8px;
+}
+
+.home-open-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.home-main a.home-btn,
+.home-main a.home-btn:visited {
+  display: inline-block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 9px 18px;
+  border: 1px solid rgba($bg-dark, 0.6);
+  color: $bg-dark;
+  text-decoration: none;
+  transition: background $transition-fast, border-color $transition-fast;
+
+  &:hover {
+    border-color: $bg-dark;
+    background: rgba($bg-dark, 0.1);
+  }
+}
+
+.home-main a.home-btn--primary,
+.home-main a.home-btn--primary:visited {
+  background: $color-primary;
+  border-color: $color-primary;
+
+  &:hover {
+    background: $color-primary-dark;
+    border-color: $color-primary-dark;
+  }
+}
+
 .home-news {
   display: flex;
   gap: 14px;
@@ -525,6 +609,30 @@ $home-tint: rgba($color-primary, 0.08);
 
   .home-tags {
     margin-top: 12px;
+  }
+}
+
+.home-page ul.home-card-list {
+  list-style: none;
+  margin-top: 4px;
+
+  li {
+    font-size: 0.9rem;
+    color: $text-dark-secondary;
+    padding: 6px 0 6px 14px;
+    position: relative;
+    line-height: 1.5;
+
+    & + li {
+      border-top: 1px solid $border-light;
+    }
+
+    &::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: $color-primary;
+    }
   }
 }
 

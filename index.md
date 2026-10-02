@@ -17,12 +17,23 @@ sections:
 links:
   - { label: "CV (PDF)", url: "/assets/pdf/Prakki_CV.pdf", download: true }
   - { label: "Google Scholar", url: "https://scholar.google.com/citations?hl=en&user=kiCDFpIAAAAJ&view_op=list_works&sortby=pubdate" }
+  - { label: "ORCID", url: "https://orcid.org/0000-0002-9254-2557" }
   - { label: "GitHub", url: "https://github.com/ramadatta" }
   - { label: "LinkedIn", url: "https://www.linkedin.com/in/prakki-sai-rama-sridatta-data/" }
   - { label: "BioStars", url: "https://www.biostars.org/u/3738/" }
   - { label: "YouTube", url: "https://www.youtube.com/@asearchforsolutions" }
   - { label: "Email", url: "mailto:srsridatta.prakki@helmholtz-munich.de" }
 ---
+
+<div class="home-open">
+  <span class="home-open-label">Open to opportunities</span>
+  <p class="home-open-lead">Seeking <strong>Senior Scientist</strong> roles in therapeutics companies: computational biology for <strong>target discovery</strong>, with a focus on <strong>single-cell and spatial biology</strong>.</p>
+  <p class="home-open-meta">Available from <strong>July 2027</strong> · Based in Munich until May 2027</p>
+  <div class="home-open-actions">
+    <a class="home-btn home-btn--primary" href="mailto:srsridatta.prakki@helmholtz-munich.de?subject=Opportunity">Get in touch</a>
+    <a class="home-btn" href="{{ '/assets/pdf/Prakki_CV.pdf' | relative_url }}" download>Download CV</a>
+  </div>
+</div>
 
 <div class="home-news">
   <b>News</b>
@@ -393,6 +404,10 @@ links:
     <h3>Infrastructure</h3>
     <div class="home-tags"><span>HPC</span><span>Linux</span><span>Git/GitHub</span></div>
   </div>
+  <div class="home-skill">
+    <h3>Languages</h3>
+    <div class="home-tags"><span>English (professional)</span><span>Telugu (native)</span><span>Tamil (intermediate)</span><span>Hindi (limited)</span><span>Odia (limited)</span></div>
+  </div>
 </section>
 
 <section id="community" class="home-section">
@@ -401,10 +416,13 @@ links:
 
   <div class="home-cards">
     <div class="home-card">
-      <span class="home-card-kicker">Peer review · JOSS · 2026</span>
-      <h3>Reviewer, PPanGGOLiN v2</h3>
-      <p>Reviewed the software, documentation and paper of a prokaryotic pangenome analysis tool (v2.3.0) for the <em>Journal of Open Source Software</em></p>
-      <a class="home-card-link" href="https://github.com/openjournals/joss-reviews/issues/11101" target="_blank" rel="noopener noreferrer">Review thread ↗</a>
+      <span class="home-card-kicker">Peer review</span>
+      <h3>Journal reviewer</h3>
+      <ul class="home-card-list">
+        <li><em>Journal of Open Source Software</em>: PPanGGOLiN v2, a prokaryotic pangenome analysis tool (software, documentation and paper), 2026 · <a href="https://github.com/openjournals/joss-reviews/issues/11101" target="_blank" rel="noopener noreferrer">Review thread ↗</a></li>
+        <li><em>BMC Infectious Diseases</em> (Springer Nature), 2023</li>
+      </ul>
+      <a class="home-card-link" href="https://orcid.org/0000-0002-9254-2557" target="_blank" rel="noopener noreferrer">ORCID record ↗</a>
     </div>
     <div class="home-card">
       <span class="home-card-kicker">Q&amp;A forum · <span class="home-status home-status--live">14+ years</span></span>
@@ -413,9 +431,9 @@ links:
       <a class="home-card-link" href="https://www.biostars.org/u/3738/" target="_blank" rel="noopener noreferrer">Profile: Prakki Rama ↗</a>
     </div>
     <div class="home-card">
-      <span class="home-card-kicker">YouTube</span>
+      <span class="home-card-kicker">Teaching · YouTube</span>
       <h3>Tutorial Videos</h3>
-      <p>Bioinformatics related content</p>
+      <p>Tutorials and walkthroughs for researchers working through bioinformatics problems</p>
       <a class="home-card-link" href="https://www.youtube.com/@asearchforsolutions" target="_blank" rel="noopener noreferrer">A Search For Solutions ↗</a>
     </div>
     <div class="home-card">
