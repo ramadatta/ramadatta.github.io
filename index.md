@@ -40,6 +40,16 @@ links:
   <p>I also maintain a <a href="{{ '/blog/' | relative_url }}">blog</a> where I document discoveries, mistakes, and learning moments from my PhD journey, and I run a small <a href="https://www.youtube.com/@asearchforsolutions" target="_blank" rel="noopener noreferrer">YouTube channel</a> with tutorials and walkthroughs for researchers working through similar problems.</p>
   <p>Sharing what I learn has become one of the most rewarding parts of my work. If something I wrote, answered, or explained ever saved your time without me knowing, let me know! :)</p>
   <p>I value conversations that move naturally between science, technology, ideas, and everyday life. If my work or outlook resonates with you, I would be happy to connect here.</p>
+
+  <figure class="home-quote">
+    <blockquote>
+      <p>“To ensure that the community can explore and build upon our results without specialized bioinformatics expertise, we have developed an interactive browser-based webtool… Really nice work by the talented Sai Rama Sridatta Prakki.”</p>
+    </blockquote>
+    <figcaption>
+      <strong>Prof. Dr. Herbert Schiller</strong>, Director, Research Unit for Precision Regenerative Medicine, Helmholtz Munich
+      <span>On the <a href="https://hschillerlabshiny.shinyapps.io/BleomycinAging/" target="_blank" rel="noopener noreferrer">Bleomycin Aging webtool</a> · <a href="https://www.youtube.com/watch?v=X3j85CMKCWo&amp;t=9s" target="_blank" rel="noopener noreferrer">Video tutorial ↗</a> · <a href="https://x.com/SchillerLab/status/1950536045776290220" target="_blank" rel="noopener noreferrer">Original post, Jul 2025 ↗</a></span>
+    </figcaption>
+  </figure>
 </section>
 
 <section id="research" class="home-section">
@@ -449,6 +459,13 @@ links:
     <div>
       <h3>Environmental Health and Lung Research School (EHLRS) Grant Award (€2,000)</h3>
       <p class="home-org"><em>Project: "Plasticity Unforeseen: Loss of PTK7/SOX4 in human fibrotic lung slices drives Pulmonary Epithelial AT2 Reprogramming (PULP-in-PEAR)"</em><br>Helmholtz Munich, Comprehensive Pneumology Center</p>
+    </div>
+  </div>
+  <div class="home-row">
+    <span class="home-date">2023</span>
+    <div>
+      <h3>Winner, Theis Lab Christmas Competition: “Ugly Plot” Design</h3>
+      <p class="home-org">Custom ggplot recognized for “exceptional excellence in the field of ugly plot design”<br>Institute of Computational Biology, Helmholtz Munich · <a href="https://x.com/Prakki_Rama/status/1735253164855636272" target="_blank" rel="noopener noreferrer">Post ↗</a></p>
     </div>
   </div>
   <div class="home-row">
