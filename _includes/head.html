@@ -7,7 +7,29 @@
 <meta name="description" content="{{ page.description | default: site.description | strip_html | truncate: 160 }}">
 <meta name="author" content="{{ site.author.name }}">
 
-<!-- Open Graph / link-preview tags (incl. the preview image) come from the SEO tag below -->
+<!-- Open Graph / link-preview tags come from the SEO tag below -->
+{% if page.collection == "posts" %}
+  {% comment %}
+    Blog posts: preview image = front-matter image, else thumbnail, else the first
+    image in the post (SVGs skipped; LinkedIn can't show them), else the site card.
+  {% endcomment %}
+  {% assign post_image = page.image | default: page.thumbnail %}
+  {% if post_image == nil or post_image == "" %}
+    {% assign img_tags = content | split: "<img" %}
+    {% for tag in img_tags offset: 1 %}
+      {% assign src = tag | split: 'src="' | slice: 1 | first | split: '"' | first %}
+      {% assign src_ext = src | split: "?" | first | downcase %}
+      {% unless src_ext contains ".svg" %}
+        {% assign post_image = src %}
+        {% break %}
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+  {% if post_image == nil or post_image == "" %}{% assign post_image = site.social_image %}{% endif %}
+  {% unless post_image contains "://" %}{% assign post_image = post_image | absolute_url %}{% endunless %}
+  <meta property="og:image" content="{{ post_image }}">
+  <meta name="twitter:image" content="{{ post_image }}">
+{% endif %}
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👣</text></svg>">

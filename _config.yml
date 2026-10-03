@@ -13,6 +13,9 @@ author:
 # Google Analytics measurement ID (loaded on the live site only; remove the line to disable)
 google_analytics: G-7VWJGTNBG4
 
+# Fallback link-preview image for blog posts that contain no images
+social_image: /assets/img/social-preview.jpg
+
 # Large image cards when links are shared on X/Twitter
 twitter:
   card: summary_large_image
@@ -43,9 +46,11 @@ sass:
 # Defaults
 # ==============================================================================
 defaults:
-  # Link-preview image for LinkedIn, X, Slack etc. (1200x630); a page can override with `image:`
+  # Link-preview image for pages (homepage, blog index, gallery). Blog posts pick
+  # their own image in _includes/head.html; a page can override with `image:`.
   - scope:
       path: ""
+      type: "pages"
     values:
       image: /assets/img/social-preview.jpg
   - scope:
