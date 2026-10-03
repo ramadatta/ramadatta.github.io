@@ -10,6 +10,9 @@ author:
   email: ramadatta.g88@gmail.com
   bio: "Computational biologist and doctoral researcher; single-cell and translational multi-omics in lung fibrosis/IPF"
 
+# Google Analytics measurement ID (loaded on the live site only; remove the line to disable)
+google_analytics: G-7VWJGTNBG4
+
 url: "https://ramadatta.github.io"
 baseurl: ""
 
