@@ -774,6 +774,66 @@ $home-tint: rgba($color-primary, 0.08);
   }
 }
 
+// Articles on other platforms (homepage "Recent writing" and blog page)
+.external-posts {
+  margin-top: 28px;
+}
+
+h3.external-posts-title {
+  font-family: $font-family-body;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $text-dark-muted;
+  margin: 0 0 4px;
+}
+
+.external-post {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 12px 0;
+  border-bottom: 1px solid $border-light;
+
+  a,
+  a:visited {
+    color: $text-dark-primary;
+    font-weight: 500;
+    border-bottom: none;
+  }
+
+  a:hover {
+    color: $color-primary;
+  }
+}
+
+.external-post-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: $text-dark-muted;
+  font-size: 0.84rem;
+  white-space: nowrap;
+}
+
+.external-post-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 1px 7px;
+  border: 1px solid $border-light;
+  color: $text-dark-secondary;
+}
+
+@media (max-width: 900px) {
+  .external-post {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
 .home-footer {
   color: $text-dark-muted;
   font-size: 0.8rem;

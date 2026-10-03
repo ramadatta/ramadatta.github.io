@@ -1,0 +1,12 @@
+{% comment %} Articles published on other platforms; data in _data/external_posts.yml {% endcomment %}
+{% if site.data.external_posts.size > 0 %}
+  <div class="external-posts">
+    <h3 class="external-posts-title">Also published on LinkedIn &amp; Medium</h3>
+    {% for item in site.data.external_posts %}
+      <div class="external-post">
+        <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }} ↗</a>
+        <span class="external-post-meta"><span class="external-post-badge">{{ item.platform }}</span>{{ item.date | date: "%b %Y" }}</span>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

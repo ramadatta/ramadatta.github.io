@@ -1,0 +1,22 @@
+# Articles published elsewhere (LinkedIn, Medium, ...), newest first.
+# Shown on the homepage under "Recent writing" and on the blog page.
+#
+# - title: Article title
+#   url: https://...
+#   date: 2024-10-13          # YYYY-MM-DD
+#   platform: Medium          # shown as a small badge
+
+- title: How NotebookLM Has Potential To Transform PhD Research Journey
+  url: https://medium.com/@ramadatta.88/how-notebooklm-has-potential-to-transform-phd-research-journey-e1426be0113e
+  date: 2024-10-13
+  platform: Medium
+
+- title: "Getting started with Pandas in Python: a tutorial for novice"
+  url: https://www.linkedin.com/pulse/getting-started-pandas-python-tutorial-novice-sai-rama-sridatta/
+  date: 2022-12-11
+  platform: LinkedIn
+
+- title: 8 Conda Commands for Bioinformaticians
+  url: https://www.linkedin.com/pulse/8-conda-commands-bioinformaticians-prakki-sai-rama-sridatta/
+  date: 2022-12-09
+  platform: LinkedIn

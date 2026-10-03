@@ -504,6 +504,8 @@ links:
       <span>{{ post.date | date: "%b %Y" }}</span>
     </div>
   {% endfor %}
+
+  {% include external_posts.html %}
 </section>
 
 <section id="contact" class="home-section">
