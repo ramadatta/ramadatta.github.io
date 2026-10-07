@@ -27,7 +27,7 @@ links:
 
 <div class="home-open">
   <span class="home-open-label">Open to opportunities</span>
-  <p class="home-open-lead">Seeking <strong>Senior Scientist</strong> roles in therapeutics companies: computational biology for <strong>target discovery</strong>, with a focus on <strong>single-cell and spatial biology</strong>.</p>
+  <p class="home-open-lead">Seeking <strong>Senior Scientist</strong> roles in therapeutics companies: <strong>Translational Multi-omics, Target Discovery &amp; Biomarkers</strong>, with a focus on <strong>single-cell and spatial biology</strong>.</p>
   <p class="home-open-meta">Available from <strong>July 2027</strong> · Based in Munich until May 2027</p>
   <div class="home-open-actions">
     <a class="home-btn home-btn--primary" href="mailto:ramadatta.g88@gmail.com?subject=Opportunity">Get in touch</a>
@@ -66,7 +66,7 @@ links:
 <section id="research" class="home-section">
   <h2 class="home-title">Research</h2>
 
-  <p>My current research focuses on understanding lung biology at single-cell resolution at the <strong>Research Unit for Precision Regenerative Medicine</strong> and <strong>Institute of Computational Biology</strong>, Helmholtz Munich.</p>
+  <p>My current research focuses on understanding lung biology at single-cell resolution at the <strong>Research Unit for Precision Regenerative Medicine</strong> and <strong>Institute of Computational Biology</strong>, Helmholtz Munich, as a doctoral candidate affiliated with the <strong>Technical University of Munich (TUM)</strong>.</p>
 
   <div class="home-tabs" data-tabs>
     <div class="home-tablist" role="tablist" aria-label="Research">
@@ -140,6 +140,13 @@ links:
           <div class="home-tags"><span>R Shiny</span><span>PCLS</span><span>time course</span></div>
           <span class="home-card-note">Public release upcoming</span>
         </div>
+        <div class="home-card home-card--upcoming">
+          <span class="home-card-kicker">Shiny for Python · <span class="home-status">Coming soon</span></span>
+          <h3>In Vivo Lung Cell Atlas</h3>
+          <p>Explore single-nuclei RNA-seq of fibrotic human lung tissue across epithelial, endothelial, mesenchymal and immune compartments</p>
+          <div class="home-tags"><span>Shiny for Python</span><span>snRNA-seq</span><span>IPF</span></div>
+          <span class="home-card-note">Public release upcoming</span>
+        </div>
       </div>
     </div>
 
@@ -205,12 +212,13 @@ links:
     <span class="home-date">Jun 2023 – Present</span>
     <div>
       <h3>Doctoral Candidate — Computational Biology</h3>
-      <p class="home-org">Helmholtz Center Munich · Germany</p>
+      <p class="home-org">Helmholtz Center Munich · Technical University of Munich (TUM) · Germany</p>
       <ul>
-        <li>Analyze human and mouse sc/snRNA-seq datasets from lung tissues to study cell states and molecular programs associated with pulmonary fibrosis.</li>
-        <li>Work with IPF and precision-cut lung slice datasets to investigate disease biology and experimental perturbation responses.</li>
-        <li>Develop computational tools and applications to support data exploration and interpretation for the lung research community.</li>
-        <li>Train wet-lab and computational colleagues in bioinformatics workflows, single-cell analysis, and reproducible data analysis practices.</li>
+        <li>Co-lead and drive single-nucleus analysis of microCT-staged human IPF lung tissue to identify early-disease cell states as candidate <strong>targets and biomarkers</strong>.</li>
+        <li>Profile time-resolved, perturbed human precision-cut lung slices, using <strong>ex vivo models to test cellular responses to fibrosis-relevant interventions</strong>.</li>
+        <li>Built and deployed interactive single-cell atlases (~605k cells), including a <strong>12.5× storage reduction that made a 20 GB atlas deployable</strong>; the Bleomycin Aging app is openly accessible with no sign-in required.</li>
+        <li>Built <strong>MAPLE</strong>, an LLM-based tool that annotates cell types from the literature and traces every label to a supporting citation.</li>
+        <li>Partner with wet-lab scientists on experimental design and interpretation, and train colleagues in single-cell and reproducible analysis workflows.</li>
       </ul>
     </div>
   </div>
@@ -220,10 +228,10 @@ links:
       <h3>Senior Bioinformatician</h3>
       <p class="home-org">National Centre for Infectious Diseases · Singapore</p>
       <ul>
-        <li>Performed bacterial whole-genome sequencing analysis and reporting to support infectious disease surveillance and infection-control investigations.</li>
+        <li>Delivered bacterial whole-genome sequencing analysis in a <strong>clinical production setting</strong>, with results informing infection-control and outbreak investigations; single projects spanned <strong>1,000–1,500 bacterial genomes</strong>.</li>
+        <li>Built <strong>automated, reproducible pipelines</strong> for clinical genomics and moved them into routine use; contributed to Nextflow-based processing of SARS-CoV-2 nanopore data.</li>
         <li>Developed and published the R package <strong>CPgeneProfiler</strong> for bacterial genomic feature profiling.</li>
-        <li>Built automated and reproducible clinical bioinformatics workflows using workflow management systems.</li>
-        <li>Managed sequencing datasets, HPC-based analysis pipelines, and computational infrastructure for clinical and public health genomics projects.</li>
+        <li>Managed sequencing data, HPC pipelines and computational infrastructure for national clinical and public health genomics projects.</li>
       </ul>
     </div>
   </div>
@@ -233,9 +241,7 @@ links:
       <h3>Research Associate</h3>
       <p class="home-org">Saw Swee Hock School of Public Health, NUS / NCID · Singapore</p>
       <ul>
-        <li>Developed standard operating procedures for bacterial genome sequence analysis.</li>
-        <li>Managed bacterial genomic datasets and associated metadata for infectious disease research and surveillance.</li>
-        <li>Optimized HPC workflows for large-scale genome analysis and computational performance.</li>
+        <li>Established standard operating procedures for bacterial genome analysis and optimized HPC workflows for large-scale sequencing studies.</li>
       </ul>
     </div>
   </div>
@@ -245,9 +251,8 @@ links:
       <h3>Bioinformatics Engineer</h3>
       <p class="home-org">Temasek Life Sciences Laboratory, NUS · Singapore</p>
       <ul>
-        <li>Contributed to the <strong>Asian Seabass Genome Project</strong> in collaboration with the South African National Bioinformatics Institute.</li>
-        <li>Performed genome assembly, transcriptome analysis, and comparative genomics for aquaculture and evolutionary genomics projects.</li>
-        <li>Applied computational genomics approaches across Asian seabass, tilapia, and arowana datasets.</li>
+        <li>Contributed to the <strong>Asian Seabass Genome Project</strong> (with the South African National Bioinformatics Institute), performing genome assembly, transcriptomics and comparative genomics.</li>
+        <li>Applied these methods across Asian seabass, tilapia and arowana genomes.</li>
       </ul>
     </div>
   </div>
@@ -268,7 +273,7 @@ links:
 
   <div class="home-row">
     <span class="home-date">2023 – Present</span>
-    <div><h3>Doctoral Candidate in Bioinformatics</h3><p class="home-org">Helmholtz Center Munich, Germany</p></div>
+    <div><h3>Doctoral Candidate in Bioinformatics</h3><p class="home-org">Technical University of Munich (TUM) · Helmholtz Center Munich, Germany</p></div>
   </div>
   <div class="home-row">
     <span class="home-date">2010 – 2012</span>
