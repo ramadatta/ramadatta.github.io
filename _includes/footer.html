@@ -9,6 +9,12 @@
         Powered by Jekyll.
       </p>
     </div>
+
+    {% capture visitor_map %}{% include visitor-map.html %}{% endcapture %}
+    {% assign visitor_map = visitor_map | strip %}
+    {% if jekyll.environment == "production" and visitor_map != "" %}
+      <div class="footer-visitors" aria-label="Visitor map">{{ visitor_map }}</div>
+    {% endif %}
     
     <div class="footer-social">
       {% if site.social.github %}
