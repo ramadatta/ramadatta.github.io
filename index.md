@@ -37,7 +37,7 @@ links:
 
 <div class="home-news">
   <b>News</b>
-  <p>Presented a <a href="https://doi.org/10.1183/23120541.LSC-2026.PS336" target="_blank" rel="noopener noreferrer">poster</a> at the Lung Science Conference (2026), Estoril, Portugal · Awarded the EHLRS Grant (2025) for <em>PULP-in-PEAR</em>.</p>
+  <p>Presented a <a href="https://doi.org/10.1183/23120541.LSC-2026.PS336" target="_blank" rel="noopener noreferrer">poster</a> at the Lung Science Conference (2026), Estoril, Portugal · Awarded the <a href="https://www.cpc-researchschool.org/news-events/news/news/article/33306/index.html" target="_blank" rel="noopener noreferrer">EHLRS Grant (2025)</a> for <em>PULP-in-PEAR</em>.</p>
 </div>
 
 <section id="about" class="home-section">
@@ -481,7 +481,7 @@ links:
     <span class="home-date">2025</span>
     <div>
       <h3>Environmental Health and Lung Research School (EHLRS) Grant Award (€2,000)</h3>
-      <p class="home-org"><em>Project: "Plasticity Unforeseen: Loss of PTK7/SOX4 in human fibrotic lung slices drives Pulmonary Epithelial AT2 Reprogramming (PULP-in-PEAR)"</em><br>Helmholtz Munich, Comprehensive Pneumology Center</p>
+      <p class="home-org">Winner, Grant Writing Challenge 2025 · €2,000 in research consumables, funded by the German Center for Lung Research (DZL)<br><em>Project: "Plasticity Unforeseen: Loss of PTK7/SOX4 in human fibrotic lung slices drives Pulmonary Epithelial AT2 Reprogramming (PULP-in-PEAR)"</em><br>Helmholtz Munich, Comprehensive Pneumology Center · <a href="https://www.cpc-researchschool.org/news-events/news/news/article/33306/index.html" target="_blank" rel="noopener noreferrer">Announcement ↗</a></p>
     </div>
   </div>
   <div class="home-row">
