@@ -2,6 +2,8 @@
 # Site Settings
 # ==============================================================================
 title: Sai Rama Sridatta Prakki
+# Shown after your name in the homepage browser tab and Google result
+role: Computational Biologist
 description: >-
   Computational biologist at Helmholtz Munich • Single-cell, lung fibrosis/IPF &
   clinical genomics • Translational multi-omics for target discovery & biomarkers.
