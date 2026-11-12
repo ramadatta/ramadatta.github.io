@@ -27,8 +27,8 @@ links:
 
 <div class="home-open">
   <span class="home-open-label">Open to opportunities</span>
-  <p class="home-open-lead">Seeking <strong>Senior Scientist</strong> roles in therapeutics companies: <strong>Translational Multi-omics, Target Discovery &amp; Biomarkers</strong>, with a focus on <strong>single-cell and spatial biology</strong>.</p>
-  <p class="home-open-meta">Available from <strong>July 2027</strong> · Based in Munich until May 2027</p>
+  <p class="home-open-lead">Seeking <strong>Senior Scientist</strong> and <strong>Computational Biologist / Scientist</strong> roles in therapeutics companies: <strong>Translational Multi-omics, Target Discovery &amp; Biomarkers</strong>, with a focus on <strong>single-cell and spatial biology</strong>.</p>
+  <p class="home-open-meta">Based in Munich, Germany</p>
   <div class="home-open-actions">
     <a class="home-btn home-btn--primary" href="mailto:ramadatta.g88@gmail.com?subject=Opportunity">Get in touch</a>
     <a class="home-btn" href="{{ '/assets/pdf/Prakki_CV.pdf' | relative_url }}" download>Download CV</a>
